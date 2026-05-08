@@ -4,7 +4,7 @@ import os
 from omegaconf import OmegaConf
 from tqdm import tqdm
 from torchvision import transforms
-from torchvision.io import write_video
+import imageio
 from einops import rearrange
 import torch.distributed as dist
 from torch.utils.data import DataLoader, SequentialSampler
@@ -236,4 +236,5 @@ for i, batch_data in tqdm(enumerate(dataloader), disable=(local_rank != 0)):
 
             import termcolor
             print(termcolor.colored(f"Saving video to {output_path}", "green"))
-            write_video(output_path, video[seed_idx], fps=16)
+            video_np = video[seed_idx].numpy().astype('uint8')
+            imageio.mimsave(output_path, video_np, fps=16, codec='libx264')

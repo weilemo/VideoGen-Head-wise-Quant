@@ -2,6 +2,14 @@ import torch
 import triton
 import triton.language as tl
 from triton.language.extra import libdevice
+import warnings
+
+
+def _gpu_supports_fp8e4nv() -> bool:
+    """Return True if the current GPU supports fp8e4nv (Hopper+ / SM 9.0+)."""
+    if not torch.cuda.is_available():
+        return False
+    return torch.cuda.get_device_capability(0)[0] >= 9
 
 def get_configs():
     configs = [triton.Config({"BLOCK_D": 64}, num_stages=1, num_warps=1)]
@@ -146,6 +154,10 @@ def quant_pack(
     """
     assert num_bits in (2, 3, 4, 8), "num_bits must be 2, 3, 4, or 8"
     assert scale_precision in (torch.bfloat16, torch.float8_e4m3fn), "scale_precision must be bfloat16 or float8_e4m3fn"
+    if scale_precision == torch.float8_e4m3fn and not _gpu_supports_fp8e4nv():
+        warnings.warn("GPU does not support float8_e4m3fn; falling back to bfloat16 scale precision", stacklevel=1)
+        warnings.filterwarnings("ignore", message="GPU does not support float8_e4m3fn")
+        scale_precision = torch.bfloat16
     if pack_output_int8:
         assert num_bits in (2, 4), "num_bits must be 2 or 4 when pack_output_int8 is True"
     
