@@ -1,0 +1,40 @@
+# Checkpoints & model weights
+ckpts/
+weights/
+checkpoints/
+*.pt
+*.pth
+*.safetensors
+*.ckpt
+
+# Results & outputs
+results/
+outputs/
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+*.egg
+dist/
+build/
+*.so
+
+# Environment
+.env
+*.env
+
+# IDE
+.vscode/
+.idea/
+
+# Slurm
+slurm/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+wandb/
