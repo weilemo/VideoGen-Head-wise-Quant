@@ -43,6 +43,16 @@
   - `experiments/Self-Forcing/pipeline/causal_inference.py` 不再直接依赖 `quant_videogen`
   - `scripts/Self-Forcing/run_bf16.sh`、`run_qvg.sh`、`run_random_hwq.sh` 已加入 `../HeadWiseKVQuant/src`
   - 已通过 pipeline 导入检查：`PYTHONPATH=../HeadWiseKVQuant/src:experiments/Self-Forcing:.`
+- 已把实验主入口和 Self-Forcing backend 迁到 `HeadWiseKVQuant`：
+  - 已复制 Self-Forcing 模型/pipeline 代码到 `HeadWiseKVQuant/backends/self_forcing/`
+  - 已复制默认 prompt 到 `HeadWiseKVQuant/assets/t2v.txt`
+  - 新增 `HeadWiseKVQuant/scripts/self_forcing/run_random_hwq.sh`
+  - 新增 `HeadWiseKVQuant/scripts/self_forcing/run_bf16.sh`
+  - 新增 `HeadWiseKVQuant/scripts/self_forcing/run_int2_all.sh`
+  - 默认使用本仓库的 `backends/self_forcing`，不再要求存在 `Quant-VideoGen` 代码目录
+  - 权重默认查找 `HeadWiseKVQuant/ckpts/Self-Forcing/`，也可用 `SELF_FORCING_CKPT_ROOT` 覆盖
+  - 已将本机 Self-Forcing 权重真实文件复制到 `HeadWiseKVQuant/ckpts/Self-Forcing/`，该目录由 `.gitignore` 忽略
+  - 输出默认写到 `HeadWiseKVQuant/outputs/self_forcing/`
 - 确认 `Self-Forcing` BF16 baseline 成功生成 2 条视频：
   - `0-0_ema.mp4`
   - `1-0_ema.mp4`
@@ -60,7 +70,7 @@
 
 ## 下一步
 
-- 用 `scripts/Self-Forcing/run_random_hwq.sh` 跑通 `R-HWQ-4h` 的第一条真实样例。
+- 从 `HeadWiseKVQuant` 目录运行 `bash scripts/self_forcing/run_random_hwq.sh`，跑通 `R-HWQ-4h` 的第一条真实样例；如权重不在本仓库下，先设置 `SELF_FORCING_CKPT_ROOT`。
 - 检查输出视频、日志、显存和量化误差打印是否正常。
 - 第一版默认实验矩阵：
   - `BF16`

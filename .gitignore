@@ -11,6 +11,8 @@ outputs/
 logs/
 checkpoints/
 runs/
+HeadWiseKVQuant/ckpts/
+HeadWiseKVQuant/outputs/
 
 *.pt
 *.pth

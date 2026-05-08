@@ -1,8 +1,8 @@
 # Self-Forcing Integration Notes
 
-This repository is model-agnostic.  A Self-Forcing pipeline should call it at
-the point where historical KV cache spans are read from the causal cache and
-before they are written back as compressed spans.
+This repository is the method workspace.  It keeps quantization policy,
+compression metadata, and decompression in `hwq`, while vendoring the
+Self-Forcing model backend under `backends/self_forcing/`.
 
 The expected layouts are:
 
@@ -37,8 +37,7 @@ quant_config = QuantizeConfig(
 k_cache, v_cache = compress_self_forcing_cache_span(k_bshd, v_bshd, quant_config, policy)
 ```
 
-For the current `Quant-VideoGen` Self-Forcing code, the old inline logic lives
-around:
+For the current `Quant-VideoGen` Self-Forcing code, the integration point is:
 
 - `experiments/Self-Forcing/pipeline/causal_inference.py`
 - `quantize_kv_cache()`
@@ -53,3 +52,53 @@ The clean integration path is:
 This keeps the video model repository responsible for inference scheduling and
 keeps this repository responsible for quantization policy, compression metadata,
 and decompression.
+
+## Running From HeadWiseKVQuant
+
+The main launcher is:
+
+```bash
+cd /path/to/videoquant/HeadWiseKVQuant
+bash scripts/self_forcing/run_random_hwq.sh
+```
+
+The script uses the vendored backend by default:
+
+```text
+HeadWiseKVQuant/
+├── src/hwq/
+├── backends/self_forcing/
+├── scripts/self_forcing/
+└── assets/t2v.txt
+```
+
+Large checkpoints are intentionally not copied into git.  Put them at:
+
+```text
+HeadWiseKVQuant/ckpts/Self-Forcing/
+```
+
+or point to an existing checkpoint directory:
+
+```bash
+SELF_FORCING_CKPT_ROOT=/mnt/workspace/caipeiliang/code/moweile/videoquant/Quant-VideoGen/ckpts/Self-Forcing \
+  bash scripts/self_forcing/run_random_hwq.sh
+```
+
+The launcher sets:
+
+```bash
+PYTHONPATH="${HWQ_ROOT}/src:${HWQ_ROOT}/backends/self_forcing"
+SELF_FORCING_CKPT_ROOT="${CKPT_ROOT}"
+```
+
+This makes `HeadWiseKVQuant` self-contained for code development.  The only
+external runtime dependency is the checkpoint directory.
+
+Recommended first experiment order:
+
+```bash
+bash scripts/self_forcing/run_random_hwq.sh
+bash scripts/self_forcing/run_bf16.sh
+bash scripts/self_forcing/run_int2_all.sh
+```

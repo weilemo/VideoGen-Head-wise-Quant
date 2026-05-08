@@ -17,14 +17,32 @@ This repository contains:
 - KMeans / PRQ based quantization kernels
 - random head-group mixed precision as the first `HWQ` baseline
 - a small compatibility layer for Self-Forcing style KV tensors
+- a vendored Self-Forcing inference backend
 
 This repository intentionally does not contain:
 
 - Wan / Self-Forcing model weights
-- full video inference pipelines
-- benchmark-specific launch scripts
 
-Model repositories should call this package from their own inference code.
+The recommended research workflow is to work from `HeadWiseKVQuant`.  The
+Self-Forcing model and pipeline code are vendored under
+`backends/self_forcing/`, while large checkpoints stay outside git.
+
+Expected workspace layout:
+
+```text
+HeadWiseKVQuant/
+├── src/hwq/                 # method code
+├── backends/self_forcing/   # Self-Forcing model and pipeline code
+├── scripts/self_forcing/    # launchers
+├── assets/t2v.txt           # default prompts
+└── ckpts/Self-Forcing/      # optional local checkpoint path, ignored by git
+```
+
+If your checkpoints live elsewhere, set
+`SELF_FORCING_CKPT_ROOT=/path/to/ckpts/Self-Forcing`.
+
+The local checkpoint directory is ignored by git.  It is safe to keep large
+weights under `HeadWiseKVQuant/ckpts/Self-Forcing/` without pushing them.
 
 ## Install
 
@@ -78,6 +96,37 @@ The first research baseline is `R-HWQ`:
 
 This is a sanity-check baseline.  It verifies that mixed head precision works
 before adding importance-based head selection.
+
+## Self-Forcing Experiments
+
+From this directory:
+
+```bash
+bash scripts/self_forcing/run_random_hwq.sh
+```
+
+Useful baselines:
+
+```bash
+bash scripts/self_forcing/run_bf16.sh
+bash scripts/self_forcing/run_int2_all.sh
+bash scripts/self_forcing/run_random_hwq.sh
+```
+
+By default, outputs are written under:
+
+```text
+HeadWiseKVQuant/outputs/self_forcing/
+```
+
+On a machine with a different QVG path:
+
+```bash
+SELF_FORCING_CKPT_ROOT=/mnt/workspace/caipeiliang/code/moweile/videoquant/Quant-VideoGen/ckpts/Self-Forcing \
+  bash scripts/self_forcing/run_random_hwq.sh
+```
+
+See `docs/checkpoint_sync.md` for the full cross-machine setup workflow.
 
 ## Attribution
 

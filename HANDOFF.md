@@ -14,10 +14,11 @@
    - `/mnt/users/moweile-20251213/workspace/videoquant/Quant-VideoGen/slurm_logs/qvg_sf_bf16_g-24046.out`
    - `/mnt/users/moweile-20251213/workspace/videoquant/Quant-VideoGen/results/selfforcing/bf16/`
 4. 再看独立库：
-   - `HeadWiseKVQuant/README.md`
-   - `HeadWiseKVQuant/docs/self_forcing_integration.md`
-   - `HeadWiseKVQuant/src/hwq/headwise.py`
-5. 如果继续实现，优先运行 `scripts/Self-Forcing/run_random_hwq.sh` 验证第一条真实 `R-HWQ-4h` 样例
+  - `HeadWiseKVQuant/README.md`
+  - `HeadWiseKVQuant/docs/self_forcing_integration.md`
+   - `HeadWiseKVQuant/docs/workspace_structure.md`
+  - `HeadWiseKVQuant/src/hwq/headwise.py`
+5. 如果继续实现，优先进入 `HeadWiseKVQuant` 并运行 `bash scripts/self_forcing/run_random_hwq.sh` 验证第一条真实 `R-HWQ-4h` 样例
 6. 如涉及服务器资源，补看 [服务器工作习惯.md](/data2/moweile-20251213/服务器工作习惯.md)
 
 ## 当前最重要信息
@@ -27,6 +28,9 @@
 - 当前优先路线是：
   - 以 `HeadWiseKVQuant` 为方法代码库推进 `head-wise quant`
   - 以 `Self-Forcing + QVG` 为实验集成入口
+  - 从 `HeadWiseKVQuant/scripts/self_forcing/` 启动实验，Self-Forcing backend 已复制到 `HeadWiseKVQuant/backends/self_forcing/`
+  - `Quant-VideoGen` 只作为原始参考仓保留；后续没有它也能继续改代码
+  - 本机已把大权重复制到 `HeadWiseKVQuant/ckpts/Self-Forcing/`，但该目录不进 git；另一台机器按 `HeadWiseKVQuant/docs/checkpoint_sync.md` 从 Hugging Face 下载同一套权重
   - `LLM KV quant` 迁移线暂时退到次要位置
 - 当前工程判断：
   - 现有量化入口集中在 cache 管理层，而不是 attention kernel 内部

@@ -51,3 +51,15 @@
 - 决策：`Quant-VideoGen/experiments/Self-Forcing` 不再维护独立的 head-wise 量化实现，统一从 `HeadWiseKVQuant` 的 `hwq` 包导入缓存、压缩、解压和随机 head-group policy。
 - 原因：避免同一研究逻辑在 QVG 实验仓和独立方法库中分叉；后续新增 importance-based / 多组策略时，只需要优先改 `HeadWiseKVQuant`。
 - 影响：运行 QVG Self-Forcing 脚本时需要让 Python 找到独立库，例如从 `Quant-VideoGen` 目录运行时使用 `PYTHONPATH=../HeadWiseKVQuant/src:experiments/Self-Forcing:.`。
+
+## D-2026-05-08-09 `HeadWiseKVQuant` 作为实验主工作区
+
+- 决策：后续默认从 `HeadWiseKVQuant` 启动 Self-Forcing 实验。
+- 原因：研究主线应围绕 head-wise quant 方法库展开；从方法仓启动实验更符合论文代码组织，也减少“主工作区还在 QVG”带来的概念混乱。
+- 影响：新增 `HeadWiseKVQuant/scripts/self_forcing/`；最初可指向外部 QVG backend，后续由 D-2026-05-08-10 升级为默认调用本仓库 vendored backend。
+
+## D-2026-05-08-10 Vendored Self-Forcing backend 进入 `HeadWiseKVQuant`
+
+- 决策：将 `Quant-VideoGen/experiments/Self-Forcing` 的模型和 pipeline 代码复制到 `HeadWiseKVQuant/backends/self_forcing/`，使 `HeadWiseKVQuant` 自身成为可继续开发的完整代码工作区。
+- 原因：如果未来只保留或只 clone `HeadWiseKVQuant`，仍应能继续修改 Self-Forcing pipeline 和 head-wise quant 接入，不应依赖旁边必须存在 `Quant-VideoGen` 代码目录。
+- 影响：运行脚本默认调用 vendored backend；大模型权重不入库，默认放 `HeadWiseKVQuant/ckpts/Self-Forcing/`，或通过 `SELF_FORCING_CKPT_ROOT` 指向共享权重目录。
