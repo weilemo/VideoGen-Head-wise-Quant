@@ -1,0 +1,52 @@
+# Core model / training
+diffusers
+transformers
+tokenizers
+accelerate
+peft
+
+# Numeric / scientific / text processing
+numpy
+scipy
+einops
+ftfy
+sentencepiece
+tqdm
+protobuf
+
+# Image / video processing
+opencv-python
+imageio
+imageio-ffmpeg
+av
+scikit-image
+ffmpeg-python
+decord
+moviepy
+
+# Config / dataset
+omegaconf
+easydict
+datasets
+lmdb
+pydantic
+
+# Vision models
+timm
+git+https://github.com/openai/CLIP.git
+
+# Data analysis / visualization
+pandas
+matplotlib
+
+# Experiment tracking / monitoring
+wandb
+
+# Hugging Face tooling
+huggingface_hub[cli]
+
+# ONNX / export / runtime
+onnx
+onnxruntime
+onnxscript
+onnxconverter_common
