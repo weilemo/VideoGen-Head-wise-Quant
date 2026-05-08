@@ -39,3 +39,15 @@
   - per-group bitwidth / centroids / stages 配置
   - 压缩后元数据携带 group 配置
   - 解压时按 group 重建 `[B, H, S, D]`
+
+## D-2026-05-08-07 独立出 `HeadWiseKVQuant` 作为论文方法代码库
+
+- 决策：从 `Quant-VideoGen` 中抽出 KV cache 低精度量化框架，建立独立代码库 `/data2/moweile-20251213/workspace/videoquant/HeadWiseKVQuant`。
+- 原因：后续论文方法不应长期绑在 QVG 实验仓里；独立库更适合作为 `head-wise quant` 方法主体，便于模块化、复现实验和后续开源整理。
+- 影响：后续方法开发优先发生在 `HeadWiseKVQuant/src/hwq/`；`Quant-VideoGen` 的 `Self-Forcing` 代码应逐步退化为下游调用方，只负责推理调度和实验输出。
+
+## D-2026-05-08-08 `Quant-VideoGen` 作为下游集成入口调用 `hwq`
+
+- 决策：`Quant-VideoGen/experiments/Self-Forcing` 不再维护独立的 head-wise 量化实现，统一从 `HeadWiseKVQuant` 的 `hwq` 包导入缓存、压缩、解压和随机 head-group policy。
+- 原因：避免同一研究逻辑在 QVG 实验仓和独立方法库中分叉；后续新增 importance-based / 多组策略时，只需要优先改 `HeadWiseKVQuant`。
+- 影响：运行 QVG Self-Forcing 脚本时需要让 Python 找到独立库，例如从 `Quant-VideoGen` 目录运行时使用 `PYTHONPATH=../HeadWiseKVQuant/src:experiments/Self-Forcing:.`。

@@ -1,0 +1,4 @@
+This project extracts and reorganizes KV-cache quantization components from
+Quant-VideoGen for standalone head-wise quantization research.
+
+Quant-VideoGen components are used under their stated Apache-2.0 license.

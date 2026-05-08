@@ -10,9 +10,16 @@ from demo_utils.memory import gpu, get_cuda_free_memory_gb, DynamicSwapInstaller
 from types import SimpleNamespace
 from termcolor import cprint
 
-from quant_videogen.compress import get_quantize_fn, compress_kv_cache
-from quant_videogen.kv_cache import ChunkedKVCache, offload_kv_cache_layer, onload_kv_cache_layer
-from quant_videogen.uncompress import uncompress_kv_cache
+from hwq import (
+    ChunkedKVCache,
+    RandomHeadPolicy,
+    compress_headwise_kv_cache,
+    compress_kv_cache,
+    get_quantize_fn,
+    offload_kv_cache_layer,
+    onload_kv_cache_layer,
+    uncompress_kv_cache,
+)
 
 class CausalInferencePipeline(torch.nn.Module):
     def __init__(
@@ -62,14 +69,6 @@ class CausalInferencePipeline(torch.nn.Module):
 
         self.generator.model.kv_cache_cpu_offload = getattr(self.quant_config, "kv_cache_cpu_offload", False)
 
-    def _quant_config_dict(self):
-        return dict(vars(self.quant_config))
-
-    def _make_group_quant_config(self, quant_type: str):
-        cfg = self._quant_config_dict()
-        cfg["quant_type"] = quant_type
-        return SimpleNamespace(**cfg)
-
     def _build_headwise_policy(self):
         mode = getattr(self.quant_config, "headwise_mode", "none")
         if mode in (None, "", "none"):
@@ -86,85 +85,23 @@ class CausalInferencePipeline(torch.nn.Module):
                 f"num_high_precision_heads must be smaller than num_heads, got {high_count} vs {self.num_heads}"
             )
 
-        rng = np.random.default_rng(int(getattr(self.quant_config, "headwise_seed", 0)))
-        high_heads = sorted(rng.choice(self.num_heads, size=high_count, replace=False).tolist())
-        low_heads = [head for head in range(self.num_heads) if head not in set(high_heads)]
-
-        policy = {
-            "mode": mode,
-            "high_precision_heads": high_heads,
-            "low_precision_heads": low_heads,
-            "high_precision_quant_type": getattr(self.quant_config, "high_precision_quant_type", "triton-nstages-kmeans-int4"),
-            "low_precision_quant_type": getattr(self.quant_config, "low_precision_quant_type", self.quant_config.quant_type),
-            "seed": int(getattr(self.quant_config, "headwise_seed", 0)),
-        }
-        if policy["high_precision_quant_type"] in ("", "none"):
-            raise ValueError("high_precision_quant_type must be a real quantization type when headwise_mode=random")
-        if policy["low_precision_quant_type"] in ("", "none"):
-            raise ValueError("low_precision_quant_type must be a real quantization type when headwise_mode=random")
-        cprint(f"Head-wise policy: {policy}", "light_blue")
+        policy = RandomHeadPolicy(
+            num_heads=self.num_heads,
+            num_high_precision_heads=high_count,
+            high_precision_quant_type=getattr(
+                self.quant_config,
+                "high_precision_quant_type",
+                "triton-nstages-kmeans-int4",
+            ),
+            low_precision_quant_type=getattr(
+                self.quant_config,
+                "low_precision_quant_type",
+                self.quant_config.quant_type,
+            ),
+            seed=int(getattr(self.quant_config, "headwise_seed", 0)),
+        )
+        cprint(f"Head-wise policy: {policy.groups()}", "light_blue")
         return policy
-
-    def _pack_single_quant_cache(self, cache, output_dtype, quant_config):
-        if isinstance(cache, dict):
-            cache["info"] = {
-                "output_dtype": output_dtype,
-                "quant_config": quant_config,
-            }
-        return cache
-
-    def _pack_mixed_quant_cache(self, groups, output_dtype):
-        return {
-            "groups": groups,
-            "info": {
-                "output_dtype": output_dtype,
-                "num_heads": self.num_heads,
-                "headwise_mode": self.headwise_policy["mode"],
-                "headwise_seed": self.headwise_policy["seed"],
-            },
-        }
-
-    def _compress_mixed_headwise(self, k, v):
-        groups_k = []
-        groups_v = []
-
-        for head_ids, quant_type in [
-            (self.headwise_policy["high_precision_heads"], self.headwise_policy["high_precision_quant_type"]),
-            (self.headwise_policy["low_precision_heads"], self.headwise_policy["low_precision_quant_type"]),
-        ]:
-            if len(head_ids) == 0:
-                continue
-
-            group_config = self._make_group_quant_config(quant_type)
-            quantize_fn = get_quantize_fn(group_config.quant_type, group_config)
-            head_index = torch.tensor(head_ids, device=k.device, dtype=torch.long)
-            k_group = k.index_select(1, head_index)
-            v_group = v.index_select(1, head_index)
-
-            k_quant, v_quant = compress_kv_cache(
-                k_group, v_group, group_config.quant_type, group_config, quantize_fn
-            )
-            self._print_kv_cache_mse_error(k_group, k_quant, v_group, v_quant, f"group[{quant_type}]")
-
-            if isinstance(k_quant, dict):
-                k_quant = self._pack_single_quant_cache(k_quant, k.dtype, group_config)
-            if isinstance(v_quant, dict):
-                v_quant = self._pack_single_quant_cache(v_quant, v.dtype, group_config)
-
-            groups_k.append({
-                "head_ids": head_ids,
-                "quant_type": group_config.quant_type,
-                "quant_config": vars(group_config),
-                "payload": k_quant,
-            })
-            groups_v.append({
-                "head_ids": head_ids,
-                "quant_type": group_config.quant_type,
-                "quant_config": vars(group_config),
-                "payload": v_quant,
-            })
-
-        return self._pack_mixed_quant_cache(groups_k, k.dtype), self._pack_mixed_quant_cache(groups_v, v.dtype)
 
     def quantize_kv_cache(self, tokens_to_quantize_start: int, tokens_to_quantize_end: int, max_tokens_to_quantize: int):
         """
@@ -217,7 +154,9 @@ class CausalInferencePipeline(torch.nn.Module):
                         k, v, self.quant_config.quant_type, self.quant_config, quantize_fn
                     )
                 else:
-                    k_quant, v_quant = self._compress_mixed_headwise(k, v)
+                    k_quant, v_quant = compress_headwise_kv_cache(
+                        k, v, self.quant_config, self.headwise_policy
+                    )
 
                 self._print_kv_cache_mse_error(k, k_quant, v, v_quant, layer_idx)
 
