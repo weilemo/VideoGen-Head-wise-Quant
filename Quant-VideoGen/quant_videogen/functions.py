@@ -264,7 +264,7 @@ def triton_prq_quantize_tensor(
     num_clusters: int,
     block_size: int,
     max_iters: int = 100,
-    scale_precision: torch.dtype = torch.float8_e4m3fn,
+    scale_precision: torch.dtype | None = None,
     use_percentile_clipping: bool = False,
     percentile: float = 99.0,
     quantize_fn=None,
@@ -283,7 +283,9 @@ def triton_prq_quantize_tensor(
         block_size: Block size for residual quantization
         num_bits: Number of bits for residual quantization (2 or 4)
         max_iters: Maximum iterations for K-Means
-        scale_precision: Precision for scale factors
+        scale_precision: Precision for scale factors. If None, use fp8 scales
+            on architectures that support Triton's fp8e4nv type and bf16
+            elsewhere.
         use_percentile_clipping: If True, apply percentile clipping before quantization
         percentile: Percentile threshold for clipping (default: 99.0)
 
@@ -298,6 +300,10 @@ def triton_prq_quantize_tensor(
             - quant_type: Quantization type string
             - num_bits: Number of bits used
     """
+    if scale_precision is None:
+        major, _ = torch.cuda.get_device_capability(tensor.device)
+        scale_precision = torch.float8_e4m3fn if major >= 9 else torch.bfloat16
+
     num_bits = quantize_fn(tensor)
     if num_bits == 2:
         TARGET_MAX = 448 * 1

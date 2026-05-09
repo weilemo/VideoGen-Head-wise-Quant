@@ -20,6 +20,12 @@
 - **修复 A100 兼容性问题**（commit `839fdbb`）：
   - `fp8e4nv` 自动回退：`quant_pack.py` 新增 `_gpu_supports_fp8e4nv()`，非 Hopper GPU 上 `float8_e4m3fn` 自动降级为 `bfloat16`
   - 视频保存修复：`inference.py` 从已废弃的 `torchvision.io.write_video` 切换到 `imageio.mimsave`
+- 已确认 `QVG` 官方 `Self-Forcing INT2` baseline 在 A100 上跑通并生成 2 条视频：
+  - `/data2/moweile-20251213/workspace/videoquant/HeadWiseKVQuant/results/selfforcing/triton-nstages-kmeans-int2_64/kc_256_vc_256_nstages_1/0-0_ema.mp4`
+  - `/data2/moweile-20251213/workspace/videoquant/HeadWiseKVQuant/results/selfforcing/triton-nstages-kmeans-int2_64/kc_256_vc_256_nstages_1/1-0_ema.mp4`
+  - 对应 Slurm 作业：`24309`，状态 `COMPLETED`，耗时 `00:24:58`
+  - 对应日志：`/data2/moweile-20251213/workspace/videoquant/HeadWiseKVQuant/slurm_logs/qvg_sf_int2_g-24309.out`
+- 为解决 A100 上 Triton 不支持 `tl.float8e4nv` 的问题，已将 `Quant-VideoGen/quant_videogen/functions.py` 中 `triton_prq_quantize_tensor` 的默认 scale precision 改为按 GPU 架构选择：Hopper 及以上使用 fp8，A100 使用 `bf16` scale。
 - 从 `QVG` 的 `quant_videogen` 中抽出可复用量化核心，整理到独立库 `HeadWiseKVQuant/src/hwq/`。
 - 新增 `hwq.headwise`：`RandomHeadPolicy`、`compress_headwise_kv_cache`。
 - 新增 `hwq.self_forcing`：`compress_self_forcing_cache_span`。
