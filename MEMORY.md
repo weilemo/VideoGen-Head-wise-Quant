@@ -71,6 +71,29 @@
 - 如果数据在本地盘 `/data` 或 `/data2`，优先考虑对应本地分区
 - 正式任务建议显式记录：分区、账号、GPU、CPU、内存、时长、日志路径
 
+## Self-Forcing 推理环境
+
+- 环境：Python 3.12，CUDA 12.8，8× A100-80GB SXM
+- 安装历史（2026-05-09 凌晨）：
+  - 01:08-01:09：基础依赖 `diffusers==0.38.0`, `einops==0.8.2`, `easydict==1.13`, `safetensors==0.8.0rc0`, `regex`
+  - 01:12：视频/图像链 `decord==0.6.0`, `imageio==2.37.3`, `opencv-python==4.13.0.92`, `scipy==1.17.1`, `lmdb==2.2.0`, `ftfy==6.3.1`
+  - 01:14：HF 全家桶 `transformers==5.8.0`, `accelerate==1.13.0`, `tokenizers==0.22.2`
+  - 01:21：编译工具 `ninja==1.13.0`, `wheel==0.47.0`
+  - 01:23：`flash_attn==2.8.3`
+  - 02:06：`imageio-ffmpeg==0.6.0`（配合 imageio 替代已废弃的 torchvision write_video）
+- 核心版本速查：
+  - `torch==2.9.0+cu128`, `triton==3.5.0`, `flash_attn==2.8.3`, `diffusers==0.38.0`, `transformers==5.8.0`
+- 已知问题与修复：
+  - A100 (SM 8.0) 不支持 `float8_e4m3fn`，`hwq/real/quant_pack.py` 已加入 GPU 能力检测自动回退 `bfloat16`
+  - `torchvision.io.write_video` 已废弃，`inference.py` 已切到 `imageio.mimsave`
+- 一键复现：
+  ```bash
+  pip install torch==2.9.0+cu128 triton==3.5.0 flash-attn==2.8.3 \
+      diffusers==0.38.0 transformers==5.8.0 accelerate==1.13.0 \
+      einops==0.8.2 imageio==2.37.3 imageio-ffmpeg==0.6.0 \
+      decord==0.6.0 opencv-python scipy ninja wheel ftfy safetensors lmdb
+  ```
+
 ## 待后续补充的长期信息
 
 - 主代码仓路径与分工
