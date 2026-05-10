@@ -6,7 +6,13 @@
 
 ## 正在做什么
 
-- 对比三条实验线的视频质量：BF16 baseline、QVG INT2 baseline、R-HWQ-4h（triton PRQ）、R-HWQ-4h（naive int2/int4，无 QVG PRQ）。
+- 对比四条实验线的视频质量：BF16 baseline、QVG INT2 baseline、R-HWQ-4h（triton PRQ）、R-HWQ-4h（naive int2/int4，无 QVG PRQ）。
+- `R-HWQ-4h` 第一版真实推理已跑通，说明现有 `headwise` 框架可作为后续方法底座。
+- 后续主线从随机 head-wise baseline 转向 `importance-based top-k head-wise quant`。
+- 当前最重要的研究工作聚焦三块：
+  - `importance metric`：定义 head 重要性，例如量化敏感性、attention output 变化、denoising prediction 影响、跨 chunk 稳定性，或 identity/scene/motion 相关敏感性。
+  - `importance collection`：确定离线 calibration、在线估计，或前几个 chunk calibration 后固定 policy。
+  - `policy granularity`：确定全模型统一、per-layer、per-chunk、sink/history/tail、K/V 分开，或按 prompt 类型自适应的 top-k 策略。
 
 ## 最近完成
 
@@ -34,7 +40,8 @@
 
 - 尚未评估各实验线输出视频的质量退化情况（vs BF16 baseline）。
 - naive 量化需要 `expandable_segments:True` 才能跑通，尚未写入启动脚本。
-- 尚未扩展到 importance-based policy（非均匀 head 分组）。
+- 目前只完成了随机 head-wise mixed precision 路径，尚未实现 importance-based top-k policy。
+- 尚未确定 head importance 的 metric、collection 方式和 policy granularity。
 
 ## 下一步
 
@@ -44,4 +51,12 @@
   - R-HWQ-4h（triton PRQ，4 heads int4 / 8 heads int2）
   - R-HWQ-4h（naive int2/int4，无 PRQ，4 heads int4 / 8 heads int2）
 - 将 `expandable_segments:True` 加入 naive 量化启动脚本。
-- 如质量可接受，扩展 importance-based policy。
+- 设计第一版 head importance metric，并明确它服务于 identity / scene / motion 哪类一致性。
+- 设计 importance collection 流程：优先考虑少量 calibration prompts 离线统计，再固定 top-k policy 跑完整生成。
+- 在 `HeadWiseKVQuant/src/hwq/headwise.py` 增加 `TopKHeadPolicy` 或等价 policy，复用现有 `compress_headwise_kv_cache`。
+- 统一实验矩阵，建立对比主线：
+  - BF16 baseline
+  - INT2-all baseline
+  - R-HWQ-4h（已跑通）
+  - importance top-k HWQ
+  - R-HWQ-2h

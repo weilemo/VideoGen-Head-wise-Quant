@@ -63,3 +63,12 @@
 - 决策：将 `Quant-VideoGen/experiments/Self-Forcing` 的模型和 pipeline 代码复制到 `HeadWiseKVQuant/backends/self_forcing/`，使 `HeadWiseKVQuant` 自身成为可继续开发的完整代码工作区。
 - 原因：如果未来只保留或只 clone `HeadWiseKVQuant`，仍应能继续修改 Self-Forcing pipeline 和 head-wise quant 接入，不应依赖旁边必须存在 `Quant-VideoGen` 代码目录。
 - 影响：运行脚本默认调用 vendored backend；大模型权重不入库，默认放 `HeadWiseKVQuant/ckpts/Self-Forcing/`，或通过 `SELF_FORCING_CKPT_ROOT` 指向共享权重目录。
+
+## D-2026-05-11-11 后续 `head-wise quant` 主线聚焦 head importance
+
+- 决策：`RandomHeadPolicy` 只作为 sanity-check baseline；后续方法主线转向 `importance-based top-k head-wise quant`。
+- 原因：现有代码已经证明 head-group mixed precision 可以在 Self-Forcing KV cache 上跑通；真正的研究增量应集中在“哪些 heads 值得更高精度”。
+- 影响：后续优先推进三块工作：
+  - `importance metric`：定义每个 head 的重要性分数，例如量化敏感性、attention output 变化、denoising prediction 影响、跨 chunk 稳定性，或 identity/scene/motion 相关敏感性。
+  - `importance collection`：确定重要性分数如何获得，例如离线 calibration、在线估计，或前几个 chunk calibration 后固定 policy。
+  - `policy granularity`：确定 top-k 策略粒度，例如全模型统一、per-layer、per-chunk、sink/history/tail 分区、K/V 分开，或按 prompt 类型自适应。

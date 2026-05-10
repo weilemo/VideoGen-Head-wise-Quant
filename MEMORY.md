@@ -46,8 +46,13 @@
 - 单纯把 `LLM KV quant` 原样迁到视频生成中，可能可以节省显存，但不一定能保住长时视频质量，尤其可能先伤害 `motion dynamics`。
 - 视频量化更可能需要结构感知设计，而不是全局统一 bit 配置。
 - 当前最有希望的后续创新方向：
-  - `head-wise mixed precision`
+  - `importance-based top-k head-wise mixed precision`
   - `role-aware quantization`，即按 `sink / history / tail` 等时间角色分配不同 bit
+- `RandomHeadPolicy` 只是 head-wise quant 的 sanity-check baseline；后续论文方法重点应转向判断 head 重要性，再按 top-k 选择高精度 heads。
+- 当前 head importance 主线重点关注三件事：
+  - `importance metric`：怎样定义每个 head 的重要性分数。
+  - `importance collection`：怎样离线或在线收集这些分数。
+  - `policy granularity`：top-k 是全模型统一、per-layer、per-chunk，还是按 sink/history/tail、K/V 或 prompt 类型细分。
 
 ## 协作记录约定
 
@@ -66,6 +71,7 @@
 - 登录节点只做编辑、查看日志、提交作业、短时间调试。
 - 正式任务尽量记录：脚本路径、环境名、资源申请、日志路径、输出路径、`jobid`。
 - `videoquant` 相关 Slurm 日志与实验输出不一定落在本地工作区 `/data2/...`，经常会落在共享盘工作区 `/mnt/users/moweile-20251213/workspace/videoquant/Quant-VideoGen/` 下；查实验结果时需要同时检查这一路径。
+- 后续如果实验结果或 Slurm 日志先输出到 `/mnt/users/moweile-20251213/workspace/videoquant/...`，默认自动同步一份回 `/data2/moweile-20251213/workspace/videoquant/...` 的对应项目目录，避免结果只留在共享盘运行副本。
 
 ## Slurm 与服务器规则
 
