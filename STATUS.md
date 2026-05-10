@@ -6,52 +6,42 @@
 
 ## 正在做什么
 
-- `R-HWQ-4h` 第一版真实推理已跑通，结果位于本机：
-  - `/mnt/workspace/caipeiliang/code/moweile/videoquant/HeadWiseKVQuant/outputs/self_forcing/`
-  - 配置：`rhwq_seed_0_hi_4_triton-nstages-kmeans-int4_lo_triton-nstages-kmeans-int2_64/kc_256_vc_256_nstages_1`
-- 已产出 2 条 `R-HWQ-4h` 视频：`0-0_ema.mp4`、`1-0_ema.mp4`。
-- 等待评估视频质量（identity consistency、scene consistency、motion continuity）。
+- 对比三条实验线的视频质量：BF16 baseline、QVG INT2 baseline、R-HWQ-4h（triton PRQ）、R-HWQ-4h（naive int2/int4，无 QVG PRQ）。
 
 ## 最近完成
 
-- **R-HWQ-4h 首次真实 Self-Forcing 推理跑通**（2026-05-09 凌晨）：
+- **R-HWQ-4h naive int2/int4 跑通**（2026-05-10）：
+  - 配置：4 high-precision heads (naive-int4) + 8 low-precision heads (naive-int2)，block_size=64
+  - 不用 QVG 的 triton-nstages-kmeans PRQ，直接用 blockwise 量化
+  - 需 `PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True` 才能在 A100 80G 上跑通（naive 量化返回 bf16 张量，不压缩显存，峰值 >76G）
+  - 产出 2 条视频：`results/selfforcing/rhwq_seed_0_hi_4_naive-int4_lo_naive-int2_64/kc_256_vc_256_nstages_1/`
+- **R-HWQ-4h（triton PRQ）首次真实 Self-Forcing 推理跑通**（2026-05-09）：
   - 配置：4 high-precision heads (int4) + remaining heads (int2)，block_size=64，256 K/V centroids，1 PRQ stage，seed=0
-  - 成功生成 2 条视频，输出目录：`HeadWiseKVQuant/outputs/self_forcing/rhwq_seed_0_hi_4_triton-nstages-kmeans-int4_lo_triton-nstages-kmeans-int2_64/`
-- **修复 A100 兼容性问题**（commit `839fdbb`）：
-  - `fp8e4nv` 自动回退：`quant_pack.py` 新增 `_gpu_supports_fp8e4nv()`，非 Hopper GPU 上 `float8_e4m3fn` 自动降级为 `bfloat16`
-  - 视频保存修复：`inference.py` 从已废弃的 `torchvision.io.write_video` 切换到 `imageio.mimsave`
-- 已确认 `QVG` 官方 `Self-Forcing INT2` baseline 在 A100 上跑通并生成 2 条视频：
-  - `/data2/moweile-20251213/workspace/videoquant/HeadWiseKVQuant/results/selfforcing/triton-nstages-kmeans-int2_64/kc_256_vc_256_nstages_1/0-0_ema.mp4`
-  - `/data2/moweile-20251213/workspace/videoquant/HeadWiseKVQuant/results/selfforcing/triton-nstages-kmeans-int2_64/kc_256_vc_256_nstages_1/1-0_ema.mp4`
+  - 产出 2 条视频：`results/selfforcing/rhwq_seed_0_hi_4_triton-nstages-kmeans-int4_lo_triton-nstages-kmeans-int2_64/kc_256_vc_256_nstages_1/`
+- **QVG INT2 baseline 在 A100 上跑通**：
   - 对应 Slurm 作业：`24309`，状态 `COMPLETED`，耗时 `00:24:58`
-  - 对应日志：`/data2/moweile-20251213/workspace/videoquant/HeadWiseKVQuant/slurm_logs/qvg_sf_int2_g-24309.out`
-- 为解决 A100 上 Triton 不支持 `tl.float8e4nv` 的问题，已将 `Quant-VideoGen/quant_videogen/functions.py` 中 `triton_prq_quantize_tensor` 的默认 scale precision 改为按 GPU 架构选择：Hopper 及以上使用 fp8，A100 使用 `bf16` scale。
+  - 产出 2 条视频：`results/selfforcing/triton-nstages-kmeans-int2_64/kc_256_vc_256_nstages_1/`
+- **修复 A100 兼容性**：
+  - `fp8e4nv` 自动回退：`quant_pack.py` 新增 `_gpu_supports_fp8e4nv()`，非 Hopper GPU 自动降级 bf16
+  - 视频保存：`inference.py` 从已废弃的 `torchvision.io.write_video` 切到 `imageio.mimsave`
 - 从 `QVG` 的 `quant_videogen` 中抽出可复用量化核心，整理到独立库 `HeadWiseKVQuant/src/hwq/`。
 - 新增 `hwq.headwise`：`RandomHeadPolicy`、`compress_headwise_kv_cache`。
 - 新增 `hwq.self_forcing`：`compress_self_forcing_cache_span`。
-- 新增独立库文档与测试：
-  - `HeadWiseKVQuant/README.md`
-  - `HeadWiseKVQuant/docs/self_forcing_integration.md`
-  - `HeadWiseKVQuant/tests/test_headwise.py`
 - 已通过：`py_compile`、`python -m unittest discover -s tests -v`。
-- 已把 `Quant-VideoGen` 的 `Self-Forcing` 量化路径切到独立库 `HeadWiseKVQuant`。
-- 已把实验主入口和 Self-Forcing backend 迁到 `HeadWiseKVQuant`，不再要求存在 `Quant-VideoGen` 代码目录。
-- 确认 `Self-Forcing` BF16 baseline 成功生成 2 条视频（已确认）。
-- 确认 `QVG` 官方仓库当前提供三条实验集成：`LongCat-Video`、`Self-Forcing`、`HY-WorldPlay`。
+- 实验产物目录统一为 `HeadWiseKVQuant/results/`（替代 `outputs/`）。
 
 ## 当前阻塞 / 未完成
 
-- 尚未评估 `R-HWQ-4h` 输出视频的质量退化情况（vs BF16 baseline、vs QVG INT2 baseline）。
-- 目前只完成了第一版两组 mixed precision 路径（4h int4/int2），尚未扩展到更一般的多组 / importance-based policy。
-- 实验矩阵其他组合（INT2-all、BF16 baseline 对比）尚未在 `HeadWiseKVQuant` 下统一重跑。
+- 尚未评估各实验线输出视频的质量退化情况（vs BF16 baseline）。
+- naive 量化需要 `expandable_segments:True` 才能跑通，尚未写入启动脚本。
+- 尚未扩展到 importance-based policy（非均匀 head 分组）。
 
 ## 下一步
 
-- 对比 `R-HWQ-4h` 视频与 BF16 baseline 的视频质量（identity/scene/motion）。
-- 检查推理日志中的 Rel L2 量化误差是否合理。
-- 统一实验矩阵，建立对比主线：
+- 对比四条实验线的视频质量：
   - BF16 baseline
-  - INT2-all baseline
-  - R-HWQ-4h（已跑通）
-  - R-HWQ-2h
-- 如质量可接受，扩展到 importance-based policy（非均匀 head 分组）。
+  - QVG INT2 baseline（triton PRQ）
+  - R-HWQ-4h（triton PRQ，4 heads int4 / 8 heads int2）
+  - R-HWQ-4h（naive int2/int4，无 PRQ，4 heads int4 / 8 heads int2）
+- 将 `expandable_segments:True` 加入 naive 量化启动脚本。
+- 如质量可接受，扩展 importance-based policy。
