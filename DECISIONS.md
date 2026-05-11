@@ -64,6 +64,12 @@
 - 原因：如果未来只保留或只 clone `HeadWiseKVQuant`，仍应能继续修改 Self-Forcing pipeline 和 head-wise quant 接入，不应依赖旁边必须存在 `Quant-VideoGen` 代码目录。
 - 影响：运行脚本默认调用 vendored backend；大模型权重不入库，默认放 `HeadWiseKVQuant/ckpts/Self-Forcing/`，或通过 `SELF_FORCING_CKPT_ROOT` 指向共享权重目录。
 
+## D-2026-05-11-11 新增 `packed-naive-int2/int4/int8` 作为 real-compression baseline
+
+- 决策：保留旧 `naive-int2/int4` fake-quant 语义不变，新增 `packed-naive-int2`、`packed-naive-int4`、`packed-naive-int8` 作为真正压缩 KV cache 的 blockwise naive 分支。
+- 原因：旧 naive 分支返回 BF16 tensor，适合作质量对照但不适合作显存压缩对照；packed-naive 保存低比特 codes 和 per-block min/scale metadata，能和 PRQ packed 路径形成更公平的 real-compression baseline。
+- 影响：后续报告中应明确区分 `naive-*` fake quant 和 `packed-naive-*` real compression；Self-Forcing 启动脚本新增 `scripts/self_forcing/run_packed_naive_hwq.sh`。
+
 ## D-2026-05-11-11 后续 `head-wise quant` 主线聚焦 head importance
 
 - 决策：`RandomHeadPolicy` 只作为 sanity-check baseline；后续方法主线转向 `importance-based top-k head-wise quant`。

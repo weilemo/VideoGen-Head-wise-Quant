@@ -16,6 +16,7 @@ from .functions import (
     prq_quantize_tensor,
     triton_prq_quantize_tensor,
 )
+from .packed_naive import packed_naive_quantize_tensor
 
 
 ########################################################
@@ -30,6 +31,7 @@ class QuantizeFunctions(Enum):
     NSTAGE_KMEANS_CLIP = "prq_clip"
     TRITON_PRQ = "triton_prq"
     TRITON_PRQ_CLIP = "triton_prq_clip"
+    PACKED_NAIVE = "packed_naive"
 
 
 def get_quantize_fn(quant_type: str, quant_config: QuantizeConfig):
@@ -112,6 +114,13 @@ def get_quantize_fn(quant_type: str, quant_config: QuantizeConfig):
                 raise ValueError(f"Cannot identify num_bits from {quant_config.quant_type}")
             num_bits = int(m.group(1))
             return num_bits
+    elif quant_type in ["packed-naive-int2", "packed-naive-int4", "packed-naive-int8"]:
+        """Packed naive is handled in compress_kv_cache."""
+        def quantize_fn(x):
+            m = re.search(r'int(\d+)', quant_config.quant_type)
+            if m is None:
+                raise ValueError(f"Cannot identify num_bits from {quant_config.quant_type}")
+            return int(m.group(1))
         
     else:
         raise ValueError(
@@ -162,6 +171,12 @@ def get_quantize_type(quant_type: str):
         "triton-nstages-kmeans-int4-clip",
     ]:
         quantize_type = QuantizeFunctions.TRITON_PRQ_CLIP
+    elif quant_type in [
+        "packed-naive-int2",
+        "packed-naive-int4",
+        "packed-naive-int8",
+    ]:
+        quantize_type = QuantizeFunctions.PACKED_NAIVE
     else:
         quantize_type = QuantizeFunctions.NAIVE
 
@@ -264,6 +279,18 @@ def compress_kv_cache(k: torch.Tensor, v: torch.Tensor, quant_type: str, quant_c
         # ==========================================================
         k_quant = quantize_fn(k)
         v_quant = quantize_fn(v)
+    elif quantize_type == QuantizeFunctions.PACKED_NAIVE:
+        num_bits = quantize_fn(k)
+        k_quant = packed_naive_quantize_tensor(
+            k,
+            num_bits=num_bits,
+            block_size=quant_config.quant_block_size,
+        )
+        v_quant = packed_naive_quantize_tensor(
+            v,
+            num_bits=num_bits,
+            block_size=quant_config.quant_block_size,
+        )
     else:
         raise ValueError(f"Unsupported quant type: {quant_type}")
 

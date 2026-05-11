@@ -7,6 +7,9 @@
   - `triton-nstages-kmeans-int2_64/kc_256_vc_256_nstages_1/` — QVG INT2 baseline (Slurm job 24309)
   - `rhwq_seed_0_hi_4_triton-nstages-kmeans-int4_lo_triton-nstages-kmeans-int2_64/kc_256_vc_256_nstages_1/` — R-HWQ-4h (QVG PRQ)
   - `rhwq_seed_0_hi_4_naive-int4_lo_naive-int2_64/kc_256_vc_256_nstages_1/` — R-HWQ-4h (naive blockwise, 无 PRQ)
+- 已新增但尚未跑真实视频的支路：
+  - `packed-naive-int2/int4/int8` — real packed blockwise quant，区别于旧 naive fake quant
+  - 启动脚本：`HeadWiseKVQuant/scripts/self_forcing/run_packed_naive_hwq.sh`
 - `head-wise quant` 主线独立代码库：`HeadWiseKVQuant`。
 - 后续优先在 `HeadWiseKVQuant` 中发展论文方法，`Quant-VideoGen` 只作为参考。
 - 后续论文方法主线已经收敛到 `importance-based top-k head-wise quant`。
@@ -25,6 +28,7 @@
 6. 如继续跑实验：
    - QVG PRQ 路径：直接 `bash scripts/self_forcing/run_random_hwq.sh`
    - Naive 量化路径：需加 `PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True`（否则 OOM）
+   - Packed naive 路径：`bash scripts/self_forcing/run_packed_naive_hwq.sh`
 7. 如涉及服务器资源，补看 [服务器工作习惯.md](/data2/moweile-20251213/服务器工作习惯.md)
 
 ## 当前最重要信息
@@ -44,6 +48,7 @@
 - 显存注意事项：
   - QVG PRQ (triton-nstages-kmeans) 返回 int8 packed 格式，A100 80G 可直接跑
   - naive blockwise 量化返回 bf16 张量，需 `expandable_segments:True` 否则 OOM
+  - packed-naive blockwise 返回 packed dict，是真压缩分支，支持 int2/int4/int8
 - 当前工程判断：
   - 现有量化入口集中在 cache 管理层，而不是 attention kernel 内部
   - 当前张量与 cache 组织方式天然带 head 维度，适合做 per-head / head-group 策略

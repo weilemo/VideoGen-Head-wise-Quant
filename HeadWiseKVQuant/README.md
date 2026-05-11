@@ -97,6 +97,15 @@ The first research baseline is `R-HWQ`:
 This is a sanity-check baseline.  It verifies that mixed head precision works
 before adding importance-based head selection.
 
+The packed naive branch is available as:
+
+- `packed-naive-int2`
+- `packed-naive-int4`
+- `packed-naive-int8`
+
+Unlike `naive-int2/int4`, these quant types store packed low-bit codes plus
+per-block min/scale metadata, so they are real KV-cache compression baselines.
+
 ## Self-Forcing Experiments
 
 From this directory:
@@ -111,6 +120,7 @@ Useful baselines:
 bash scripts/self_forcing/run_bf16.sh
 bash scripts/self_forcing/run_int2_all.sh
 bash scripts/self_forcing/run_random_hwq.sh
+bash scripts/self_forcing/run_packed_naive_hwq.sh
 ```
 
 By default, outputs are written under:

@@ -16,6 +16,12 @@
 
 ## 最近完成
 
+- **新增 packed-naive real-compression 支路**（2026-05-11）：
+  - 新增 quant types：`packed-naive-int2`、`packed-naive-int4`、`packed-naive-int8`
+  - 区别于旧 `naive-int2/int4` fake quant，packed-naive 会存储 uint8 packed codes + per-block min/scale metadata
+  - 解压路径已接入 `uncompress_single_cache()`，head-wise mixed groups 可直接复用
+  - 新增脚本：`HeadWiseKVQuant/scripts/self_forcing/run_packed_naive_hwq.sh`
+  - 已通过 `py_compile`、`bash -n`、5 个单测和 `packed-naive-int8` smoke test
 - **R-HWQ-4h naive int2/int4 跑通**（2026-05-10）：
   - 配置：4 high-precision heads (naive-int4) + 8 low-precision heads (naive-int2)，block_size=64
   - 不用 QVG 的 triton-nstages-kmeans PRQ，直接用 blockwise 量化
@@ -39,7 +45,7 @@
 ## 当前阻塞 / 未完成
 
 - 尚未评估各实验线输出视频的质量退化情况（vs BF16 baseline）。
-- naive 量化需要 `expandable_segments:True` 才能跑通，尚未写入启动脚本。
+- 旧 naive fake-quant 量化需要 `expandable_segments:True` 才能跑通；新的 packed-naive real-compression 分支尚未跑真实 Self-Forcing 视频。
 - 目前只完成了随机 head-wise mixed precision 路径，尚未实现 importance-based top-k policy。
 - 尚未确定 head importance 的 metric、collection 方式和 policy granularity。
 
@@ -50,7 +56,8 @@
   - QVG INT2 baseline（triton PRQ）
   - R-HWQ-4h（triton PRQ，4 heads int4 / 8 heads int2）
   - R-HWQ-4h（naive int2/int4，无 PRQ，4 heads int4 / 8 heads int2）
-- 将 `expandable_segments:True` 加入 naive 量化启动脚本。
+- 跑通 packed-naive R-HWQ-4h：`bash scripts/self_forcing/run_packed_naive_hwq.sh`。
+- 额外测试 packed-naive-int8：用 `HIGH_PRECISION_QUANT_TYPE=packed-naive-int8 LOW_PRECISION_QUANT_TYPE=packed-naive-int8 QUANT_TYPE=packed-naive-int8` 覆盖脚本变量。
 - 设计第一版 head importance metric，并明确它服务于 identity / scene / motion 哪类一致性。
 - 设计 importance collection 流程：优先考虑少量 calibration prompts 离线统计，再固定 top-k policy 跑完整生成。
 - 在 `HeadWiseKVQuant/src/hwq/headwise.py` 增加 `TopKHeadPolicy` 或等价 policy，复用现有 `compress_headwise_kv_cache`。

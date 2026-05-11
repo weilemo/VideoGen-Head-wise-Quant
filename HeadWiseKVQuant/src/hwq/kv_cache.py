@@ -277,12 +277,10 @@ def _move_item(item, device):
         return item.to(device)
     if isinstance(item, dict):
         for key, val in item.items():
-            if isinstance(val, torch.Tensor):
-                item[key] = val.to(device)
-            elif isinstance(val, list):
-                item[key] = [
-                    t.to(device) if isinstance(t, torch.Tensor) else t
-                    for t in val
-                ]
+            item[key] = _move_item(val, device)
         return item
+    if isinstance(item, list):
+        return [_move_item(val, device) for val in item]
+    if isinstance(item, tuple):
+        return tuple(_move_item(val, device) for val in item)
     return item

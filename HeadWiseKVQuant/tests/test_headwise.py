@@ -4,6 +4,7 @@ from unittest.mock import patch
 
 import torch
 
+from hwq.compress import compress_kv_cache, get_quantize_fn
 from hwq.headwise import RandomHeadPolicy, compress_headwise_kv_cache
 from hwq.uncompress import uncompress_single_cache
 
@@ -90,3 +91,53 @@ class HeadwiseTests(TestCase):
         self.assertEqual(sorted(item[1] for item in seen), [1, 3])
         self.assertEqual(k_cache["info"]["num_heads"], 4)
         self.assertEqual(v_cache["info"]["headwise_mode"], "random")
+
+    def test_packed_naive_roundtrip_returns_packed_dict(self):
+        quant_config = SimpleNamespace(
+            quant_type="packed-naive-int2",
+            quant_block_size=4,
+            cache_num_k_centroids=256,
+            cache_num_v_centroids=256,
+            kmeans_max_iters=2,
+            num_prq_stages=1,
+        )
+        k = torch.linspace(-1.0, 1.0, steps=30, dtype=torch.float32).reshape(1, 2, 3, 5)
+        v = torch.flip(k, dims=[-1])
+        quantize_fn = get_quantize_fn(quant_config.quant_type, quant_config)
+
+        k_cache, v_cache = compress_kv_cache(k, v, quant_config.quant_type, quant_config, quantize_fn)
+        self.assertIsInstance(k_cache, dict)
+        self.assertEqual(k_cache["format"], "packed-naive")
+        self.assertEqual(k_cache["num_bits"], 2)
+        self.assertEqual(k_cache["packed_codes"].dtype, torch.uint8)
+        self.assertLess(k_cache["packed_codes"].numel(), k.numel())
+
+        k_cache["info"] = {"output_dtype": torch.float32, "quant_config": quant_config}
+        v_cache["info"] = {"output_dtype": torch.float32, "quant_config": quant_config}
+        k_out = uncompress_single_cache(k_cache)
+        v_out = uncompress_single_cache(v_cache)
+
+        self.assertEqual(k_out.shape, k.shape)
+        self.assertEqual(v_out.shape, v.shape)
+        self.assertLess(torch.max(torch.abs(k - k_out)).item(), 0.35)
+        self.assertLess(torch.max(torch.abs(v - v_out)).item(), 0.35)
+
+    def test_packed_naive_supports_int4_and_int8(self):
+        x = torch.randn(1, 1, 2, 9)
+        for quant_type in ("packed-naive-int4", "packed-naive-int8"):
+            quant_config = SimpleNamespace(
+                quant_type=quant_type,
+                quant_block_size=8,
+                cache_num_k_centroids=256,
+                cache_num_v_centroids=256,
+                kmeans_max_iters=2,
+                num_prq_stages=1,
+            )
+            quantize_fn = get_quantize_fn(quant_config.quant_type, quant_config)
+            k_cache, _ = compress_kv_cache(x, x, quant_config.quant_type, quant_config, quantize_fn)
+            k_cache["info"] = {"output_dtype": torch.float32, "quant_config": quant_config}
+
+            out = uncompress_single_cache(k_cache)
+
+            self.assertEqual(out.shape, x.shape)
+            self.assertEqual(k_cache["format"], "packed-naive")

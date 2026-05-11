@@ -101,4 +101,10 @@ Recommended first experiment order:
 bash scripts/self_forcing/run_random_hwq.sh
 bash scripts/self_forcing/run_bf16.sh
 bash scripts/self_forcing/run_int2_all.sh
+bash scripts/self_forcing/run_packed_naive_hwq.sh
 ```
+
+`packed-naive-int2/int4/int8` are real packed baselines.  They store uint8
+packed low-bit codes plus per-block min/scale metadata and are decompressed on
+cache read.  The older `naive-int2/int4` path remains a fake-quant quality
+control because it returns BF16 tensors.
