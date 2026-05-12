@@ -78,3 +78,18 @@
   - `importance metric`：定义每个 head 的重要性分数，例如量化敏感性、attention output 变化、denoising prediction 影响、跨 chunk 稳定性，或 identity/scene/motion 相关敏感性。
   - `importance collection`：确定重要性分数如何获得，例如离线 calibration、在线估计，或前几个 chunk calibration 后固定 policy。
   - `policy granularity`：确定 top-k 策略粒度，例如全模型统一、per-layer、per-chunk、sink/history/tail 分区、K/V 分开，或按 prompt 类型自适应。
+
+## D-2026-05-12-12 第一版 importance policy 采用 per-layer fixed top-k
+
+- 决策：第一版 importance-based HWQ 采用 per-layer fixed top-k policy：每层保留 top-k heads 为高精度，其余 heads 为低精度；K/V 共用同一 head policy；所有 prompts/chunks 共享固定 policy。
+- 原因：该粒度最贴合 focused-forcing 的 head ablation 输出，也能最小改动复用现有 `compress_headwise_kv_cache` 和 Self-Forcing cache 管理层。
+- 默认 packed-naive 实验配置：
+  - high group: `packed-naive-int4`
+  - low group: `packed-naive-int2`
+  - top-k count: `NUM_HIGH_PRECISION_HEADS`，默认 4
+- policy 文件格式：
+  - 首选 JSON，支持 `top_heads_by_layer` / `scores_by_layer` / `scores` / `global_scores`
+  - 也支持 CSV/TXT：`global_head_id,score` 或 `layer,head,score`
+- 影响：运行时通过 `HEADWISE_MODE=topk` 和 `HEAD_IMPORTANCE_PATH` 启用；从 focused-forcing DMD loss JSON 生成 policy 时使用 `HeadWiseKVQuant/scripts/aggregate_head_importance.py`。
+- 进一步约定：选头逻辑属于方法库本身，放在 `HeadWiseKVQuant/src/hwq/head_importance.py`；`scripts/aggregate_head_importance.py` 只是 CLI wrapper，避免选头逻辑散落在实验脚本中。
+- 进一步约定：head ablation / DMD-loss calibration 也属于 `HeadWiseKVQuant` 的 vendored Self-Forcing backend；外部 `focused-forcing-code` 只作为算法参考，不作为运行时依赖。

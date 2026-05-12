@@ -16,6 +16,7 @@ This repository contains:
 - chunked KV-cache storage for mixed BF16 / quantized spans
 - KMeans / PRQ based quantization kernels
 - random head-group mixed precision as the first `HWQ` baseline
+- fixed per-layer importance top-k head-group mixed precision
 - a small compatibility layer for Self-Forcing style KV tensors
 - a vendored Self-Forcing inference backend
 
@@ -106,6 +107,11 @@ The packed naive branch is available as:
 Unlike `naive-int2/int4`, these quant types store packed low-bit codes plus
 per-block min/scale metadata, so they are real KV-cache compression baselines.
 
+The first importance-based policy is `headwise_mode=topk`: each layer keeps the
+top-k important heads at high precision and quantizes the remaining heads with
+the low-precision type.  Head selection from focused-forcing ablation JSON is
+implemented in `hwq.head_importance`; see `docs/head_importance_topk.md`.
+
 ## Self-Forcing Experiments
 
 From this directory:
@@ -121,6 +127,9 @@ bash scripts/self_forcing/run_bf16.sh
 bash scripts/self_forcing/run_int2_all.sh
 bash scripts/self_forcing/run_random_hwq.sh
 bash scripts/self_forcing/run_packed_naive_hwq.sh
+bash scripts/self_forcing/run_head_importance_analysis.sh
+HEAD_IMPORTANCE_PATH=assets/head_importance/top4_dmd_loss.json \
+  bash scripts/self_forcing/run_packed_naive_topk_hwq.sh
 ```
 
 By default, outputs are written under:
@@ -137,6 +146,8 @@ SELF_FORCING_CKPT_ROOT=/mnt/workspace/caipeiliang/code/moweile/videoquant/Quant-
 ```
 
 See `docs/checkpoint_sync.md` for the full cross-machine setup workflow.
+See `docs/head_importance_topk.md` for building and running an importance
+top-k packed-naive policy.
 
 ## Attribution
 

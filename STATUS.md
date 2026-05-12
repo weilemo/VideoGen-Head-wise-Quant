@@ -16,6 +16,20 @@
 
 ## 最近完成
 
+- **新增 per-layer top-k fixed policy 初版**（2026-05-12）：
+  - 新增 `TopKHeadPolicy` 和 `load_topk_head_policy()`，支持从 JSON/CSV/TXT 读取 head 重要性或显式 top heads
+  - 新增 `hwq.head_importance` 选头模块，库内支持读取 focused-forcing head-ablation DMD loss JSON、聚合均值、per-layer 选择 top-k heads、写出 policy JSON
+  - 新增 vendored Self-Forcing head-ablation 分析链路：
+    - `wan/modules/causal_model.py` 支持 `ablation_global_head_ids`，按 sample mask 指定 global head
+    - `pipeline/causal_inference.py` 支持 latent-only analysis，避免 DMD 分析时额外 VAE decode
+    - `backends/self_forcing/analyze_head_importance.py` 可直接跑 mask-head generation + DMD loss + policy 聚合
+    - `scripts/self_forcing/run_head_importance_analysis.sh` 一键生成 `assets/head_importance/top4_dmd_loss.json`
+  - `CausalInferencePipeline` 新增 `headwise_mode=topk`，量化每层 KV cache 时按 `layer_idx` 使用对应 top-k high-precision heads
+  - packed-naive launcher 支持 `HEADWISE_MODE=topk`、`HEAD_IMPORTANCE_PATH`、`HEAD_IMPORTANCE_SCORE_DIRECTION`
+  - 新增脚本：`HeadWiseKVQuant/scripts/self_forcing/run_packed_naive_topk_hwq.sh`
+  - 新增聚合脚本：`HeadWiseKVQuant/scripts/aggregate_head_importance.py`，作为 `hwq.head_importance` 的 CLI wrapper，可把 focused-forcing ablation JSON 聚合成 top-k policy JSON
+  - 新增文档：`HeadWiseKVQuant/docs/head_importance_topk.md`，包含跨机器路径处理和运行命令
+  - 已通过 `py_compile`、`bash -n`、聚合脚本 smoke test、11 个单测
 - **新增 packed-naive real-compression 支路**（2026-05-11）：
   - 新增 quant types：`packed-naive-int2`、`packed-naive-int4`、`packed-naive-int8`
   - 区别于旧 `naive-int2/int4` fake quant，packed-naive 会存储 uint8 packed codes + per-block min/scale metadata
@@ -46,8 +60,9 @@
 
 - 尚未评估各实验线输出视频的质量退化情况（vs BF16 baseline）。
 - 旧 naive fake-quant 量化需要 `expandable_segments:True` 才能跑通；新的 packed-naive real-compression 分支尚未跑真实 Self-Forcing 视频。
-- 目前只完成了随机 head-wise mixed precision 路径，尚未实现 importance-based top-k policy。
-- 尚未确定 head importance 的 metric、collection 方式和 policy granularity。
+- `importance-based top-k policy` 已有初版代码路径，但尚未用真实 focused-forcing 重要性文件跑 Self-Forcing 视频。
+- 尚未系统比较 `random HWQ` 与 `importance top-k HWQ` 的视频质量差异。
+- head importance 目前采用 focused-forcing head ablation 的 DMD loss 聚合；后续仍需评估它和 identity / scene / motion 质量维度的相关性。
 
 ## 下一步
 
@@ -57,10 +72,14 @@
   - R-HWQ-4h（triton PRQ，4 heads int4 / 8 heads int2）
   - R-HWQ-4h（naive int2/int4，无 PRQ，4 heads int4 / 8 heads int2）
 - 跑通 packed-naive R-HWQ-4h：`bash scripts/self_forcing/run_packed_naive_hwq.sh`。
+- 跑完整 head-importance analysis 生成 policy：
+  `bash scripts/self_forcing/run_head_importance_analysis.sh`。
+- 如果已有外部 focused-forcing JSON，也可生成 policy：
+  `python scripts/aggregate_head_importance.py --input /path/to/jsons --output assets/head_importance/top4_dmd_loss.json --top_k 4`。
+- 跑通 packed-naive importance top-k HWQ：
+  `HEAD_IMPORTANCE_PATH=assets/head_importance/top4_dmd_loss.json bash scripts/self_forcing/run_packed_naive_topk_hwq.sh`。
 - 额外测试 packed-naive-int8：用 `HIGH_PRECISION_QUANT_TYPE=packed-naive-int8 LOW_PRECISION_QUANT_TYPE=packed-naive-int8 QUANT_TYPE=packed-naive-int8` 覆盖脚本变量。
-- 设计第一版 head importance metric，并明确它服务于 identity / scene / motion 哪类一致性。
-- 设计 importance collection 流程：优先考虑少量 calibration prompts 离线统计，再固定 top-k policy 跑完整生成。
-- 在 `HeadWiseKVQuant/src/hwq/headwise.py` 增加 `TopKHeadPolicy` 或等价 policy，复用现有 `compress_headwise_kv_cache`。
+- 在真实实验中验证 focused-forcing DMD ablation score 能否作为 head importance metric。
 - 统一实验矩阵，建立对比主线：
   - BF16 baseline
   - INT2-all baseline

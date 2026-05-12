@@ -16,6 +16,7 @@ from hwq import (
     compress_headwise_kv_cache,
     compress_kv_cache,
     get_quantize_fn,
+    load_topk_head_policy,
     offload_kv_cache_layer,
     onload_kv_cache_layer,
     uncompress_kv_cache,
@@ -73,6 +74,32 @@ class CausalInferencePipeline(torch.nn.Module):
         mode = getattr(self.quant_config, "headwise_mode", "none")
         if mode in (None, "", "none"):
             return None
+
+        if mode == "topk":
+            high_count = int(getattr(self.quant_config, "num_high_precision_heads", 0))
+            if high_count <= 0:
+                raise ValueError("headwise_mode=topk requires num_high_precision_heads > 0")
+            policy_path = getattr(self.quant_config, "head_importance_path", "")
+            if not policy_path:
+                raise ValueError("headwise_mode=topk requires head_importance_path")
+            policy = load_topk_head_policy(
+                policy_path,
+                num_heads=self.num_heads,
+                num_high_precision_heads=high_count,
+                high_precision_quant_type=getattr(
+                    self.quant_config,
+                    "high_precision_quant_type",
+                    "packed-naive-int4",
+                ),
+                low_precision_quant_type=getattr(
+                    self.quant_config,
+                    "low_precision_quant_type",
+                    self.quant_config.quant_type,
+                ),
+                score_direction=getattr(self.quant_config, "head_importance_score_direction", "higher"),
+            )
+            cprint(f"Head-wise top-k policy loaded from {policy.source_path}", "light_blue")
+            return policy
 
         if mode != "random":
             raise ValueError(f"Unsupported headwise_mode: {mode}")
@@ -155,7 +182,7 @@ class CausalInferencePipeline(torch.nn.Module):
                     )
                 else:
                     k_quant, v_quant = compress_headwise_kv_cache(
-                        k, v, self.quant_config, self.headwise_policy
+                        k, v, self.quant_config, self.headwise_policy, layer_idx=layer_idx
                     )
 
                 self._print_kv_cache_mse_error(k, k_quant, v, v_quant, layer_idx)
@@ -245,6 +272,8 @@ class CausalInferencePipeline(torch.nn.Module):
         return_latents: bool = False,
         profile: bool = False,
         low_memory: bool = False,
+        ablation_global_head_ids: Optional[torch.Tensor] = None,
+        decode_video: bool = True,
     ) -> torch.Tensor:
         """
         Perform inference on the given noise and text prompts.
@@ -348,6 +377,7 @@ class CausalInferencePipeline(torch.nn.Module):
                     kv_cache=self.kv_cache1,
                     crossattn_cache=self.crossattn_cache,
                     current_start=current_start_frame * self.frame_seq_length,
+                    ablation_global_head_ids=ablation_global_head_ids,
                 )
                 current_start_frame += 1
             else:
@@ -366,6 +396,7 @@ class CausalInferencePipeline(torch.nn.Module):
                     kv_cache=self.kv_cache1,
                     crossattn_cache=self.crossattn_cache,
                     current_start=current_start_frame * self.frame_seq_length,
+                    ablation_global_head_ids=ablation_global_head_ids,
                 )
                 current_start_frame += self.num_frame_per_block
 
@@ -420,7 +451,8 @@ class CausalInferencePipeline(torch.nn.Module):
                         timestep=timestep,
                         kv_cache=self.kv_cache1,
                         crossattn_cache=self.crossattn_cache,
-                        current_start=current_start_frame * self.frame_seq_length
+                        current_start=current_start_frame * self.frame_seq_length,
+                        ablation_global_head_ids=ablation_global_head_ids,
                     )
                     next_timestep = self.denoising_step_list[index + 1]
                     noisy_input = self.scheduler.add_noise(
@@ -437,7 +469,8 @@ class CausalInferencePipeline(torch.nn.Module):
                         timestep=timestep,
                         kv_cache=self.kv_cache1,
                         crossattn_cache=self.crossattn_cache,
-                        current_start=current_start_frame * self.frame_seq_length
+                        current_start=current_start_frame * self.frame_seq_length,
+                        ablation_global_head_ids=ablation_global_head_ids,
                     )
 
             # Step 3.2: record the model's output
@@ -452,6 +485,7 @@ class CausalInferencePipeline(torch.nn.Module):
                 kv_cache=self.kv_cache1,
                 crossattn_cache=self.crossattn_cache,
                 current_start=current_start_frame * self.frame_seq_length,
+                ablation_global_head_ids=ablation_global_head_ids,
             )
 
             if profile:
@@ -470,6 +504,9 @@ class CausalInferencePipeline(torch.nn.Module):
             diffusion_time = diffusion_start.elapsed_time(diffusion_end)
             init_time = init_start.elapsed_time(init_end)
             vae_start.record()
+
+        if return_latents and not decode_video:
+            return None, output
 
         # Step 4: Decode the output
         video = self.vae.decode_to_pixel(output, use_cache=False)

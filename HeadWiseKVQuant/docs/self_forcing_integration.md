@@ -108,3 +108,42 @@ bash scripts/self_forcing/run_packed_naive_hwq.sh
 packed low-bit codes plus per-block min/scale metadata and are decompressed on
 cache read.  The older `naive-int2/int4` path remains a fake-quant quality
 control because it returns BF16 tensors.
+
+## Importance Top-K Policy
+
+`headwise_mode=topk` replaces the random high-precision group with a fixed
+per-layer policy loaded from `HEAD_IMPORTANCE_PATH`.
+
+The packed-naive top-k launcher is:
+
+```bash
+bash scripts/self_forcing/run_head_importance_analysis.sh
+
+HEAD_IMPORTANCE_PATH=assets/head_importance/top4_dmd_loss.json \
+  bash scripts/self_forcing/run_packed_naive_topk_hwq.sh
+```
+
+It defaults to:
+
+```text
+top-k heads: packed-naive-int4
+remaining heads: packed-naive-int2
+top-k count: NUM_HIGH_PRECISION_HEADS, default 4
+```
+
+The policy file can contain explicit heads:
+
+```json
+{
+  "num_heads": 12,
+  "top_heads_by_layer": {
+    "0": [1, 4, 7, 10],
+    "1": [0, 2, 5, 11]
+  }
+}
+```
+
+or scores per layer / global head id.  The focused-forcing JSON-to-policy
+selection logic is implemented in `hwq.head_importance`; see
+`docs/head_importance_topk.md` for the aggregation command, Python API, and
+cross-machine path examples.
