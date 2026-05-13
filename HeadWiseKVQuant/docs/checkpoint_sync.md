@@ -93,3 +93,20 @@ That external directory must have the same layout:
 ├── self_forcing_dmd.pt
 └── Wan2.1-T2V-1.3B/
 ```
+
+For packed-naive importance top-k, set the policy path independently from the
+checkpoint path:
+
+```bash
+SELF_FORCING_CKPT_ROOT=/path/to/ckpts/Self-Forcing \
+HEAD_IMPORTANCE_PATH=/path/to/HeadWiseKVQuant/assets/head_importance/top4_dmd_loss.json \
+  bash scripts/self_forcing/run_packed_naive_topk_hwq.sh
+```
+
+If checkpoints live in an existing QVG checkout:
+
+```bash
+QVG_ROOT=/path/to/videoquant/Quant-VideoGen \
+HEAD_IMPORTANCE_PATH=/path/to/videoquant/HeadWiseKVQuant/assets/head_importance/top4_dmd_loss.json \
+  bash scripts/self_forcing/run_packed_naive_topk_hwq.sh
+```

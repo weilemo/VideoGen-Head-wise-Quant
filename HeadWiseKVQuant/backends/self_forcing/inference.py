@@ -46,13 +46,17 @@ parser.add_argument("--cache_num_v_centroids", type=int, default=256, help="Numb
 parser.add_argument("--kmeans_max_iters", type=int, default=100, help="Maximum iterations for K-Means clustering")
 parser.add_argument("--quant_block_size", type=int, default=16, help="Block size for quantization")
 parser.add_argument("--num_prq_stages", type=int, default=1, help="Number of PRQ stages for nstages-kmeans quantization")
-parser.add_argument("--headwise_mode", type=str, default="none", help="Head-wise policy mode: none or random")
+parser.add_argument("--headwise_mode", type=str, default="none", help="Head-wise policy mode: none, random, or topk")
 parser.add_argument("--headwise_seed", type=int, default=0, help="Random seed used for head-wise grouping")
 parser.add_argument("--num_high_precision_heads", type=int, default=0, help="How many heads use the high-precision quant type")
 parser.add_argument("--high_precision_quant_type", type=str, default="triton-nstages-kmeans-int4",
                     help="Quant type used for the sampled high-precision head group")
 parser.add_argument("--low_precision_quant_type", type=str, default="",
                     help="Quant type used for the remaining heads; defaults to --quant_type when empty")
+parser.add_argument("--head_importance_path", type=str, default="",
+                    help="JSON/CSV/TXT file used by headwise_mode=topk")
+parser.add_argument("--head_importance_score_direction", type=str, default="higher", choices=["higher", "lower"],
+                    help="Whether larger or smaller importance scores should be kept at high precision")
 args = parser.parse_args()
 
 # Initialize distributed inference
@@ -92,6 +96,8 @@ config.quant_config = {
     "num_high_precision_heads": args.num_high_precision_heads,
     "high_precision_quant_type": args.high_precision_quant_type,
     "low_precision_quant_type": args.low_precision_quant_type or args.quant_type,
+    "head_importance_path": args.head_importance_path,
+    "head_importance_score_direction": args.head_importance_score_direction,
 }
 
 # ------------------------------------------------------------------

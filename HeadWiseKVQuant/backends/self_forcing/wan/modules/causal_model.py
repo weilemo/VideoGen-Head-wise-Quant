@@ -322,7 +322,9 @@ class CausalWanSelfAttention(nn.Module):
         block_mask,
         kv_cache=None,
         current_start=0,
-        cache_start=None
+        cache_start=None,
+        block_index=0,
+        ablation_global_head_ids=None,
     ):
         r"""
         Args:
@@ -350,7 +352,22 @@ class CausalWanSelfAttention(nn.Module):
         else:
             # x, kv_cache = self.attn_kv_cache(kv_cache, current_start, q, k, v, block_mask, grid_sizes, freqs, seq_lens, s)
             x, kv_cache = self.attn_kv_cache_prerope(kv_cache, current_start, q, k, v, block_mask, grid_sizes, freqs, seq_lens, s)
-            
+
+        if ablation_global_head_ids is not None:
+            ids = torch.as_tensor(ablation_global_head_ids, device=x.device, dtype=torch.long)
+            if ids.ndim == 0:
+                ids = ids.repeat(x.shape[0])
+            if ids.shape[0] != x.shape[0]:
+                raise ValueError(f"ablation_global_head_ids must have batch size {x.shape[0]}, got {ids.shape[0]}")
+            target_layer = torch.div(ids, self.num_heads, rounding_mode="floor")
+            target_head = ids % self.num_heads
+            valid = ids >= 0
+            hit = valid & (target_layer == block_index)
+            if hit.any():
+                head_mask = torch.ones(x.shape[0], self.num_heads, dtype=torch.bool, device=x.device)
+                head_mask[hit, target_head[hit]] = False
+                x = x * head_mask[:, None, :, None].to(x.dtype)
+
         # output
         x = x.flatten(2)
         x = self.o(x)
@@ -410,7 +427,9 @@ class CausalWanAttentionBlock(nn.Module):
         kv_cache=None,
         crossattn_cache=None,
         current_start=0,
-        cache_start=None
+        cache_start=None,
+        block_index=0,
+        ablation_global_head_ids=None,
     ):
         r"""
         Args:
@@ -427,7 +446,7 @@ class CausalWanAttentionBlock(nn.Module):
         y = self.self_attn(
             (self.norm1(x).unflatten(dim=1, sizes=(num_frames, frame_seqlen)) * (1 + e[1]) + e[0]).flatten(1, 2),
             seq_lens, grid_sizes,
-            freqs, block_mask, kv_cache, current_start, cache_start)
+            freqs, block_mask, kv_cache, current_start, cache_start, block_index, ablation_global_head_ids)
 
         x = x + (y.unflatten(dim=1, sizes=(num_frames, frame_seqlen)) * e[2]).flatten(1, 2)
 
@@ -826,7 +845,8 @@ class CausalWanModel(ModelMixin, ConfigMixin):
         kv_cache: dict = None,
         crossattn_cache: dict = None,
         current_start: int = 0,
-        cache_start: int = 0
+        cache_start: int = 0,
+        ablation_global_head_ids=None,
     ):
         r"""
         Run the diffusion model with kv caching.
@@ -926,7 +946,9 @@ class CausalWanModel(ModelMixin, ConfigMixin):
                     {
                         "kv_cache": kv_cache[block_index],
                         "current_start": current_start,
-                        "cache_start": cache_start
+                        "cache_start": cache_start,
+                        "block_index": block_index,
+                        "ablation_global_head_ids": ablation_global_head_ids,
                     }
                 )
                 x = torch.utils.checkpoint.checkpoint(
@@ -940,7 +962,9 @@ class CausalWanModel(ModelMixin, ConfigMixin):
                         "kv_cache": kv_cache[block_index],
                         "crossattn_cache": crossattn_cache[block_index],
                         "current_start": current_start,
-                        "cache_start": cache_start
+                        "cache_start": cache_start,
+                        "block_index": block_index,
+                        "ablation_global_head_ids": ablation_global_head_ids,
                     }
                 )
                 x = block(x, **kwargs)
