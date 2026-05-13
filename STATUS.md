@@ -16,6 +16,14 @@
 
 ## 最近完成
 
+- **head importance analysis 脚本调试**（2026-05-14）：
+  - 发现并修复 3 个代码 bug：
+    - `self_forcing_dmd.yaml:5`：`real_name: Wan2.1-T2V-14B` → `1.3B`（本地只有 1.3B 权重）
+    - `wan_wrapper.py:150-151`：`enable_gradient_checkpointing(enable=True)` 签名不兼容，改为直接设 `self.model.gradient_checkpointing = True`
+    - `analyze_head_importance.py:118-121`：DMD text_encoder 未移到 GPU，加入短暂 GPU 编码后立即回 CPU
+  - 尝试 3 种内存优化（DMD score CPU offloading、DMD T5 短暂 GPU 使用、heads_per_batch=1），均未能解决 OOM
+  - 根因：Self-Forcing 推理阶段 KV cache 膨胀到 78+ GB（126 frames），剩余空间不足以加载 DMD score 模型（~5 GB）
+  - 结论：需拆成两阶段脚本 — Phase 1 只推理存 latent，Phase 2 只算 DMD loss
 - **新增 per-layer top-k fixed policy 初版**（2026-05-12）：
   - 新增 `TopKHeadPolicy` 和 `load_topk_head_policy()`，支持从 JSON/CSV/TXT 读取 head 重要性或显式 top heads
   - 新增 `hwq.head_importance` 选头模块，库内支持读取 focused-forcing head-ablation DMD loss JSON、聚合均值、per-layer 选择 top-k heads、写出 policy JSON
@@ -58,6 +66,10 @@
 
 ## 当前阻塞 / 未完成
 
+- **head importance analysis 脚本 OOM**（2026-05-14）：
+  - `run_head_importance_analysis.sh` 在 A100 80GB 上无法完成：推理阶段 KV cache 峰值 ~78 GB，DMD score 模型需额外 ~5 GB
+  - 3 个代码 bug 已修复，内存优化（CPU offloading）已加到极限，仍差 ~3-5 GB
+  - 需改为两阶段方案：Phase 1 只推理 + 存 latent → Phase 2 加载 DMD 单独算 loss
 - 尚未评估各实验线输出视频的质量退化情况（vs BF16 baseline）。
 - 旧 naive fake-quant 量化需要 `expandable_segments:True` 才能跑通；新的 packed-naive real-compression 分支尚未跑真实 Self-Forcing 视频。
 - `importance-based top-k policy` 已有初版代码路径，但尚未用真实 focused-forcing 重要性文件跑 Self-Forcing 视频。
@@ -72,7 +84,7 @@
   - R-HWQ-4h（triton PRQ，4 heads int4 / 8 heads int2）
   - R-HWQ-4h（naive int2/int4，无 PRQ，4 heads int4 / 8 heads int2）
 - 跑通 packed-naive R-HWQ-4h：`bash scripts/self_forcing/run_packed_naive_hwq.sh`。
-- 跑完整 head-importance analysis 生成 policy：
+- 跑完整 head-importance analysis 生成 policy（需先完成两阶段拆分）：
   `bash scripts/self_forcing/run_head_importance_analysis.sh`。
 - 如果已有外部 focused-forcing JSON，也可生成 policy：
   `python scripts/aggregate_head_importance.py --input /path/to/jsons --output assets/head_importance/top4_dmd_loss.json --top_k 4`。

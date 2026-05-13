@@ -10,6 +10,11 @@
 - 已新增但尚未跑真实视频的支路：
   - `packed-naive-int2/int4/int8` — real packed blockwise quant，区别于旧 naive fake quant
   - 启动脚本：`HeadWiseKVQuant/scripts/self_forcing/run_packed_naive_hwq.sh`
+- **head importance analysis 脚本 OOM 阻塞**（2026-05-14）：
+  - `run_head_importance_analysis.sh` 无法在 A100 80GB 上完成——推理 KV cache 峰值 ~78 GB + DMD ~5 GB 超限
+  - 3 个代码 bug 已修复（见 STATUS.md），CPU offloading 已加到极限，仍需 ~3-5 GB
+  - 需改为两阶段：Phase 1 推理存 latent，Phase 2 单独算 DMD loss
+  - 修复 commit 尚未提交（3 files modified in working tree）
 - 已新增但尚未跑真实视频的第一版 importance top-k 支路：
   - `headwise_mode=topk` — per-layer fixed top-k high precision heads
   - 默认 packed-naive 配置：top-k heads `packed-naive-int4`，其余 heads `packed-naive-int2`

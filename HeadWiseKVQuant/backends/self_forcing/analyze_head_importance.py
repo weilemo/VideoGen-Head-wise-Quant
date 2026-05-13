@@ -88,6 +88,8 @@ def main():
 
     dmd = DMD(config, device=device)
     dmd.eval()
+    # DMD text_encoder only needed briefly for encoding; DMD score models stay CPU
+    # to avoid competing with pipeline models for VRAM (each T5 text_encoder is ~6 GB in bf16)
 
     dataset = TextDataset(
         prompt_path=args.data_path,
@@ -112,8 +114,12 @@ def main():
         batch = dataset[prompt_idx]
         prompt = batch["prompts"]
         extended_prompt = batch.get("extended_prompts")
+        # Encode with DMD text_encoder briefly, then free VRAM
+        dmd.text_encoder.to(device=gpu)
         conditional_dict = dmd.text_encoder(text_prompts=[prompt])
         unconditional_dict = dmd.text_encoder(text_prompts=[args.negative_prompt])
+        dmd.text_encoder.to(device="cpu")
+        torch.cuda.empty_cache()
 
         for offset in range(0, len(head_ids), args.heads_per_batch):
             current_head_ids = head_ids[offset:offset + args.heads_per_batch]
@@ -138,6 +144,13 @@ def main():
 
             if hasattr(pipeline.vae.model, "clear_cache"):
                 pipeline.vae.model.clear_cache()
+
+            # Offload pipeline models to CPU, bring DMD scores to GPU
+            pipeline.generator.to(device="cpu")
+            pipeline.vae.to(device="cpu")
+            torch.cuda.empty_cache()
+            dmd.real_score.to(device=gpu)
+            dmd.fake_score.to(device=gpu)
 
             latent_chunks = torch.tensor_split(latents, args.num_loss_chunks, dim=1)
             for chunk_id, chunk in enumerate(latent_chunks):
@@ -164,6 +177,13 @@ def main():
                 merged.update(local_results)
                 with open(out_path, "w", encoding="utf-8") as f:
                     json.dump(merged, f, ensure_ascii=False, indent=2)
+
+            # Offload DMD scores back to CPU, bring pipeline models back to GPU for next inference
+            dmd.real_score.to(device="cpu")
+            dmd.fake_score.to(device="cpu")
+            torch.cuda.empty_cache()
+            pipeline.generator.to(device=gpu)
+            pipeline.vae.to(device=gpu)
 
     if dist.is_initialized():
         dist.barrier()

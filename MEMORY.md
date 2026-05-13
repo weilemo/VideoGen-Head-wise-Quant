@@ -92,6 +92,10 @@
   - 02:06：`imageio-ffmpeg==0.6.0`（配合 imageio 替代已废弃的 torchvision write_video）
 - 核心版本速查：
   - `torch==2.9.0+cu128`, `triton==3.5.0`, `flash_attn==2.8.3`, `diffusers==0.38.0`, `transformers==5.8.0`
+- 显存限制（2026-05-14 实测）：
+  - Self-Forcing 推理 126 frames 时 KV cache 峰值 ~78 GB（A100 80GB），仅剩 ~2 GB 余量
+  - `analyze_head_importance.py` 需同时加载推理 pipeline + DMD（3× Wan 1.3B + 2× T5），即使激进 CPU offloading 仍 OOM
+  - 结论：head importance analysis 必须拆成两阶段（推理存 latent + 离线算 DMD loss），单进程无法完成
 - 已知问题与修复：
   - A100 (SM 8.0) 不支持 `float8_e4m3fn`，`hwq/real/quant_pack.py` 已加入 GPU 能力检测自动回退 `bfloat16`
   - `torchvision.io.write_video` 已废弃，`inference.py` 已切到 `imageio.mimsave`
