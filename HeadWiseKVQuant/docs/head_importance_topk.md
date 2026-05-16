@@ -51,6 +51,32 @@ cd /data2/moweile-20251213/workspace/videoquant/HeadWiseKVQuant
 bash scripts/self_forcing/run_head_importance_analysis.sh
 ```
 
+The launcher is split internally into two independent phases to avoid holding
+the Self-Forcing inference KV cache and DMD scoring models in VRAM at the same
+time:
+
+```bash
+# Phase 1 only: mask heads and save generated latents
+PHASE=inference bash scripts/self_forcing/run_head_importance_analysis.sh
+
+# Phase 2 only: load saved latents, compute DMD loss, aggregate policy
+PHASE=scoring bash scripts/self_forcing/run_head_importance_analysis.sh
+```
+
+Useful smoke-test / resume knobs:
+
+```bash
+HEAD_START=0 HEAD_END=6 NUM_OUTPUT_FRAMES=42 HEADS_PER_BATCH=1 \
+  PHASE=inference bash scripts/self_forcing/run_head_importance_analysis.sh
+
+ALLOW_INCOMPLETE=1 PHASE=scoring \
+  bash scripts/self_forcing/run_head_importance_analysis.sh
+```
+
+Set `DELETE_LATENTS_AFTER_SCORING=1` to remove `.pt` latent files after scoring
+when disk space matters.  Set `SKIP_EXISTING=0` to recompute existing chunk JSON
+entries.
+
 Defaults:
 
 ```text

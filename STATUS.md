@@ -16,6 +16,12 @@
 
 ## 最近完成
 
+- **两阶段 head importance analysis 拆分增强**（2026-05-17）：
+  - 现有 `run_head_importance_analysis.sh` 已按 `PHASE=inference/scoring/all` 调用两阶段脚本
+  - 修复 Phase 2 resume 逻辑：按 chunk 判断已完成 head，避免某个 head 只在部分 chunk 出现时被错误整体跳过
+  - launcher 新增实测参数：`HEAD_START`、`HEAD_END`、`ALLOW_INCOMPLETE`、`DELETE_LATENTS_AFTER_SCORING`、`SKIP_EXISTING`
+  - 更新 `docs/head_importance_topk.md`，补充两阶段运行、smoke test 和恢复方式
+  - 已通过 `py_compile`、`bash -n`、11 个单测
 - **head importance analysis 脚本调试**（2026-05-14）：
   - 发现并修复 3 个代码 bug：
     - `self_forcing_dmd.yaml:5`：`real_name: Wan2.1-T2V-14B` → `1.3B`（本地只有 1.3B 权重）
@@ -67,9 +73,9 @@
 ## 当前阻塞 / 未完成
 
 - **head importance analysis 脚本 OOM**（2026-05-14）：
-  - `run_head_importance_analysis.sh` 在 A100 80GB 上无法完成：推理阶段 KV cache 峰值 ~78 GB，DMD score 模型需额外 ~5 GB
+  - 旧单进程 `analyze_head_importance.py` 在 A100 80GB 上无法完成：推理阶段 KV cache 峰值 ~78 GB，DMD score 模型需额外 ~5 GB
   - 3 个代码 bug 已修复，内存优化（CPU offloading）已加到极限，仍差 ~3-5 GB
-  - 需改为两阶段方案：Phase 1 只推理 + 存 latent → Phase 2 加载 DMD 单独算 loss
+  - 两阶段脚本已存在并增强；下一步需要在真实 GPU 作业中验证 `PHASE=inference` 与 `PHASE=scoring`
 - 尚未评估各实验线输出视频的质量退化情况（vs BF16 baseline）。
 - 旧 naive fake-quant 量化需要 `expandable_segments:True` 才能跑通；新的 packed-naive real-compression 分支尚未跑真实 Self-Forcing 视频。
 - `importance-based top-k policy` 已有初版代码路径，但尚未用真实 focused-forcing 重要性文件跑 Self-Forcing 视频。
@@ -84,8 +90,12 @@
   - R-HWQ-4h（triton PRQ，4 heads int4 / 8 heads int2）
   - R-HWQ-4h（naive int2/int4，无 PRQ，4 heads int4 / 8 heads int2）
 - 跑通 packed-naive R-HWQ-4h：`bash scripts/self_forcing/run_packed_naive_hwq.sh`。
-- 跑完整 head-importance analysis 生成 policy（需先完成两阶段拆分）：
+- 跑完整 head-importance analysis 生成 policy：
   `bash scripts/self_forcing/run_head_importance_analysis.sh`。
+- 建议先做小规模 smoke test：
+  `HEAD_START=0 HEAD_END=6 NUM_OUTPUT_FRAMES=42 HEADS_PER_BATCH=1 PHASE=inference bash scripts/self_forcing/run_head_importance_analysis.sh`
+  然后：
+  `ALLOW_INCOMPLETE=1 PHASE=scoring bash scripts/self_forcing/run_head_importance_analysis.sh`。
 - 如果已有外部 focused-forcing JSON，也可生成 policy：
   `python scripts/aggregate_head_importance.py --input /path/to/jsons --output assets/head_importance/top4_dmd_loss.json --top_k 4`。
 - 跑通 packed-naive importance top-k HWQ：

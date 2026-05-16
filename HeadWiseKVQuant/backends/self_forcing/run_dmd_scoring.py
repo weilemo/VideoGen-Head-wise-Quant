@@ -31,7 +31,7 @@ parser.add_argument("--score_direction", choices=["higher", "lower"], default="h
 parser.add_argument("--allow_incomplete", action="store_true")
 parser.add_argument("--delete_latents_after_scoring", action="store_true",
                     help="Delete .pt files after scoring to free disk space")
-parser.add_argument("--skip_existing", action="store_true", default=True,
+parser.add_argument("--skip_existing", "--skip-existing", action=argparse.BooleanOptionalAction, default=True,
                     help="Skip heads already present in chunk JSONs (resumption support)")
 args = None
 
@@ -45,15 +45,27 @@ def setup_distributed():
     return torch.device("cuda"), 0, 1
 
 
-def _heads_in_chunk_jsons(prompt_dir: str, num_loss_chunks: int) -> set:
-    """Return set of global_head_id strings already present across all chunk JSONs."""
-    existing = set()
+def _heads_by_chunk_json(prompt_dir: str, num_loss_chunks: int) -> dict[int, set[str]]:
+    """Return global_head_id strings already present in each chunk JSON."""
+    existing = {}
     for chunk_id in range(num_loss_chunks):
         chunk_path = os.path.join(prompt_dir, f"chunk_{chunk_id:02d}.json")
         if os.path.exists(chunk_path):
             with open(chunk_path, "r", encoding="utf-8") as f:
-                existing.update(json.load(f).keys())
+                existing[chunk_id] = set(json.load(f).keys())
+        else:
+            existing[chunk_id] = set()
     return existing
+
+
+def _heads_completed_in_all_chunks(existing_by_chunk: dict[int, set[str]]) -> set[str]:
+    chunks = list(existing_by_chunk.values())
+    if not chunks:
+        return set()
+    completed = set(chunks[0])
+    for chunk_heads in chunks[1:]:
+        completed &= chunk_heads
+    return completed
 
 
 def main():
@@ -124,14 +136,17 @@ def main():
         dmd.text_encoder.to(device="cpu")
         torch.cuda.empty_cache()
 
-        existing_heads = _heads_in_chunk_jsons(prompt_path, num_loss_chunks) if args.skip_existing else set()
+        existing_by_chunk = _heads_by_chunk_json(prompt_path, num_loss_chunks) if args.skip_existing else {
+            chunk_id: set() for chunk_id in range(num_loss_chunks)
+        }
+        completed_heads = _heads_completed_in_all_chunks(existing_by_chunk)
 
         for batch_info in metadata["batches"]:
             global_head_ids = batch_info["global_head_ids"]
             batch_file = batch_info["file"]
 
             # Skip batch if all heads already scored
-            if args.skip_existing and all(str(h) in existing_heads for h in global_head_ids):
+            if args.skip_existing and all(str(h) in completed_heads for h in global_head_ids):
                 continue
 
             latents = torch.load(
@@ -145,7 +160,7 @@ def main():
             for chunk_id, chunk in enumerate(latent_chunks):
                 local_results = {}
                 for sample_id, global_head_id in enumerate(global_head_ids):
-                    if args.skip_existing and str(global_head_id) in existing_heads:
+                    if args.skip_existing and str(global_head_id) in existing_by_chunk.get(chunk_id, set()):
                         continue
                     x = chunk[sample_id]
                     if x.dim() == 4:
@@ -168,6 +183,9 @@ def main():
                     merged.update(local_results)
                     with open(out_path, "w", encoding="utf-8") as f:
                         json.dump(merged, f, ensure_ascii=False, indent=2)
+                    existing_by_chunk.setdefault(chunk_id, set()).update(local_results.keys())
+
+            completed_heads = _heads_completed_in_all_chunks(existing_by_chunk)
 
             dmd.real_score.to(device="cpu")
             dmd.fake_score.to(device="cpu")
