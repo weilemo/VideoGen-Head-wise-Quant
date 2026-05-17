@@ -15,6 +15,13 @@
 
 ## 最近完成
 
+- **拷贝 Focused-Forcing 参考代码与 DMD loss 数据**（2026-05-17）：
+  - 将 `/data2/moweile-20251213/workspace/focused-forcing-code` 拷贝到 `external/focused-forcing-code/`
+  - 新增 `external/README.md`，明确 `external/` 用于存放外部参考代码和分析结果，`HeadWiseKVQuant/` 继续作为主方法代码库
+  - 确认 `focusedforcing_sf/cf/rf/longlive/dm_loss.json` 均包含 360 个 global head 的 DMD loss 分数，可用于生成 top-k policy
+- **新增每周实验汇报目录**（2026-05-17）：
+  - 新增 `HeadWiseKVQuant/weekly_reports/README.md`，规范每周汇报的命名、结构和维护方式
+  - 新增 `HeadWiseKVQuant/weekly_reports/2026-W20.md`，整理本周六条实验线、两阶段 head importance 进展、问题和下周计划，方便和老师同步并请老师指导方向
 - **补充两条 packed-naive R-HWQ-4h 实验及 VBench 评估**（2026-05-17）：
   - 跑通两条新实验线：
     | 实验线 | 配置 | 最终得分 | vs BF16 |

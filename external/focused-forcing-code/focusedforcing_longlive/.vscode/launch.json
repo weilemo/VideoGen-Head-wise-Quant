@@ -1,0 +1,19 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Debug Test",
+      "type": "debugpy",
+      "request": "launch",
+      "program": "${workspaceFolder}/inference.py",
+      "console": "integratedTerminal",
+      "justMyCode": false,
+      "args": [
+        "--prompt_path",
+        "prompts/test/test_1.txt",
+        "--output_path",
+        "videos/test",
+      ]
+    }
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Debug Test",
+      "type": "debugpy",
+      "request": "launch",
+      "program": "${workspaceFolder}/inference.py",
+      "console": "integratedTerminal",
+      "justMyCode": false,
+      "args": [
+        "--data_path",
+        "prompts/test/test_0.txt",
+        "--output_folder",
+        "videos/test",
+        "--method",
+        "focusedforcing",
+      ]
+    }
+  ]
+}

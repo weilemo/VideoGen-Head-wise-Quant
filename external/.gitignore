@@ -1,0 +1,6 @@
+# Keep external reference trees source-oriented.
+**/build/
+**/*.o
+**/*.so
+**/*.egg-info/
+**/__pycache__/
