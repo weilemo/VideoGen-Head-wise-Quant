@@ -1,0 +1,19 @@
+{
+  "format": "headwise-topk-policy-v1",
+  "source": "/mnt/workspace/caipeiliang/code/moweile/videoquant/HeadWiseKVQuant/results/head_importance/focused_forcing_dmd",
+  "num_heads": 12,
+  "num_layers": 30,
+  "top_k": 4,
+  "score_direction": "higher",
+  "score_meaning": "Mean DMD loss after masking this global attention head; higher means more important.",
+  "global_scores": {
+    "0": 0.14535225214384886,
+    "1": 0.12280787317683721,
+    "2": 0.20572874526244403,
+    "3": 0.16210086126993925,
+    "4": 0.165459900976336,
+    "5": 0.22340874973184263
+  },
+  "scores_by_layer": {},
+  "top_heads_by_layer": {}
+}

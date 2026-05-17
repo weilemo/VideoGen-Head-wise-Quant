@@ -24,7 +24,7 @@ class VBenchLong(VBench):
         if "split_clip" in os.listdir(videos_path):
             # Get all folder names in the split_clip folder
             split_clip_path=os.path.join(videos_path, "split_clip")
-            split_clip_folders_count = len([folder for folder in os.listdir(split_clip_path) if re.search(r'-\d+$', folder)])
+            split_clip_folders_count = len([folder for folder in os.listdir(split_clip_path) if os.path.isdir(os.path.join(split_clip_path, folder))])
             
             # Get the number of files in the videos_path folder that end with '.mp4'
             mp4_files_count = len([file for file in os.listdir(videos_path) if file.endswith('.mp4')])
@@ -41,9 +41,13 @@ class VBenchLong(VBench):
         base_output_dir = os.path.join(videos_path, "split_clip")
         os.makedirs(base_output_dir, exist_ok=True)
 
+        def _sort_key(fname):
+            # Handle names like "0-0_ema.mp4" or "1-0_ema.mp4"
+            stem = os.path.splitext(fname)[0]
+            return int(stem.split("-")[0])
         all_video_files = sorted(
             [f for f in os.listdir(videos_path) if f.endswith((".mp4", ".avi", ".mov"))],
-            key=lambda x: int(os.path.splitext(x)[0].split("_")[0])
+            key=_sort_key
         )
 
         chunk = math.ceil(len(all_video_files) / split_world_size)

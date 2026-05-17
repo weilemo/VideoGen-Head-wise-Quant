@@ -93,3 +93,11 @@
 - 影响：运行时通过 `HEADWISE_MODE=topk` 和 `HEAD_IMPORTANCE_PATH` 启用；从 focused-forcing DMD loss JSON 生成 policy 时使用 `HeadWiseKVQuant/scripts/aggregate_head_importance.py`。
 - 进一步约定：选头逻辑属于方法库本身，放在 `HeadWiseKVQuant/src/hwq/head_importance.py`；`scripts/aggregate_head_importance.py` 只是 CLI wrapper，避免选头逻辑散落在实验脚本中。
 - 进一步约定：head ablation / DMD-loss calibration 也属于 `HeadWiseKVQuant` 的 vendored Self-Forcing backend；外部 `focused-forcing-code` 只作为算法参考，不作为运行时依赖。
+
+## D-2026-05-17-13 VBench 评估确认 6 条实验线的量化质量排序
+
+- 决策：通过 VBench-Long 8 维度评估 6 条 Self-Forcing 实验线，确认 packed-naive int8+int4 作为轻量级 real-compression baseline 的首选配置。
+- 原因：6 条实验线覆盖了从 BF16 到 naive blockwise 的质量谱系，量化质量排序为：
+  - BF16 (0.6486) ≈ Packed int8+int4 (0.6479, ↓0.10%) ≈ QVG INT2 (0.6469, ↓0.26%) > R-HWQ-4h PRQ (0.6416, ↓1.07%) > Packed int4+int2 (0.6279, ↓3.19%) > Naive (0.5954, ↓8.19%)
+  - int8+int4 packed-naive 几乎无损，且无需 k-means 聚类，适合作为论文中的轻量化 baseline
+- 影响：后续实验矩阵中 packed-naive 的推荐默认配置为 int8+int4 (R-HWQ-4h)；int4+int2 退化明显，不适合作为 low-bit 场景的首选

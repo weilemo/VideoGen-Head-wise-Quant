@@ -135,7 +135,7 @@ HEAD_IMPORTANCE_PATH=assets/head_importance/top4_dmd_loss.json \
 By default, outputs are written under:
 
 ```text
-HeadWiseKVQuant/outputs/self_forcing/
+HeadWiseKVQuant/results/selfforcing/
 ```
 
 On a machine with a different QVG path:
@@ -148,6 +148,28 @@ SELF_FORCING_CKPT_ROOT=/mnt/workspace/caipeiliang/code/moweile/videoquant/Quant-
 See `docs/checkpoint_sync.md` for the full cross-machine setup workflow.
 See `docs/head_importance_topk.md` for building and running an importance
 top-k packed-naive policy.
+
+## VBench Evaluation Results (2026-05-17)
+
+Six experiment lines evaluated with VBench-Long (8 dimensions, 2 videos each):
+
+| Experiment | Final Score | vs BF16 |
+|---|---|---|
+| BF16 Baseline | 0.6486 | — |
+| QVG INT2 (PRQ) | 0.6469 | ↓0.26% |
+| R-HWQ-4h (PRQ) | 0.6416 | ↓1.07% |
+| R-HWQ-4h Packed (int8+int4) | 0.6479 | ↓0.10% |
+| R-HWQ-4h Packed (int4+int2) | 0.6279 | ↓3.19% |
+| R-HWQ-4h (Naive) | 0.5954 | ↓8.19% |
+
+Key findings:
+- PRQ-based quantization barely degrades quality (↓0.3%-1.1%)
+- Packed-naive int8+int4 is nearly lossless (↓0.10%), a viable lightweight option
+- Packed-naive int4+int2 sits between naive and PRQ
+- Naive blockwise (fake quant, bf16 output) degrades significantly (↓8.2%)
+
+Evaluation scripts: `scripts/eval/evaluate_experiments.sh`, `scripts/eval/aggregate_results.py`.
+Full results: `results/selfforcing/vbench_eval/comparison_summary.json`.
 
 ## Attribution
 

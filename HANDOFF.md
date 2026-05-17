@@ -2,27 +2,23 @@
 
 ## 当前接力点
 
-- `Self-Forcing` 四条实验线均已跑通，结果位于 `HeadWiseKVQuant/results/selfforcing/`：
-  - `bf16/` — BF16 baseline
-  - `triton-nstages-kmeans-int2_64/kc_256_vc_256_nstages_1/` — QVG INT2 baseline (Slurm job 24309)
-  - `rhwq_seed_0_hi_4_triton-nstages-kmeans-int4_lo_triton-nstages-kmeans-int2_64/kc_256_vc_256_nstages_1/` — R-HWQ-4h (QVG PRQ)
-  - `rhwq_seed_0_hi_4_naive-int4_lo_naive-int2_64/kc_256_vc_256_nstages_1/` — R-HWQ-4h (naive blockwise, 无 PRQ)
-- 已新增但尚未跑真实视频的支路：
-  - `packed-naive-int2/int4/int8` — real packed blockwise quant，区别于旧 naive fake quant
-  - 启动脚本：`HeadWiseKVQuant/scripts/self_forcing/run_packed_naive_hwq.sh`
-- **head importance analysis 脚本 OOM 阻塞**（2026-05-14）：
-  - `run_head_importance_analysis.sh` 无法在 A100 80GB 上完成——推理 KV cache 峰值 ~78 GB + DMD ~5 GB 超限
-  - 3 个代码 bug 已修复（见 STATUS.md），CPU offloading 已加到极限，仍需 ~3-5 GB
-  - 需改为两阶段：Phase 1 推理存 latent，Phase 2 单独算 DMD loss
-  - 修复 commit 尚未提交（3 files modified in working tree）
-- 已新增但尚未跑真实视频的第一版 importance top-k 支路：
+- `Self-Forcing` 六条实验线均已跑通并完成 VBench 评估，结果位于 `HeadWiseKVQuant/results/selfforcing/`：
+  - `bf16/` — BF16 baseline (Final Score: 0.6486)
+  - `triton-nstages-kmeans-int2_64/kc_256_vc_256_nstages_1/` — QVG INT2 baseline (0.6469, ↓0.26%)
+  - `rhwq_seed_0_hi_4_triton-nstages-kmeans-int4_lo_triton-nstages-kmeans-int2_64/kc_256_vc_256_nstages_1/` — R-HWQ-4h PRQ (0.6416, ↓1.07%)
+  - `rhwq_seed_0_hi_4_naive-int4_lo_naive-int2_64/kc_256_vc_256_nstages_1/` — R-HWQ-4h Naive (0.5954, ↓8.19%)
+  - `rhwq_seed_0_hi_4_packed-naive-int8_lo_packed-naive-int4_64/kc_256_vc_256_nstages_1/` — R-HWQ-4h Packed int8+int4 (0.6479, ↓0.10%)
+  - `rhwq_seed_0_hi_4_packed-naive-int4_lo_packed-naive-int2_64/kc_256_vc_256_nstages_1/` — R-HWQ-4h Packed int4+int2 (0.6279, ↓3.19%)
+- VBench 评估完整结果：`HeadWiseKVQuant/results/selfforcing/vbench_eval/comparison_summary.json`
+- 评估脚本：`HeadWiseKVQuant/scripts/eval/evaluate_experiments.sh` 和 `scripts/eval/aggregate_results.py`
+- **head importance analysis 两阶段方案已验证**（2026-05-17）：
+  - Smoke test 在 A100 80GB 上完整跑通：Phase 1 (inference, ~25.5 GB) + Phase 2 (scoring, ~1.2 GB)
+  - 两阶段拆分彻底解决 OOM 问题，可准备跑全量 360 heads
+  - 启动脚本：`bash scripts/self_forcing/run_head_importance_analysis.sh`
+- 已新增但尚未用真实 importance 文件跑视频的支路：
   - `headwise_mode=topk` — per-layer fixed top-k high precision heads
-  - 默认 packed-naive 配置：top-k heads `packed-naive-int4`，其余 heads `packed-naive-int2`
-  - 完整分析链路：`bash scripts/self_forcing/run_head_importance_analysis.sh`
-  - 运行脚本：`HeadWiseKVQuant/scripts/self_forcing/run_packed_naive_topk_hwq.sh`
+  - 启动脚本：`HeadWiseKVQuant/scripts/self_forcing/run_packed_naive_topk_hwq.sh`
   - 需要 `HEAD_IMPORTANCE_PATH=/path/to/topk_policy.json`
-  - 选头模块：`HeadWiseKVQuant/src/hwq/head_importance.py`
-  - focused-forcing JSON 聚合脚本：`HeadWiseKVQuant/scripts/aggregate_head_importance.py`，是 `hwq.head_importance` 的 CLI wrapper
 - `head-wise quant` 主线独立代码库：`HeadWiseKVQuant`。
 - 后续优先在 `HeadWiseKVQuant` 中发展论文方法，`Quant-VideoGen` 只作为参考。
 - 后续论文方法主线已经收敛到 `importance-based top-k head-wise quant`。
@@ -30,23 +26,25 @@
 ## 下一位 agent 先做什么
 
 1. 先看 `STATUS.md`，再看 `MEMORY.md`
-2. 确认四条实验线结果都在 `HeadWiseKVQuant/results/selfforcing/` 下
-3. 再看独立库结构：
+2. 确认六条实验线结果都在 `HeadWiseKVQuant/results/selfforcing/` 下
+3. 查看 VBench 对比结果：`HeadWiseKVQuant/results/selfforcing/vbench_eval/comparison_summary.json`
+4. 再看独立库结构：
    - `HeadWiseKVQuant/README.md`
+   - `HeadWiseKVQuant/docs/quantization_approaches.md`
    - `HeadWiseKVQuant/docs/self_forcing_integration.md`
    - `HeadWiseKVQuant/docs/workspace_structure.md`
    - `HeadWiseKVQuant/src/hwq/headwise.py`
-4. 下一步任务：评估四条实验线的视频质量（identity/scene/motion consistency）
-5. 如果继续方法实现，优先围绕 head importance 做 `TopKHeadPolicy` / importance collection，而不是继续扩展 random policy 本身
-6. 如继续跑实验：
-   - QVG PRQ 路径：直接 `bash scripts/self_forcing/run_random_hwq.sh`
-   - Naive 量化路径：需加 `PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True`（否则 OOM）
-   - Packed naive 路径：`bash scripts/self_forcing/run_packed_naive_hwq.sh`
-   - Packed naive top-k 路径：
-     `HEAD_IMPORTANCE_PATH=assets/head_importance/top4_dmd_loss.json bash scripts/self_forcing/run_packed_naive_topk_hwq.sh`
-   - 完整闭环路径：
-     `bash scripts/self_forcing/run_head_importance_analysis.sh && HEAD_IMPORTANCE_PATH=assets/head_importance/top4_dmd_loss.json bash scripts/self_forcing/run_packed_naive_topk_hwq.sh`
-7. 如涉及服务器资源，补看 [服务器工作习惯.md](/data2/moweile-20251213/服务器工作习惯.md)
+5. 下一步任务：跑全量 head importance analysis (360 heads) 生成真实 importance policy
+   - `PHASE=inference bash scripts/self_forcing/run_head_importance_analysis.sh`
+   - 然后：`ALLOW_INCOMPLETE=1 PHASE=scoring bash scripts/self_forcing/run_head_importance_analysis.sh`
+6. 然后用 importance policy 跑 top-k HWQ 视频：
+   - `HEAD_IMPORTANCE_PATH=assets/head_importance/top4_dmd_loss.json bash scripts/self_forcing/run_packed_naive_topk_hwq.sh`
+7. 如继续跑实验：
+   - Packed-naive R-HWQ-4h (推荐默认)：`bash scripts/self_forcing/run_packed_naive_hwq.sh`
+   - Packed-naive int8+int4 版本：`HIGH_PRECISION_QUANT_TYPE=packed-naive-int8 LOW_PRECISION_QUANT_TYPE=packed-naive-int4 QUANT_TYPE=packed-naive-int4 bash scripts/self_forcing/run_packed_naive_hwq.sh`
+   - QVG PRQ 路径：`bash scripts/self_forcing/run_random_hwq.sh`
+   - 注意：运行前需 `conda activate forcing`（包含 omegaconf 等依赖）
+8. 如涉及服务器资源，补看 [服务器工作习惯.md](/data2/moweile-20251213/服务器工作习惯.md)
 
 ## 当前最重要信息
 
@@ -65,13 +63,24 @@
   - K/V 共用同一组 heads
   - 全 prompts / chunks 共享固定 policy
   - `score_direction=higher` 表示 DMD loss 越大越重要
-  - head ablation 现在已接入 vendored backend，不再必须调用外部 `focused-forcing-code` 目录
+- 当前量化方案对比（VBench Final Score，6 条实验线）：
+  | 方案 | Final Score | vs BF16 | 压缩方式 |
+  |------|------------|---------|---------|
+  | BF16 | 0.6486 | — | 无损 |
+  | Packed int8+int4 | 0.6479 | ↓0.10% | 标量 min-max, real |
+  | PRQ INT2 (all) | 0.6469 | ↓0.26% | 向量 K-Means, real |
+  | PRQ R-HWQ-4h | 0.6416 | ↓1.07% | 向量 K-Means, real |
+  | Packed int4+int2 | 0.6279 | ↓3.19% | 标量 min-max, real |
+  | Naive R-HWQ-4h | 0.5954 | ↓8.19% | 标量 min-max, fake |
 - 实验产物统一放到 `HeadWiseKVQuant/results/`（不要放 `outputs/`）。
 - 本机权重位于 `HeadWiseKVQuant/ckpts/Self-Forcing/`（不进 git）。
 - 显存注意事项：
   - QVG PRQ (triton-nstages-kmeans) 返回 int8 packed 格式，A100 80G 可直接跑
-  - naive blockwise 量化返回 bf16 张量，需 `expandable_segments:True` 否则 OOM
-  - packed-naive blockwise 返回 packed dict，是真压缩分支，支持 int2/int4/int8
+  - Packed-naive 返回 packed dict，是真压缩，A100 80G 可直接跑
+  - Naive blockwise 量化返回 bf16 张量，需 `expandable_segments:True` 否则 OOM
+- 运行环境：
+  - Self-Forcing 推理：`conda activate forcing`
+  - VBench 评估：`conda activate vbench`
 - 当前工程判断：
   - 现有量化入口集中在 cache 管理层，而不是 attention kernel 内部
   - 当前张量与 cache 组织方式天然带 head 维度，适合做 per-head / head-group 策略

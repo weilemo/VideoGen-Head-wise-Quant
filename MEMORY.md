@@ -6,8 +6,9 @@
 - 这是一个面向长视频自回归 diffusion 生成的研究项目工作区。
 - 项目目标：研究 KV cache quantization，尽量在显著压缩历史 KV 显存占用的同时，保持长时视频质量，重点关注 `identity consistency`、`scene consistency` 和 `motion continuity`。
 - 当前可见子目录：
-  - `forcing`
-  - `Quant-VideoGen`
+  - `HeadWiseKVQuant` — 论文方法主代码库（head-wise KV cache quantization）
+  - `forcing` — 上游模型和 VBench 评估代码
+  - `Quant-VideoGen` — QVG 原始实验仓（保留作参考）
 
 ## 当前问题定义
 
@@ -83,6 +84,8 @@
 ## Self-Forcing 推理环境
 
 - 环境：Python 3.12，CUDA 12.8，8× A100-80GB SXM
+  - Self-Forcing 推理用 `conda activate forcing`
+  - VBench 评估用 `conda activate vbench`
 - 安装历史（2026-05-09 凌晨）：
   - 01:08-01:09：基础依赖 `diffusers==0.38.0`, `einops==0.8.2`, `easydict==1.13`, `safetensors==0.8.0rc0`, `regex`
   - 01:12：视频/图像链 `decord==0.6.0`, `imageio==2.37.3`, `opencv-python==4.13.0.92`, `scipy==1.17.1`, `lmdb==2.2.0`, `ftfy==6.3.1`
@@ -96,6 +99,8 @@
   - Self-Forcing 推理 126 frames 时 KV cache 峰值 ~78 GB（A100 80GB），仅剩 ~2 GB 余量
   - `analyze_head_importance.py` 需同时加载推理 pipeline + DMD（3× Wan 1.3B + 2× T5），即使激进 CPU offloading 仍 OOM
   - 结论：head importance analysis 必须拆成两阶段（推理存 latent + 离线算 DMD loss），单进程无法完成
+  - 两阶段方案已于 2026-05-17 smoke test 验证通过：Phase 1 推理 ~25.5 GB，Phase 2 DMD scoring ~1.2 GB
+  - 全量 360 heads 两阶段命令已就绪：`PHASE=inference bash scripts/self_forcing/run_head_importance_analysis.sh` + `PHASE=scoring`
 - 已知问题与修复：
   - A100 (SM 8.0) 不支持 `float8_e4m3fn`，`hwq/real/quant_pack.py` 已加入 GPU 能力检测自动回退 `bfloat16`
   - `torchvision.io.write_video` 已废弃，`inference.py` 已切到 `imageio.mimsave`
