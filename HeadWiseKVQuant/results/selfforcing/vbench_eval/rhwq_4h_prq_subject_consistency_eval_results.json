@@ -1,0 +1,329 @@
+{
+    "subject_consistency": [
+        0.9701578472055191,
+        [
+            {
+                "video_path": "/mnt/workspace/caipeiliang/code/moweile/videoquant/HeadWiseKVQuant/results/selfforcing/rhwq_seed_0_hi_4_triton-nstages-kmeans-int4_lo_triton-nstages-kmeans-int2_64/kc_256_vc_256_nstages_1/split_clip/0-0_ema/0-0_ema_006.mp4/0-0.mp4",
+                "inclip_score": 0.9683749368113856,
+                "clip2clip_score": 0,
+                "mapped_clip2clip_score": 0.0,
+                "video_results": 0.9683749368113856
+            },
+            {
+                "video_path": "/mnt/workspace/caipeiliang/code/moweile/videoquant/HeadWiseKVQuant/results/selfforcing/rhwq_seed_0_hi_4_triton-nstages-kmeans-int4_lo_triton-nstages-kmeans-int2_64/kc_256_vc_256_nstages_1/split_clip/0-0_ema/0-0_ema_019.mp4/0-0.mp4",
+                "inclip_score": 0.9385691583156586,
+                "clip2clip_score": 0,
+                "mapped_clip2clip_score": 0.0,
+                "video_results": 0.9385691583156586
+            },
+            {
+                "video_path": "/mnt/workspace/caipeiliang/code/moweile/videoquant/HeadWiseKVQuant/results/selfforcing/rhwq_seed_0_hi_4_triton-nstages-kmeans-int4_lo_triton-nstages-kmeans-int2_64/kc_256_vc_256_nstages_1/split_clip/0-0_ema/0-0_ema_007.mp4/0-0.mp4",
+                "inclip_score": 0.928478883158776,
+                "clip2clip_score": 0,
+                "mapped_clip2clip_score": 0.0,
+                "video_results": 0.928478883158776
+            },
+            {
+                "video_path": "/mnt/workspace/caipeiliang/code/moweile/videoquant/HeadWiseKVQuant/results/selfforcing/rhwq_seed_0_hi_4_triton-nstages-kmeans-int4_lo_triton-nstages-kmeans-int2_64/kc_256_vc_256_nstages_1/split_clip/0-0_ema/0-0_ema_009.mp4/0-0.mp4",
+                "inclip_score": 0.960836261510849,
+                "clip2clip_score": 0,
+                "mapped_clip2clip_score": 0.0,
+                "video_results": 0.960836261510849
+            },
+            {
+                "video_path": "/mnt/workspace/caipeiliang/code/moweile/videoquant/HeadWiseKVQuant/results/selfforcing/rhwq_seed_0_hi_4_triton-nstages-kmeans-int4_lo_triton-nstages-kmeans-int2_64/kc_256_vc_256_nstages_1/split_clip/0-0_ema/0-0_ema_003.mp4/0-0.mp4",
+                "inclip_score": 0.9407108070388916,
+                "clip2clip_score": 0,
+                "mapped_clip2clip_score": 0.0,
+                "video_results": 0.9407108070388916
+            },
+            {
+                "video_path": "/mnt/workspace/caipeiliang/code/moweile/videoquant/HeadWiseKVQuant/results/selfforcing/rhwq_seed_0_hi_4_triton-nstages-kmeans-int4_lo_triton-nstages-kmeans-int2_64/kc_256_vc_256_nstages_1/split_clip/0-0_ema/0-0_ema_022.mp4/0-0.mp4",
+                "inclip_score": 0.9646370737783371,
+                "clip2clip_score": 0,
+                "mapped_clip2clip_score": 0.0,
+                "video_results": 0.9646370737783371
+            },
+            {
+                "video_path": "/mnt/workspace/caipeiliang/code/moweile/videoquant/HeadWiseKVQuant/results/selfforcing/rhwq_seed_0_hi_4_triton-nstages-kmeans-int4_lo_triton-nstages-kmeans-int2_64/kc_256_vc_256_nstages_1/split_clip/0-0_ema/0-0_ema_018.mp4/0-0.mp4",
+                "inclip_score": 0.9578457388185686,
+                "clip2clip_score": 0,
+                "mapped_clip2clip_score": 0.0,
+                "video_results": 0.9578457388185686
+            },
+            {
+                "video_path": "/mnt/workspace/caipeiliang/code/moweile/videoquant/HeadWiseKVQuant/results/selfforcing/rhwq_seed_0_hi_4_triton-nstages-kmeans-int4_lo_triton-nstages-kmeans-int2_64/kc_256_vc_256_nstages_1/split_clip/0-0_ema/0-0_ema_014.mp4/0-0.mp4",
+                "inclip_score": 0.9596252229905897,
+                "clip2clip_score": 0,
+                "mapped_clip2clip_score": 0.0,
+                "video_results": 0.9596252229905897
+            },
+            {
+                "video_path": "/mnt/workspace/caipeiliang/code/moweile/videoquant/HeadWiseKVQuant/results/selfforcing/rhwq_seed_0_hi_4_triton-nstages-kmeans-int4_lo_triton-nstages-kmeans-int2_64/kc_256_vc_256_nstages_1/split_clip/0-0_ema/0-0_ema_012.mp4/0-0.mp4",
+                "inclip_score": 0.9486026100574001,
+                "clip2clip_score": 0,
+                "mapped_clip2clip_score": 0.0,
+                "video_results": 0.9486026100574001
+            },
+            {
+                "video_path": "/mnt/workspace/caipeiliang/code/moweile/videoquant/HeadWiseKVQuant/results/selfforcing/rhwq_seed_0_hi_4_triton-nstages-kmeans-int4_lo_triton-nstages-kmeans-int2_64/kc_256_vc_256_nstages_1/split_clip/0-0_ema/0-0_ema_001.mp4/0-0.mp4",
+                "inclip_score": 0.9748448835265252,
+                "clip2clip_score": 0,
+                "mapped_clip2clip_score": 0.0,
+                "video_results": 0.9748448835265252
+            },
+            {
+                "video_path": "/mnt/workspace/caipeiliang/code/moweile/videoquant/HeadWiseKVQuant/results/selfforcing/rhwq_seed_0_hi_4_triton-nstages-kmeans-int4_lo_triton-nstages-kmeans-int2_64/kc_256_vc_256_nstages_1/split_clip/0-0_ema/0-0_ema_021.mp4/0-0.mp4",
+                "inclip_score": 0.9448177920233819,
+                "clip2clip_score": 0,
+                "mapped_clip2clip_score": 0.0,
+                "video_results": 0.9448177920233819
+            },
+            {
+                "video_path": "/mnt/workspace/caipeiliang/code/moweile/videoquant/HeadWiseKVQuant/results/selfforcing/rhwq_seed_0_hi_4_triton-nstages-kmeans-int4_lo_triton-nstages-kmeans-int2_64/kc_256_vc_256_nstages_1/split_clip/0-0_ema/0-0_ema_011.mp4/0-0.mp4",
+                "inclip_score": 0.9435845305842738,
+                "clip2clip_score": 0,
+                "mapped_clip2clip_score": 0.0,
+                "video_results": 0.9435845305842738
+            },
+            {
+                "video_path": "/mnt/workspace/caipeiliang/code/moweile/videoquant/HeadWiseKVQuant/results/selfforcing/rhwq_seed_0_hi_4_triton-nstages-kmeans-int4_lo_triton-nstages-kmeans-int2_64/kc_256_vc_256_nstages_1/split_clip/0-0_ema/0-0_ema_020.mp4/0-0.mp4",
+                "inclip_score": 0.9262623162038864,
+                "clip2clip_score": 0,
+                "mapped_clip2clip_score": 0.0,
+                "video_results": 0.9262623162038864
+            },
+            {
+                "video_path": "/mnt/workspace/caipeiliang/code/moweile/videoquant/HeadWiseKVQuant/results/selfforcing/rhwq_seed_0_hi_4_triton-nstages-kmeans-int4_lo_triton-nstages-kmeans-int2_64/kc_256_vc_256_nstages_1/split_clip/0-0_ema/0-0_ema_008.mp4/0-0.mp4",
+                "inclip_score": 0.9456927728268408,
+                "clip2clip_score": 0,
+                "mapped_clip2clip_score": 0.0,
+                "video_results": 0.9456927728268408
+            },
+            {
+                "video_path": "/mnt/workspace/caipeiliang/code/moweile/videoquant/HeadWiseKVQuant/results/selfforcing/rhwq_seed_0_hi_4_triton-nstages-kmeans-int4_lo_triton-nstages-kmeans-int2_64/kc_256_vc_256_nstages_1/split_clip/0-0_ema/0-0_ema_017.mp4/0-0.mp4",
+                "inclip_score": 0.9497563685140302,
+                "clip2clip_score": 0,
+                "mapped_clip2clip_score": 0.0,
+                "video_results": 0.9497563685140302
+            },
+            {
+                "video_path": "/mnt/workspace/caipeiliang/code/moweile/videoquant/HeadWiseKVQuant/results/selfforcing/rhwq_seed_0_hi_4_triton-nstages-kmeans-int4_lo_triton-nstages-kmeans-int2_64/kc_256_vc_256_nstages_1/split_clip/0-0_ema/0-0_ema_005.mp4/0-0.mp4",
+                "inclip_score": 0.9757319631115082,
+                "clip2clip_score": 0,
+                "mapped_clip2clip_score": 0.0,
+                "video_results": 0.9757319631115082
+            },
+            {
+                "video_path": "/mnt/workspace/caipeiliang/code/moweile/videoquant/HeadWiseKVQuant/results/selfforcing/rhwq_seed_0_hi_4_triton-nstages-kmeans-int4_lo_triton-nstages-kmeans-int2_64/kc_256_vc_256_nstages_1/split_clip/0-0_ema/0-0_ema_010.mp4/0-0.mp4",
+                "inclip_score": 0.958925812475143,
+                "clip2clip_score": 0,
+                "mapped_clip2clip_score": 0.0,
+                "video_results": 0.958925812475143
+            },
+            {
+                "video_path": "/mnt/workspace/caipeiliang/code/moweile/videoquant/HeadWiseKVQuant/results/selfforcing/rhwq_seed_0_hi_4_triton-nstages-kmeans-int4_lo_triton-nstages-kmeans-int2_64/kc_256_vc_256_nstages_1/split_clip/0-0_ema/0-0_ema_013.mp4/0-0.mp4",
+                "inclip_score": 0.9542249133509975,
+                "clip2clip_score": 0,
+                "mapped_clip2clip_score": 0.0,
+                "video_results": 0.9542249133509975
+            },
+            {
+                "video_path": "/mnt/workspace/caipeiliang/code/moweile/videoquant/HeadWiseKVQuant/results/selfforcing/rhwq_seed_0_hi_4_triton-nstages-kmeans-int4_lo_triton-nstages-kmeans-int2_64/kc_256_vc_256_nstages_1/split_clip/0-0_ema/0-0_ema_004.mp4/0-0.mp4",
+                "inclip_score": 0.9655769361603644,
+                "clip2clip_score": 0,
+                "mapped_clip2clip_score": 0.0,
+                "video_results": 0.9655769361603644
+            },
+            {
+                "video_path": "/mnt/workspace/caipeiliang/code/moweile/videoquant/HeadWiseKVQuant/results/selfforcing/rhwq_seed_0_hi_4_triton-nstages-kmeans-int4_lo_triton-nstages-kmeans-int2_64/kc_256_vc_256_nstages_1/split_clip/0-0_ema/0-0_ema_015.mp4/0-0.mp4",
+                "inclip_score": 0.956789864647773,
+                "clip2clip_score": 0,
+                "mapped_clip2clip_score": 0.0,
+                "video_results": 0.956789864647773
+            },
+            {
+                "video_path": "/mnt/workspace/caipeiliang/code/moweile/videoquant/HeadWiseKVQuant/results/selfforcing/rhwq_seed_0_hi_4_triton-nstages-kmeans-int4_lo_triton-nstages-kmeans-int2_64/kc_256_vc_256_nstages_1/split_clip/0-0_ema/0-0_ema_002.mp4/0-0.mp4",
+                "inclip_score": 0.9536089089608961,
+                "clip2clip_score": 0,
+                "mapped_clip2clip_score": 0.0,
+                "video_results": 0.9536089089608961
+            },
+            {
+                "video_path": "/mnt/workspace/caipeiliang/code/moweile/videoquant/HeadWiseKVQuant/results/selfforcing/rhwq_seed_0_hi_4_triton-nstages-kmeans-int4_lo_triton-nstages-kmeans-int2_64/kc_256_vc_256_nstages_1/split_clip/0-0_ema/0-0_ema_016.mp4/0-0.mp4",
+                "inclip_score": 0.9575332009023235,
+                "clip2clip_score": 0,
+                "mapped_clip2clip_score": 0.0,
+                "video_results": 0.9575332009023235
+            },
+            {
+                "video_path": "/mnt/workspace/caipeiliang/code/moweile/videoquant/HeadWiseKVQuant/results/selfforcing/rhwq_seed_0_hi_4_triton-nstages-kmeans-int4_lo_triton-nstages-kmeans-int2_64/kc_256_vc_256_nstages_1/split_clip/0-0_ema/0-0_ema_000.mp4/0-0.mp4",
+                "inclip_score": 0.9481571009082179,
+                "clip2clip_score": 0,
+                "mapped_clip2clip_score": 0.0,
+                "video_results": 0.9481571009082179
+            },
+            {
+                "video_path": "/mnt/workspace/caipeiliang/code/moweile/videoquant/HeadWiseKVQuant/results/selfforcing/rhwq_seed_0_hi_4_triton-nstages-kmeans-int4_lo_triton-nstages-kmeans-int2_64/kc_256_vc_256_nstages_1/split_clip/1-0_ema/1-0_ema_019.mp4/1-0.mp4",
+                "inclip_score": 0.9882862731333701,
+                "clip2clip_score": 0,
+                "mapped_clip2clip_score": 0.0,
+                "video_results": 0.9882862731333701
+            },
+            {
+                "video_path": "/mnt/workspace/caipeiliang/code/moweile/videoquant/HeadWiseKVQuant/results/selfforcing/rhwq_seed_0_hi_4_triton-nstages-kmeans-int4_lo_triton-nstages-kmeans-int2_64/kc_256_vc_256_nstages_1/split_clip/1-0_ema/1-0_ema_020.mp4/1-0.mp4",
+                "inclip_score": 0.9851552603706237,
+                "clip2clip_score": 0,
+                "mapped_clip2clip_score": 0.0,
+                "video_results": 0.9851552603706237
+            },
+            {
+                "video_path": "/mnt/workspace/caipeiliang/code/moweile/videoquant/HeadWiseKVQuant/results/selfforcing/rhwq_seed_0_hi_4_triton-nstages-kmeans-int4_lo_triton-nstages-kmeans-int2_64/kc_256_vc_256_nstages_1/split_clip/1-0_ema/1-0_ema_011.mp4/1-0.mp4",
+                "inclip_score": 0.9891234943943639,
+                "clip2clip_score": 0,
+                "mapped_clip2clip_score": 0.0,
+                "video_results": 0.9891234943943639
+            },
+            {
+                "video_path": "/mnt/workspace/caipeiliang/code/moweile/videoquant/HeadWiseKVQuant/results/selfforcing/rhwq_seed_0_hi_4_triton-nstages-kmeans-int4_lo_triton-nstages-kmeans-int2_64/kc_256_vc_256_nstages_1/split_clip/1-0_ema/1-0_ema_013.mp4/1-0.mp4",
+                "inclip_score": 0.9905168731366435,
+                "clip2clip_score": 0,
+                "mapped_clip2clip_score": 0.0,
+                "video_results": 0.9905168731366435
+            },
+            {
+                "video_path": "/mnt/workspace/caipeiliang/code/moweile/videoquant/HeadWiseKVQuant/results/selfforcing/rhwq_seed_0_hi_4_triton-nstages-kmeans-int4_lo_triton-nstages-kmeans-int2_64/kc_256_vc_256_nstages_1/split_clip/1-0_ema/1-0_ema_022.mp4/1-0.mp4",
+                "inclip_score": 0.9906453163393082,
+                "clip2clip_score": 0,
+                "mapped_clip2clip_score": 0.0,
+                "video_results": 0.9906453163393082
+            },
+            {
+                "video_path": "/mnt/workspace/caipeiliang/code/moweile/videoquant/HeadWiseKVQuant/results/selfforcing/rhwq_seed_0_hi_4_triton-nstages-kmeans-int4_lo_triton-nstages-kmeans-int2_64/kc_256_vc_256_nstages_1/split_clip/1-0_ema/1-0_ema_017.mp4/1-0.mp4",
+                "inclip_score": 0.9914355508742794,
+                "clip2clip_score": 0,
+                "mapped_clip2clip_score": 0.0,
+                "video_results": 0.9914355508742794
+            },
+            {
+                "video_path": "/mnt/workspace/caipeiliang/code/moweile/videoquant/HeadWiseKVQuant/results/selfforcing/rhwq_seed_0_hi_4_triton-nstages-kmeans-int4_lo_triton-nstages-kmeans-int2_64/kc_256_vc_256_nstages_1/split_clip/1-0_ema/1-0_ema_003.mp4/1-0.mp4",
+                "inclip_score": 0.9789656631408199,
+                "clip2clip_score": 0,
+                "mapped_clip2clip_score": 0.0,
+                "video_results": 0.9789656631408199
+            },
+            {
+                "video_path": "/mnt/workspace/caipeiliang/code/moweile/videoquant/HeadWiseKVQuant/results/selfforcing/rhwq_seed_0_hi_4_triton-nstages-kmeans-int4_lo_triton-nstages-kmeans-int2_64/kc_256_vc_256_nstages_1/split_clip/1-0_ema/1-0_ema_018.mp4/1-0.mp4",
+                "inclip_score": 0.9900653535319913,
+                "clip2clip_score": 0,
+                "mapped_clip2clip_score": 0.0,
+                "video_results": 0.9900653535319913
+            },
+            {
+                "video_path": "/mnt/workspace/caipeiliang/code/moweile/videoquant/HeadWiseKVQuant/results/selfforcing/rhwq_seed_0_hi_4_triton-nstages-kmeans-int4_lo_triton-nstages-kmeans-int2_64/kc_256_vc_256_nstages_1/split_clip/1-0_ema/1-0_ema_021.mp4/1-0.mp4",
+                "inclip_score": 0.990641979440566,
+                "clip2clip_score": 0,
+                "mapped_clip2clip_score": 0.0,
+                "video_results": 0.990641979440566
+            },
+            {
+                "video_path": "/mnt/workspace/caipeiliang/code/moweile/videoquant/HeadWiseKVQuant/results/selfforcing/rhwq_seed_0_hi_4_triton-nstages-kmeans-int4_lo_triton-nstages-kmeans-int2_64/kc_256_vc_256_nstages_1/split_clip/1-0_ema/1-0_ema_006.mp4/1-0.mp4",
+                "inclip_score": 0.9886758250574912,
+                "clip2clip_score": 0,
+                "mapped_clip2clip_score": 0.0,
+                "video_results": 0.9886758250574912
+            },
+            {
+                "video_path": "/mnt/workspace/caipeiliang/code/moweile/videoquant/HeadWiseKVQuant/results/selfforcing/rhwq_seed_0_hi_4_triton-nstages-kmeans-int4_lo_triton-nstages-kmeans-int2_64/kc_256_vc_256_nstages_1/split_clip/1-0_ema/1-0_ema_016.mp4/1-0.mp4",
+                "inclip_score": 0.9903539265355756,
+                "clip2clip_score": 0,
+                "mapped_clip2clip_score": 0.0,
+                "video_results": 0.9903539265355756
+            },
+            {
+                "video_path": "/mnt/workspace/caipeiliang/code/moweile/videoquant/HeadWiseKVQuant/results/selfforcing/rhwq_seed_0_hi_4_triton-nstages-kmeans-int4_lo_triton-nstages-kmeans-int2_64/kc_256_vc_256_nstages_1/split_clip/1-0_ema/1-0_ema_001.mp4/1-0.mp4",
+                "inclip_score": 0.9833250411095158,
+                "clip2clip_score": 0,
+                "mapped_clip2clip_score": 0.0,
+                "video_results": 0.9833250411095158
+            },
+            {
+                "video_path": "/mnt/workspace/caipeiliang/code/moweile/videoquant/HeadWiseKVQuant/results/selfforcing/rhwq_seed_0_hi_4_triton-nstages-kmeans-int4_lo_triton-nstages-kmeans-int2_64/kc_256_vc_256_nstages_1/split_clip/1-0_ema/1-0_ema_014.mp4/1-0.mp4",
+                "inclip_score": 0.9908708449332945,
+                "clip2clip_score": 0,
+                "mapped_clip2clip_score": 0.0,
+                "video_results": 0.9908708449332945
+            },
+            {
+                "video_path": "/mnt/workspace/caipeiliang/code/moweile/videoquant/HeadWiseKVQuant/results/selfforcing/rhwq_seed_0_hi_4_triton-nstages-kmeans-int4_lo_triton-nstages-kmeans-int2_64/kc_256_vc_256_nstages_1/split_clip/1-0_ema/1-0_ema_002.mp4/1-0.mp4",
+                "inclip_score": 0.9839811055890976,
+                "clip2clip_score": 0,
+                "mapped_clip2clip_score": 0.0,
+                "video_results": 0.9839811055890976
+            },
+            {
+                "video_path": "/mnt/workspace/caipeiliang/code/moweile/videoquant/HeadWiseKVQuant/results/selfforcing/rhwq_seed_0_hi_4_triton-nstages-kmeans-int4_lo_triton-nstages-kmeans-int2_64/kc_256_vc_256_nstages_1/split_clip/1-0_ema/1-0_ema_010.mp4/1-0.mp4",
+                "inclip_score": 0.9897326817435603,
+                "clip2clip_score": 0,
+                "mapped_clip2clip_score": 0.0,
+                "video_results": 0.9897326817435603
+            },
+            {
+                "video_path": "/mnt/workspace/caipeiliang/code/moweile/videoquant/HeadWiseKVQuant/results/selfforcing/rhwq_seed_0_hi_4_triton-nstages-kmeans-int4_lo_triton-nstages-kmeans-int2_64/kc_256_vc_256_nstages_1/split_clip/1-0_ema/1-0_ema_008.mp4/1-0.mp4",
+                "inclip_score": 0.9914252921458213,
+                "clip2clip_score": 0,
+                "mapped_clip2clip_score": 0.0,
+                "video_results": 0.9914252921458213
+            },
+            {
+                "video_path": "/mnt/workspace/caipeiliang/code/moweile/videoquant/HeadWiseKVQuant/results/selfforcing/rhwq_seed_0_hi_4_triton-nstages-kmeans-int4_lo_triton-nstages-kmeans-int2_64/kc_256_vc_256_nstages_1/split_clip/1-0_ema/1-0_ema_015.mp4/1-0.mp4",
+                "inclip_score": 0.9904396889671203,
+                "clip2clip_score": 0,
+                "mapped_clip2clip_score": 0.0,
+                "video_results": 0.9904396889671203
+            },
+            {
+                "video_path": "/mnt/workspace/caipeiliang/code/moweile/videoquant/HeadWiseKVQuant/results/selfforcing/rhwq_seed_0_hi_4_triton-nstages-kmeans-int4_lo_triton-nstages-kmeans-int2_64/kc_256_vc_256_nstages_1/split_clip/1-0_ema/1-0_ema_007.mp4/1-0.mp4",
+                "inclip_score": 0.9794658412856441,
+                "clip2clip_score": 0,
+                "mapped_clip2clip_score": 0.0,
+                "video_results": 0.9794658412856441
+            },
+            {
+                "video_path": "/mnt/workspace/caipeiliang/code/moweile/videoquant/HeadWiseKVQuant/results/selfforcing/rhwq_seed_0_hi_4_triton-nstages-kmeans-int4_lo_triton-nstages-kmeans-int2_64/kc_256_vc_256_nstages_1/split_clip/1-0_ema/1-0_ema_012.mp4/1-0.mp4",
+                "inclip_score": 0.9800762514914235,
+                "clip2clip_score": 0,
+                "mapped_clip2clip_score": 0.0,
+                "video_results": 0.9800762514914235
+            },
+            {
+                "video_path": "/mnt/workspace/caipeiliang/code/moweile/videoquant/HeadWiseKVQuant/results/selfforcing/rhwq_seed_0_hi_4_triton-nstages-kmeans-int4_lo_triton-nstages-kmeans-int2_64/kc_256_vc_256_nstages_1/split_clip/1-0_ema/1-0_ema_000.mp4/1-0.mp4",
+                "inclip_score": 0.9816104337092368,
+                "clip2clip_score": 0,
+                "mapped_clip2clip_score": 0.0,
+                "video_results": 0.9816104337092368
+            },
+            {
+                "video_path": "/mnt/workspace/caipeiliang/code/moweile/videoquant/HeadWiseKVQuant/results/selfforcing/rhwq_seed_0_hi_4_triton-nstages-kmeans-int4_lo_triton-nstages-kmeans-int2_64/kc_256_vc_256_nstages_1/split_clip/1-0_ema/1-0_ema_004.mp4/1-0.mp4",
+                "inclip_score": 0.9777136387363556,
+                "clip2clip_score": 0,
+                "mapped_clip2clip_score": 0.0,
+                "video_results": 0.9777136387363556
+            },
+            {
+                "video_path": "/mnt/workspace/caipeiliang/code/moweile/videoquant/HeadWiseKVQuant/results/selfforcing/rhwq_seed_0_hi_4_triton-nstages-kmeans-int4_lo_triton-nstages-kmeans-int2_64/kc_256_vc_256_nstages_1/split_clip/1-0_ema/1-0_ema_009.mp4/1-0.mp4",
+                "inclip_score": 0.9913019047629449,
+                "clip2clip_score": 0,
+                "mapped_clip2clip_score": 0.0,
+                "video_results": 0.9913019047629449
+            },
+            {
+                "video_path": "/mnt/workspace/caipeiliang/code/moweile/videoquant/HeadWiseKVQuant/results/selfforcing/rhwq_seed_0_hi_4_triton-nstages-kmeans-int4_lo_triton-nstages-kmeans-int2_64/kc_256_vc_256_nstages_1/split_clip/1-0_ema/1-0_ema_005.mp4/1-0.mp4",
+                "inclip_score": 0.9902646743482159,
+                "clip2clip_score": 0,
+                "mapped_clip2clip_score": 0.0,
+                "video_results": 0.9902646743482159
+            }
+        ]
+    ]
+}

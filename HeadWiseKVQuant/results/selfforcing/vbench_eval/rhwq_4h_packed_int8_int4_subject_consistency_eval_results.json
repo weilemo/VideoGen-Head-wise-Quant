@@ -1,0 +1,329 @@
+{
+    "subject_consistency": [
+        0.9739159356076454,
+        [
+            {
+                "video_path": "HeadWiseKVQuant/results/selfforcing/rhwq_seed_0_hi_4_packed-naive-int8_lo_packed-naive-int4_64/kc_256_vc_256_nstages_1/split_clip/0-0_ema/0-0_ema_006.mp4/0-0.mp4",
+                "inclip_score": 0.9607748591130779,
+                "clip2clip_score": 0,
+                "mapped_clip2clip_score": 0.0,
+                "video_results": 0.9607748591130779
+            },
+            {
+                "video_path": "HeadWiseKVQuant/results/selfforcing/rhwq_seed_0_hi_4_packed-naive-int8_lo_packed-naive-int4_64/kc_256_vc_256_nstages_1/split_clip/0-0_ema/0-0_ema_019.mp4/0-0.mp4",
+                "inclip_score": 0.9502349303614709,
+                "clip2clip_score": 0,
+                "mapped_clip2clip_score": 0.0,
+                "video_results": 0.9502349303614709
+            },
+            {
+                "video_path": "HeadWiseKVQuant/results/selfforcing/rhwq_seed_0_hi_4_packed-naive-int8_lo_packed-naive-int4_64/kc_256_vc_256_nstages_1/split_clip/0-0_ema/0-0_ema_007.mp4/0-0.mp4",
+                "inclip_score": 0.9603247315652909,
+                "clip2clip_score": 0,
+                "mapped_clip2clip_score": 0.0,
+                "video_results": 0.9603247315652909
+            },
+            {
+                "video_path": "HeadWiseKVQuant/results/selfforcing/rhwq_seed_0_hi_4_packed-naive-int8_lo_packed-naive-int4_64/kc_256_vc_256_nstages_1/split_clip/0-0_ema/0-0_ema_009.mp4/0-0.mp4",
+                "inclip_score": 0.9514854559975285,
+                "clip2clip_score": 0,
+                "mapped_clip2clip_score": 0.0,
+                "video_results": 0.9514854559975285
+            },
+            {
+                "video_path": "HeadWiseKVQuant/results/selfforcing/rhwq_seed_0_hi_4_packed-naive-int8_lo_packed-naive-int4_64/kc_256_vc_256_nstages_1/split_clip/0-0_ema/0-0_ema_003.mp4/0-0.mp4",
+                "inclip_score": 0.9444138696116786,
+                "clip2clip_score": 0,
+                "mapped_clip2clip_score": 0.0,
+                "video_results": 0.9444138696116786
+            },
+            {
+                "video_path": "HeadWiseKVQuant/results/selfforcing/rhwq_seed_0_hi_4_packed-naive-int8_lo_packed-naive-int4_64/kc_256_vc_256_nstages_1/split_clip/0-0_ema/0-0_ema_022.mp4/0-0.mp4",
+                "inclip_score": 0.9469078365833529,
+                "clip2clip_score": 0,
+                "mapped_clip2clip_score": 0.0,
+                "video_results": 0.9469078365833529
+            },
+            {
+                "video_path": "HeadWiseKVQuant/results/selfforcing/rhwq_seed_0_hi_4_packed-naive-int8_lo_packed-naive-int4_64/kc_256_vc_256_nstages_1/split_clip/0-0_ema/0-0_ema_018.mp4/0-0.mp4",
+                "inclip_score": 0.9570861804869867,
+                "clip2clip_score": 0,
+                "mapped_clip2clip_score": 0.0,
+                "video_results": 0.9570861804869867
+            },
+            {
+                "video_path": "HeadWiseKVQuant/results/selfforcing/rhwq_seed_0_hi_4_packed-naive-int8_lo_packed-naive-int4_64/kc_256_vc_256_nstages_1/split_clip/0-0_ema/0-0_ema_014.mp4/0-0.mp4",
+                "inclip_score": 0.9573245250409649,
+                "clip2clip_score": 0,
+                "mapped_clip2clip_score": 0.0,
+                "video_results": 0.9573245250409649
+            },
+            {
+                "video_path": "HeadWiseKVQuant/results/selfforcing/rhwq_seed_0_hi_4_packed-naive-int8_lo_packed-naive-int4_64/kc_256_vc_256_nstages_1/split_clip/0-0_ema/0-0_ema_012.mp4/0-0.mp4",
+                "inclip_score": 0.9545328665164209,
+                "clip2clip_score": 0,
+                "mapped_clip2clip_score": 0.0,
+                "video_results": 0.9545328665164209
+            },
+            {
+                "video_path": "HeadWiseKVQuant/results/selfforcing/rhwq_seed_0_hi_4_packed-naive-int8_lo_packed-naive-int4_64/kc_256_vc_256_nstages_1/split_clip/0-0_ema/0-0_ema_001.mp4/0-0.mp4",
+                "inclip_score": 0.9789243955766002,
+                "clip2clip_score": 0,
+                "mapped_clip2clip_score": 0.0,
+                "video_results": 0.9789243955766002
+            },
+            {
+                "video_path": "HeadWiseKVQuant/results/selfforcing/rhwq_seed_0_hi_4_packed-naive-int8_lo_packed-naive-int4_64/kc_256_vc_256_nstages_1/split_clip/0-0_ema/0-0_ema_021.mp4/0-0.mp4",
+                "inclip_score": 0.9434257764970103,
+                "clip2clip_score": 0,
+                "mapped_clip2clip_score": 0.0,
+                "video_results": 0.9434257764970103
+            },
+            {
+                "video_path": "HeadWiseKVQuant/results/selfforcing/rhwq_seed_0_hi_4_packed-naive-int8_lo_packed-naive-int4_64/kc_256_vc_256_nstages_1/split_clip/0-0_ema/0-0_ema_011.mp4/0-0.mp4",
+                "inclip_score": 0.9496145777163967,
+                "clip2clip_score": 0,
+                "mapped_clip2clip_score": 0.0,
+                "video_results": 0.9496145777163967
+            },
+            {
+                "video_path": "HeadWiseKVQuant/results/selfforcing/rhwq_seed_0_hi_4_packed-naive-int8_lo_packed-naive-int4_64/kc_256_vc_256_nstages_1/split_clip/0-0_ema/0-0_ema_020.mp4/0-0.mp4",
+                "inclip_score": 0.9403748627631895,
+                "clip2clip_score": 0,
+                "mapped_clip2clip_score": 0.0,
+                "video_results": 0.9403748627631895
+            },
+            {
+                "video_path": "HeadWiseKVQuant/results/selfforcing/rhwq_seed_0_hi_4_packed-naive-int8_lo_packed-naive-int4_64/kc_256_vc_256_nstages_1/split_clip/0-0_ema/0-0_ema_008.mp4/0-0.mp4",
+                "inclip_score": 0.9464885034868794,
+                "clip2clip_score": 0,
+                "mapped_clip2clip_score": 0.0,
+                "video_results": 0.9464885034868794
+            },
+            {
+                "video_path": "HeadWiseKVQuant/results/selfforcing/rhwq_seed_0_hi_4_packed-naive-int8_lo_packed-naive-int4_64/kc_256_vc_256_nstages_1/split_clip/0-0_ema/0-0_ema_017.mp4/0-0.mp4",
+                "inclip_score": 0.9379773995568675,
+                "clip2clip_score": 0,
+                "mapped_clip2clip_score": 0.0,
+                "video_results": 0.9379773995568675
+            },
+            {
+                "video_path": "HeadWiseKVQuant/results/selfforcing/rhwq_seed_0_hi_4_packed-naive-int8_lo_packed-naive-int4_64/kc_256_vc_256_nstages_1/split_clip/0-0_ema/0-0_ema_005.mp4/0-0.mp4",
+                "inclip_score": 0.9571293207906908,
+                "clip2clip_score": 0,
+                "mapped_clip2clip_score": 0.0,
+                "video_results": 0.9571293207906908
+            },
+            {
+                "video_path": "HeadWiseKVQuant/results/selfforcing/rhwq_seed_0_hi_4_packed-naive-int8_lo_packed-naive-int4_64/kc_256_vc_256_nstages_1/split_clip/0-0_ema/0-0_ema_010.mp4/0-0.mp4",
+                "inclip_score": 0.9545172347176459,
+                "clip2clip_score": 0,
+                "mapped_clip2clip_score": 0.0,
+                "video_results": 0.9545172347176459
+            },
+            {
+                "video_path": "HeadWiseKVQuant/results/selfforcing/rhwq_seed_0_hi_4_packed-naive-int8_lo_packed-naive-int4_64/kc_256_vc_256_nstages_1/split_clip/0-0_ema/0-0_ema_013.mp4/0-0.mp4",
+                "inclip_score": 0.9493067524125499,
+                "clip2clip_score": 0,
+                "mapped_clip2clip_score": 0.0,
+                "video_results": 0.9493067524125499
+            },
+            {
+                "video_path": "HeadWiseKVQuant/results/selfforcing/rhwq_seed_0_hi_4_packed-naive-int8_lo_packed-naive-int4_64/kc_256_vc_256_nstages_1/split_clip/0-0_ema/0-0_ema_004.mp4/0-0.mp4",
+                "inclip_score": 0.9643630837240527,
+                "clip2clip_score": 0,
+                "mapped_clip2clip_score": 0.0,
+                "video_results": 0.9643630837240527
+            },
+            {
+                "video_path": "HeadWiseKVQuant/results/selfforcing/rhwq_seed_0_hi_4_packed-naive-int8_lo_packed-naive-int4_64/kc_256_vc_256_nstages_1/split_clip/0-0_ema/0-0_ema_015.mp4/0-0.mp4",
+                "inclip_score": 0.9631903796426712,
+                "clip2clip_score": 0,
+                "mapped_clip2clip_score": 0.0,
+                "video_results": 0.9631903796426712
+            },
+            {
+                "video_path": "HeadWiseKVQuant/results/selfforcing/rhwq_seed_0_hi_4_packed-naive-int8_lo_packed-naive-int4_64/kc_256_vc_256_nstages_1/split_clip/0-0_ema/0-0_ema_002.mp4/0-0.mp4",
+                "inclip_score": 0.9742521797457049,
+                "clip2clip_score": 0,
+                "mapped_clip2clip_score": 0.0,
+                "video_results": 0.9742521797457049
+            },
+            {
+                "video_path": "HeadWiseKVQuant/results/selfforcing/rhwq_seed_0_hi_4_packed-naive-int8_lo_packed-naive-int4_64/kc_256_vc_256_nstages_1/split_clip/0-0_ema/0-0_ema_016.mp4/0-0.mp4",
+                "inclip_score": 0.9423061782313932,
+                "clip2clip_score": 0,
+                "mapped_clip2clip_score": 0.0,
+                "video_results": 0.9423061782313932
+            },
+            {
+                "video_path": "HeadWiseKVQuant/results/selfforcing/rhwq_seed_0_hi_4_packed-naive-int8_lo_packed-naive-int4_64/kc_256_vc_256_nstages_1/split_clip/0-0_ema/0-0_ema_000.mp4/0-0.mp4",
+                "inclip_score": 0.947931852071516,
+                "clip2clip_score": 0,
+                "mapped_clip2clip_score": 0.0,
+                "video_results": 0.947931852071516
+            },
+            {
+                "video_path": "HeadWiseKVQuant/results/selfforcing/rhwq_seed_0_hi_4_packed-naive-int8_lo_packed-naive-int4_64/kc_256_vc_256_nstages_1/split_clip/1-0_ema/1-0_ema_019.mp4/1-0.mp4",
+                "inclip_score": 0.9967331674791151,
+                "clip2clip_score": 0,
+                "mapped_clip2clip_score": 0.0,
+                "video_results": 0.9967331674791151
+            },
+            {
+                "video_path": "HeadWiseKVQuant/results/selfforcing/rhwq_seed_0_hi_4_packed-naive-int8_lo_packed-naive-int4_64/kc_256_vc_256_nstages_1/split_clip/1-0_ema/1-0_ema_020.mp4/1-0.mp4",
+                "inclip_score": 0.9969010285792812,
+                "clip2clip_score": 0,
+                "mapped_clip2clip_score": 0.0,
+                "video_results": 0.9969010285792812
+            },
+            {
+                "video_path": "HeadWiseKVQuant/results/selfforcing/rhwq_seed_0_hi_4_packed-naive-int8_lo_packed-naive-int4_64/kc_256_vc_256_nstages_1/split_clip/1-0_ema/1-0_ema_011.mp4/1-0.mp4",
+                "inclip_score": 0.9952936499349533,
+                "clip2clip_score": 0,
+                "mapped_clip2clip_score": 0.0,
+                "video_results": 0.9952936499349533
+            },
+            {
+                "video_path": "HeadWiseKVQuant/results/selfforcing/rhwq_seed_0_hi_4_packed-naive-int8_lo_packed-naive-int4_64/kc_256_vc_256_nstages_1/split_clip/1-0_ema/1-0_ema_013.mp4/1-0.mp4",
+                "inclip_score": 0.9971531418062025,
+                "clip2clip_score": 0,
+                "mapped_clip2clip_score": 0.0,
+                "video_results": 0.9971531418062025
+            },
+            {
+                "video_path": "HeadWiseKVQuant/results/selfforcing/rhwq_seed_0_hi_4_packed-naive-int8_lo_packed-naive-int4_64/kc_256_vc_256_nstages_1/split_clip/1-0_ema/1-0_ema_022.mp4/1-0.mp4",
+                "inclip_score": 0.9964975733910838,
+                "clip2clip_score": 0,
+                "mapped_clip2clip_score": 0.0,
+                "video_results": 0.9964975733910838
+            },
+            {
+                "video_path": "HeadWiseKVQuant/results/selfforcing/rhwq_seed_0_hi_4_packed-naive-int8_lo_packed-naive-int4_64/kc_256_vc_256_nstages_1/split_clip/1-0_ema/1-0_ema_017.mp4/1-0.mp4",
+                "inclip_score": 0.9969776666933491,
+                "clip2clip_score": 0,
+                "mapped_clip2clip_score": 0.0,
+                "video_results": 0.9969776666933491
+            },
+            {
+                "video_path": "HeadWiseKVQuant/results/selfforcing/rhwq_seed_0_hi_4_packed-naive-int8_lo_packed-naive-int4_64/kc_256_vc_256_nstages_1/split_clip/1-0_ema/1-0_ema_003.mp4/1-0.mp4",
+                "inclip_score": 0.9861994779879047,
+                "clip2clip_score": 0,
+                "mapped_clip2clip_score": 0.0,
+                "video_results": 0.9861994779879047
+            },
+            {
+                "video_path": "HeadWiseKVQuant/results/selfforcing/rhwq_seed_0_hi_4_packed-naive-int8_lo_packed-naive-int4_64/kc_256_vc_256_nstages_1/split_clip/1-0_ema/1-0_ema_018.mp4/1-0.mp4",
+                "inclip_score": 0.9962871459222609,
+                "clip2clip_score": 0,
+                "mapped_clip2clip_score": 0.0,
+                "video_results": 0.9962871459222609
+            },
+            {
+                "video_path": "HeadWiseKVQuant/results/selfforcing/rhwq_seed_0_hi_4_packed-naive-int8_lo_packed-naive-int4_64/kc_256_vc_256_nstages_1/split_clip/1-0_ema/1-0_ema_021.mp4/1-0.mp4",
+                "inclip_score": 0.9970728851133778,
+                "clip2clip_score": 0,
+                "mapped_clip2clip_score": 0.0,
+                "video_results": 0.9970728851133778
+            },
+            {
+                "video_path": "HeadWiseKVQuant/results/selfforcing/rhwq_seed_0_hi_4_packed-naive-int8_lo_packed-naive-int4_64/kc_256_vc_256_nstages_1/split_clip/1-0_ema/1-0_ema_006.mp4/1-0.mp4",
+                "inclip_score": 0.9943489788040039,
+                "clip2clip_score": 0,
+                "mapped_clip2clip_score": 0.0,
+                "video_results": 0.9943489788040039
+            },
+            {
+                "video_path": "HeadWiseKVQuant/results/selfforcing/rhwq_seed_0_hi_4_packed-naive-int8_lo_packed-naive-int4_64/kc_256_vc_256_nstages_1/split_clip/1-0_ema/1-0_ema_016.mp4/1-0.mp4",
+                "inclip_score": 0.9974987410729931,
+                "clip2clip_score": 0,
+                "mapped_clip2clip_score": 0.0,
+                "video_results": 0.9974987410729931
+            },
+            {
+                "video_path": "HeadWiseKVQuant/results/selfforcing/rhwq_seed_0_hi_4_packed-naive-int8_lo_packed-naive-int4_64/kc_256_vc_256_nstages_1/split_clip/1-0_ema/1-0_ema_001.mp4/1-0.mp4",
+                "inclip_score": 0.991445622136516,
+                "clip2clip_score": 0,
+                "mapped_clip2clip_score": 0.0,
+                "video_results": 0.991445622136516
+            },
+            {
+                "video_path": "HeadWiseKVQuant/results/selfforcing/rhwq_seed_0_hi_4_packed-naive-int8_lo_packed-naive-int4_64/kc_256_vc_256_nstages_1/split_clip/1-0_ema/1-0_ema_014.mp4/1-0.mp4",
+                "inclip_score": 0.9969983398914337,
+                "clip2clip_score": 0,
+                "mapped_clip2clip_score": 0.0,
+                "video_results": 0.9969983398914337
+            },
+            {
+                "video_path": "HeadWiseKVQuant/results/selfforcing/rhwq_seed_0_hi_4_packed-naive-int8_lo_packed-naive-int4_64/kc_256_vc_256_nstages_1/split_clip/1-0_ema/1-0_ema_002.mp4/1-0.mp4",
+                "inclip_score": 0.9875484281970609,
+                "clip2clip_score": 0,
+                "mapped_clip2clip_score": 0.0,
+                "video_results": 0.9875484281970609
+            },
+            {
+                "video_path": "HeadWiseKVQuant/results/selfforcing/rhwq_seed_0_hi_4_packed-naive-int8_lo_packed-naive-int4_64/kc_256_vc_256_nstages_1/split_clip/1-0_ema/1-0_ema_010.mp4/1-0.mp4",
+                "inclip_score": 0.9960995297278127,
+                "clip2clip_score": 0,
+                "mapped_clip2clip_score": 0.0,
+                "video_results": 0.9960995297278127
+            },
+            {
+                "video_path": "HeadWiseKVQuant/results/selfforcing/rhwq_seed_0_hi_4_packed-naive-int8_lo_packed-naive-int4_64/kc_256_vc_256_nstages_1/split_clip/1-0_ema/1-0_ema_008.mp4/1-0.mp4",
+                "inclip_score": 0.9951571428006695,
+                "clip2clip_score": 0,
+                "mapped_clip2clip_score": 0.0,
+                "video_results": 0.9951571428006695
+            },
+            {
+                "video_path": "HeadWiseKVQuant/results/selfforcing/rhwq_seed_0_hi_4_packed-naive-int8_lo_packed-naive-int4_64/kc_256_vc_256_nstages_1/split_clip/1-0_ema/1-0_ema_015.mp4/1-0.mp4",
+                "inclip_score": 0.996718026937977,
+                "clip2clip_score": 0,
+                "mapped_clip2clip_score": 0.0,
+                "video_results": 0.996718026937977
+            },
+            {
+                "video_path": "HeadWiseKVQuant/results/selfforcing/rhwq_seed_0_hi_4_packed-naive-int8_lo_packed-naive-int4_64/kc_256_vc_256_nstages_1/split_clip/1-0_ema/1-0_ema_007.mp4/1-0.mp4",
+                "inclip_score": 0.9932116760361579,
+                "clip2clip_score": 0,
+                "mapped_clip2clip_score": 0.0,
+                "video_results": 0.9932116760361579
+            },
+            {
+                "video_path": "HeadWiseKVQuant/results/selfforcing/rhwq_seed_0_hi_4_packed-naive-int8_lo_packed-naive-int4_64/kc_256_vc_256_nstages_1/split_clip/1-0_ema/1-0_ema_012.mp4/1-0.mp4",
+                "inclip_score": 0.9963905695945986,
+                "clip2clip_score": 0,
+                "mapped_clip2clip_score": 0.0,
+                "video_results": 0.9963905695945986
+            },
+            {
+                "video_path": "HeadWiseKVQuant/results/selfforcing/rhwq_seed_0_hi_4_packed-naive-int8_lo_packed-naive-int4_64/kc_256_vc_256_nstages_1/split_clip/1-0_ema/1-0_ema_000.mp4/1-0.mp4",
+                "inclip_score": 0.9902553625645176,
+                "clip2clip_score": 0,
+                "mapped_clip2clip_score": 0.0,
+                "video_results": 0.9902553625645176
+            },
+            {
+                "video_path": "HeadWiseKVQuant/results/selfforcing/rhwq_seed_0_hi_4_packed-naive-int8_lo_packed-naive-int4_64/kc_256_vc_256_nstages_1/split_clip/1-0_ema/1-0_ema_004.mp4/1-0.mp4",
+                "inclip_score": 0.9885021380839809,
+                "clip2clip_score": 0,
+                "mapped_clip2clip_score": 0.0,
+                "video_results": 0.9885021380839809
+            },
+            {
+                "video_path": "HeadWiseKVQuant/results/selfforcing/rhwq_seed_0_hi_4_packed-naive-int8_lo_packed-naive-int4_64/kc_256_vc_256_nstages_1/split_clip/1-0_ema/1-0_ema_009.mp4/1-0.mp4",
+                "inclip_score": 0.9944586849981739,
+                "clip2clip_score": 0,
+                "mapped_clip2clip_score": 0.0,
+                "video_results": 0.9944586849981739
+            },
+            {
+                "video_path": "HeadWiseKVQuant/results/selfforcing/rhwq_seed_0_hi_4_packed-naive-int8_lo_packed-naive-int4_64/kc_256_vc_256_nstages_1/split_clip/1-0_ema/1-0_ema_005.mp4/1-0.mp4",
+                "inclip_score": 0.9894963079883207,
+                "clip2clip_score": 0,
+                "mapped_clip2clip_score": 0.0,
+                "video_results": 0.9894963079883207
+            }
+        ]
+    ]
+}

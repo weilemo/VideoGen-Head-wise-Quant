@@ -1,0 +1,329 @@
+{
+    "background_consistency": [
+        0.9660755815546106,
+        [
+            {
+                "video_path": "/mnt/workspace/caipeiliang/code/moweile/videoquant/HeadWiseKVQuant/results/selfforcing/topk_top4_dmd_loss_hi_4_packed-naive-int4_lo_packed-naive-int2_64/kc_256_vc_256_nstages_1/split_clip/0-0_ema/0-0_ema_006.mp4/0-0.mp4",
+                "inclip_score": 0.9569131174395161,
+                "clip2clip_score": 0,
+                "mapped_clip2clip_score": 0.0,
+                "video_results": 0.9569131174395161
+            },
+            {
+                "video_path": "/mnt/workspace/caipeiliang/code/moweile/videoquant/HeadWiseKVQuant/results/selfforcing/topk_top4_dmd_loss_hi_4_packed-naive-int4_lo_packed-naive-int2_64/kc_256_vc_256_nstages_1/split_clip/0-0_ema/0-0_ema_019.mp4/0-0.mp4",
+                "inclip_score": 0.9374763734879032,
+                "clip2clip_score": 0,
+                "mapped_clip2clip_score": 0.0,
+                "video_results": 0.9374763734879032
+            },
+            {
+                "video_path": "/mnt/workspace/caipeiliang/code/moweile/videoquant/HeadWiseKVQuant/results/selfforcing/topk_top4_dmd_loss_hi_4_packed-naive-int4_lo_packed-naive-int2_64/kc_256_vc_256_nstages_1/split_clip/0-0_ema/0-0_ema_007.mp4/0-0.mp4",
+                "inclip_score": 0.9442020539314516,
+                "clip2clip_score": 0,
+                "mapped_clip2clip_score": 0.0,
+                "video_results": 0.9442020539314516
+            },
+            {
+                "video_path": "/mnt/workspace/caipeiliang/code/moweile/videoquant/HeadWiseKVQuant/results/selfforcing/topk_top4_dmd_loss_hi_4_packed-naive-int4_lo_packed-naive-int2_64/kc_256_vc_256_nstages_1/split_clip/0-0_ema/0-0_ema_009.mp4/0-0.mp4",
+                "inclip_score": 0.9507702242943549,
+                "clip2clip_score": 0,
+                "mapped_clip2clip_score": 0.0,
+                "video_results": 0.9507702242943549
+            },
+            {
+                "video_path": "/mnt/workspace/caipeiliang/code/moweile/videoquant/HeadWiseKVQuant/results/selfforcing/topk_top4_dmd_loss_hi_4_packed-naive-int4_lo_packed-naive-int2_64/kc_256_vc_256_nstages_1/split_clip/0-0_ema/0-0_ema_003.mp4/0-0.mp4",
+                "inclip_score": 0.9530698714717742,
+                "clip2clip_score": 0,
+                "mapped_clip2clip_score": 0.0,
+                "video_results": 0.9530698714717742
+            },
+            {
+                "video_path": "/mnt/workspace/caipeiliang/code/moweile/videoquant/HeadWiseKVQuant/results/selfforcing/topk_top4_dmd_loss_hi_4_packed-naive-int4_lo_packed-naive-int2_64/kc_256_vc_256_nstages_1/split_clip/0-0_ema/0-0_ema_022.mp4/0-0.mp4",
+                "inclip_score": 0.9522508190524194,
+                "clip2clip_score": 0,
+                "mapped_clip2clip_score": 0.0,
+                "video_results": 0.9522508190524194
+            },
+            {
+                "video_path": "/mnt/workspace/caipeiliang/code/moweile/videoquant/HeadWiseKVQuant/results/selfforcing/topk_top4_dmd_loss_hi_4_packed-naive-int4_lo_packed-naive-int2_64/kc_256_vc_256_nstages_1/split_clip/0-0_ema/0-0_ema_018.mp4/0-0.mp4",
+                "inclip_score": 0.9520145539314516,
+                "clip2clip_score": 0,
+                "mapped_clip2clip_score": 0.0,
+                "video_results": 0.9520145539314516
+            },
+            {
+                "video_path": "/mnt/workspace/caipeiliang/code/moweile/videoquant/HeadWiseKVQuant/results/selfforcing/topk_top4_dmd_loss_hi_4_packed-naive-int4_lo_packed-naive-int2_64/kc_256_vc_256_nstages_1/split_clip/0-0_ema/0-0_ema_014.mp4/0-0.mp4",
+                "inclip_score": 0.9599215599798387,
+                "clip2clip_score": 0,
+                "mapped_clip2clip_score": 0.0,
+                "video_results": 0.9599215599798387
+            },
+            {
+                "video_path": "/mnt/workspace/caipeiliang/code/moweile/videoquant/HeadWiseKVQuant/results/selfforcing/topk_top4_dmd_loss_hi_4_packed-naive-int4_lo_packed-naive-int2_64/kc_256_vc_256_nstages_1/split_clip/0-0_ema/0-0_ema_012.mp4/0-0.mp4",
+                "inclip_score": 0.9371456023185484,
+                "clip2clip_score": 0,
+                "mapped_clip2clip_score": 0.0,
+                "video_results": 0.9371456023185484
+            },
+            {
+                "video_path": "/mnt/workspace/caipeiliang/code/moweile/videoquant/HeadWiseKVQuant/results/selfforcing/topk_top4_dmd_loss_hi_4_packed-naive-int4_lo_packed-naive-int2_64/kc_256_vc_256_nstages_1/split_clip/0-0_ema/0-0_ema_001.mp4/0-0.mp4",
+                "inclip_score": 0.9627173639112904,
+                "clip2clip_score": 0,
+                "mapped_clip2clip_score": 0.0,
+                "video_results": 0.9627173639112904
+            },
+            {
+                "video_path": "/mnt/workspace/caipeiliang/code/moweile/videoquant/HeadWiseKVQuant/results/selfforcing/topk_top4_dmd_loss_hi_4_packed-naive-int4_lo_packed-naive-int2_64/kc_256_vc_256_nstages_1/split_clip/0-0_ema/0-0_ema_021.mp4/0-0.mp4",
+                "inclip_score": 0.9385789440524194,
+                "clip2clip_score": 0,
+                "mapped_clip2clip_score": 0.0,
+                "video_results": 0.9385789440524194
+            },
+            {
+                "video_path": "/mnt/workspace/caipeiliang/code/moweile/videoquant/HeadWiseKVQuant/results/selfforcing/topk_top4_dmd_loss_hi_4_packed-naive-int4_lo_packed-naive-int2_64/kc_256_vc_256_nstages_1/split_clip/0-0_ema/0-0_ema_011.mp4/0-0.mp4",
+                "inclip_score": 0.9440051663306451,
+                "clip2clip_score": 0,
+                "mapped_clip2clip_score": 0.0,
+                "video_results": 0.9440051663306451
+            },
+            {
+                "video_path": "/mnt/workspace/caipeiliang/code/moweile/videoquant/HeadWiseKVQuant/results/selfforcing/topk_top4_dmd_loss_hi_4_packed-naive-int4_lo_packed-naive-int2_64/kc_256_vc_256_nstages_1/split_clip/0-0_ema/0-0_ema_020.mp4/0-0.mp4",
+                "inclip_score": 0.9468954763104839,
+                "clip2clip_score": 0,
+                "mapped_clip2clip_score": 0.0,
+                "video_results": 0.9468954763104839
+            },
+            {
+                "video_path": "/mnt/workspace/caipeiliang/code/moweile/videoquant/HeadWiseKVQuant/results/selfforcing/topk_top4_dmd_loss_hi_4_packed-naive-int4_lo_packed-naive-int2_64/kc_256_vc_256_nstages_1/split_clip/0-0_ema/0-0_ema_008.mp4/0-0.mp4",
+                "inclip_score": 0.9567634828629032,
+                "clip2clip_score": 0,
+                "mapped_clip2clip_score": 0.0,
+                "video_results": 0.9567634828629032
+            },
+            {
+                "video_path": "/mnt/workspace/caipeiliang/code/moweile/videoquant/HeadWiseKVQuant/results/selfforcing/topk_top4_dmd_loss_hi_4_packed-naive-int4_lo_packed-naive-int2_64/kc_256_vc_256_nstages_1/split_clip/0-0_ema/0-0_ema_017.mp4/0-0.mp4",
+                "inclip_score": 0.922331779233871,
+                "clip2clip_score": 0,
+                "mapped_clip2clip_score": 0.0,
+                "video_results": 0.922331779233871
+            },
+            {
+                "video_path": "/mnt/workspace/caipeiliang/code/moweile/videoquant/HeadWiseKVQuant/results/selfforcing/topk_top4_dmd_loss_hi_4_packed-naive-int4_lo_packed-naive-int2_64/kc_256_vc_256_nstages_1/split_clip/0-0_ema/0-0_ema_005.mp4/0-0.mp4",
+                "inclip_score": 0.9443753150201613,
+                "clip2clip_score": 0,
+                "mapped_clip2clip_score": 0.0,
+                "video_results": 0.9443753150201613
+            },
+            {
+                "video_path": "/mnt/workspace/caipeiliang/code/moweile/videoquant/HeadWiseKVQuant/results/selfforcing/topk_top4_dmd_loss_hi_4_packed-naive-int4_lo_packed-naive-int2_64/kc_256_vc_256_nstages_1/split_clip/0-0_ema/0-0_ema_010.mp4/0-0.mp4",
+                "inclip_score": 0.9619219380040323,
+                "clip2clip_score": 0,
+                "mapped_clip2clip_score": 0.0,
+                "video_results": 0.9619219380040323
+            },
+            {
+                "video_path": "/mnt/workspace/caipeiliang/code/moweile/videoquant/HeadWiseKVQuant/results/selfforcing/topk_top4_dmd_loss_hi_4_packed-naive-int4_lo_packed-naive-int2_64/kc_256_vc_256_nstages_1/split_clip/0-0_ema/0-0_ema_013.mp4/0-0.mp4",
+                "inclip_score": 0.9560704385080645,
+                "clip2clip_score": 0,
+                "mapped_clip2clip_score": 0.0,
+                "video_results": 0.9560704385080645
+            },
+            {
+                "video_path": "/mnt/workspace/caipeiliang/code/moweile/videoquant/HeadWiseKVQuant/results/selfforcing/topk_top4_dmd_loss_hi_4_packed-naive-int4_lo_packed-naive-int2_64/kc_256_vc_256_nstages_1/split_clip/0-0_ema/0-0_ema_004.mp4/0-0.mp4",
+                "inclip_score": 0.9645917338709677,
+                "clip2clip_score": 0,
+                "mapped_clip2clip_score": 0.0,
+                "video_results": 0.9645917338709677
+            },
+            {
+                "video_path": "/mnt/workspace/caipeiliang/code/moweile/videoquant/HeadWiseKVQuant/results/selfforcing/topk_top4_dmd_loss_hi_4_packed-naive-int4_lo_packed-naive-int2_64/kc_256_vc_256_nstages_1/split_clip/0-0_ema/0-0_ema_015.mp4/0-0.mp4",
+                "inclip_score": 0.9574013986895161,
+                "clip2clip_score": 0,
+                "mapped_clip2clip_score": 0.0,
+                "video_results": 0.9574013986895161
+            },
+            {
+                "video_path": "/mnt/workspace/caipeiliang/code/moweile/videoquant/HeadWiseKVQuant/results/selfforcing/topk_top4_dmd_loss_hi_4_packed-naive-int4_lo_packed-naive-int2_64/kc_256_vc_256_nstages_1/split_clip/0-0_ema/0-0_ema_002.mp4/0-0.mp4",
+                "inclip_score": 0.9650721396169355,
+                "clip2clip_score": 0,
+                "mapped_clip2clip_score": 0.0,
+                "video_results": 0.9650721396169355
+            },
+            {
+                "video_path": "/mnt/workspace/caipeiliang/code/moweile/videoquant/HeadWiseKVQuant/results/selfforcing/topk_top4_dmd_loss_hi_4_packed-naive-int4_lo_packed-naive-int2_64/kc_256_vc_256_nstages_1/split_clip/0-0_ema/0-0_ema_016.mp4/0-0.mp4",
+                "inclip_score": 0.9347750756048387,
+                "clip2clip_score": 0,
+                "mapped_clip2clip_score": 0.0,
+                "video_results": 0.9347750756048387
+            },
+            {
+                "video_path": "/mnt/workspace/caipeiliang/code/moweile/videoquant/HeadWiseKVQuant/results/selfforcing/topk_top4_dmd_loss_hi_4_packed-naive-int4_lo_packed-naive-int2_64/kc_256_vc_256_nstages_1/split_clip/0-0_ema/0-0_ema_000.mp4/0-0.mp4",
+                "inclip_score": 0.968718497983871,
+                "clip2clip_score": 0,
+                "mapped_clip2clip_score": 0.0,
+                "video_results": 0.968718497983871
+            },
+            {
+                "video_path": "/mnt/workspace/caipeiliang/code/moweile/videoquant/HeadWiseKVQuant/results/selfforcing/topk_top4_dmd_loss_hi_4_packed-naive-int4_lo_packed-naive-int2_64/kc_256_vc_256_nstages_1/split_clip/1-0_ema/1-0_ema_019.mp4/1-0.mp4",
+                "inclip_score": 0.9840599798387096,
+                "clip2clip_score": 0,
+                "mapped_clip2clip_score": 0.0,
+                "video_results": 0.9840599798387096
+            },
+            {
+                "video_path": "/mnt/workspace/caipeiliang/code/moweile/videoquant/HeadWiseKVQuant/results/selfforcing/topk_top4_dmd_loss_hi_4_packed-naive-int4_lo_packed-naive-int2_64/kc_256_vc_256_nstages_1/split_clip/1-0_ema/1-0_ema_020.mp4/1-0.mp4",
+                "inclip_score": 0.9568422379032258,
+                "clip2clip_score": 0,
+                "mapped_clip2clip_score": 0.0,
+                "video_results": 0.9568422379032258
+            },
+            {
+                "video_path": "/mnt/workspace/caipeiliang/code/moweile/videoquant/HeadWiseKVQuant/results/selfforcing/topk_top4_dmd_loss_hi_4_packed-naive-int4_lo_packed-naive-int2_64/kc_256_vc_256_nstages_1/split_clip/1-0_ema/1-0_ema_011.mp4/1-0.mp4",
+                "inclip_score": 0.9847530241935484,
+                "clip2clip_score": 0,
+                "mapped_clip2clip_score": 0.0,
+                "video_results": 0.9847530241935484
+            },
+            {
+                "video_path": "/mnt/workspace/caipeiliang/code/moweile/videoquant/HeadWiseKVQuant/results/selfforcing/topk_top4_dmd_loss_hi_4_packed-naive-int4_lo_packed-naive-int2_64/kc_256_vc_256_nstages_1/split_clip/1-0_ema/1-0_ema_013.mp4/1-0.mp4",
+                "inclip_score": 0.9863517515120968,
+                "clip2clip_score": 0,
+                "mapped_clip2clip_score": 0.0,
+                "video_results": 0.9863517515120968
+            },
+            {
+                "video_path": "/mnt/workspace/caipeiliang/code/moweile/videoquant/HeadWiseKVQuant/results/selfforcing/topk_top4_dmd_loss_hi_4_packed-naive-int4_lo_packed-naive-int2_64/kc_256_vc_256_nstages_1/split_clip/1-0_ema/1-0_ema_022.mp4/1-0.mp4",
+                "inclip_score": 0.9869817918346774,
+                "clip2clip_score": 0,
+                "mapped_clip2clip_score": 0.0,
+                "video_results": 0.9869817918346774
+            },
+            {
+                "video_path": "/mnt/workspace/caipeiliang/code/moweile/videoquant/HeadWiseKVQuant/results/selfforcing/topk_top4_dmd_loss_hi_4_packed-naive-int4_lo_packed-naive-int2_64/kc_256_vc_256_nstages_1/split_clip/1-0_ema/1-0_ema_017.mp4/1-0.mp4",
+                "inclip_score": 0.9770901587701613,
+                "clip2clip_score": 0,
+                "mapped_clip2clip_score": 0.0,
+                "video_results": 0.9770901587701613
+            },
+            {
+                "video_path": "/mnt/workspace/caipeiliang/code/moweile/videoquant/HeadWiseKVQuant/results/selfforcing/topk_top4_dmd_loss_hi_4_packed-naive-int4_lo_packed-naive-int2_64/kc_256_vc_256_nstages_1/split_clip/1-0_ema/1-0_ema_003.mp4/1-0.mp4",
+                "inclip_score": 0.9638435609879032,
+                "clip2clip_score": 0,
+                "mapped_clip2clip_score": 0.0,
+                "video_results": 0.9638435609879032
+            },
+            {
+                "video_path": "/mnt/workspace/caipeiliang/code/moweile/videoquant/HeadWiseKVQuant/results/selfforcing/topk_top4_dmd_loss_hi_4_packed-naive-int4_lo_packed-naive-int2_64/kc_256_vc_256_nstages_1/split_clip/1-0_ema/1-0_ema_018.mp4/1-0.mp4",
+                "inclip_score": 0.9763104838709677,
+                "clip2clip_score": 0,
+                "mapped_clip2clip_score": 0.0,
+                "video_results": 0.9763104838709677
+            },
+            {
+                "video_path": "/mnt/workspace/caipeiliang/code/moweile/videoquant/HeadWiseKVQuant/results/selfforcing/topk_top4_dmd_loss_hi_4_packed-naive-int4_lo_packed-naive-int2_64/kc_256_vc_256_nstages_1/split_clip/1-0_ema/1-0_ema_021.mp4/1-0.mp4",
+                "inclip_score": 0.9707976310483871,
+                "clip2clip_score": 0,
+                "mapped_clip2clip_score": 0.0,
+                "video_results": 0.9707976310483871
+            },
+            {
+                "video_path": "/mnt/workspace/caipeiliang/code/moweile/videoquant/HeadWiseKVQuant/results/selfforcing/topk_top4_dmd_loss_hi_4_packed-naive-int4_lo_packed-naive-int2_64/kc_256_vc_256_nstages_1/split_clip/1-0_ema/1-0_ema_006.mp4/1-0.mp4",
+                "inclip_score": 0.9906360257056451,
+                "clip2clip_score": 0,
+                "mapped_clip2clip_score": 0.0,
+                "video_results": 0.9906360257056451
+            },
+            {
+                "video_path": "/mnt/workspace/caipeiliang/code/moweile/videoquant/HeadWiseKVQuant/results/selfforcing/topk_top4_dmd_loss_hi_4_packed-naive-int4_lo_packed-naive-int2_64/kc_256_vc_256_nstages_1/split_clip/1-0_ema/1-0_ema_016.mp4/1-0.mp4",
+                "inclip_score": 0.9899351058467742,
+                "clip2clip_score": 0,
+                "mapped_clip2clip_score": 0.0,
+                "video_results": 0.9899351058467742
+            },
+            {
+                "video_path": "/mnt/workspace/caipeiliang/code/moweile/videoquant/HeadWiseKVQuant/results/selfforcing/topk_top4_dmd_loss_hi_4_packed-naive-int4_lo_packed-naive-int2_64/kc_256_vc_256_nstages_1/split_clip/1-0_ema/1-0_ema_001.mp4/1-0.mp4",
+                "inclip_score": 0.986572265625,
+                "clip2clip_score": 0,
+                "mapped_clip2clip_score": 0.0,
+                "video_results": 0.986572265625
+            },
+            {
+                "video_path": "/mnt/workspace/caipeiliang/code/moweile/videoquant/HeadWiseKVQuant/results/selfforcing/topk_top4_dmd_loss_hi_4_packed-naive-int4_lo_packed-naive-int2_64/kc_256_vc_256_nstages_1/split_clip/1-0_ema/1-0_ema_014.mp4/1-0.mp4",
+                "inclip_score": 0.989226310483871,
+                "clip2clip_score": 0,
+                "mapped_clip2clip_score": 0.0,
+                "video_results": 0.989226310483871
+            },
+            {
+                "video_path": "/mnt/workspace/caipeiliang/code/moweile/videoquant/HeadWiseKVQuant/results/selfforcing/topk_top4_dmd_loss_hi_4_packed-naive-int4_lo_packed-naive-int2_64/kc_256_vc_256_nstages_1/split_clip/1-0_ema/1-0_ema_002.mp4/1-0.mp4",
+                "inclip_score": 0.9817524571572581,
+                "clip2clip_score": 0,
+                "mapped_clip2clip_score": 0.0,
+                "video_results": 0.9817524571572581
+            },
+            {
+                "video_path": "/mnt/workspace/caipeiliang/code/moweile/videoquant/HeadWiseKVQuant/results/selfforcing/topk_top4_dmd_loss_hi_4_packed-naive-int4_lo_packed-naive-int2_64/kc_256_vc_256_nstages_1/split_clip/1-0_ema/1-0_ema_010.mp4/1-0.mp4",
+                "inclip_score": 0.9829810357862904,
+                "clip2clip_score": 0,
+                "mapped_clip2clip_score": 0.0,
+                "video_results": 0.9829810357862904
+            },
+            {
+                "video_path": "/mnt/workspace/caipeiliang/code/moweile/videoquant/HeadWiseKVQuant/results/selfforcing/topk_top4_dmd_loss_hi_4_packed-naive-int4_lo_packed-naive-int2_64/kc_256_vc_256_nstages_1/split_clip/1-0_ema/1-0_ema_008.mp4/1-0.mp4",
+                "inclip_score": 0.9859816028225806,
+                "clip2clip_score": 0,
+                "mapped_clip2clip_score": 0.0,
+                "video_results": 0.9859816028225806
+            },
+            {
+                "video_path": "/mnt/workspace/caipeiliang/code/moweile/videoquant/HeadWiseKVQuant/results/selfforcing/topk_top4_dmd_loss_hi_4_packed-naive-int4_lo_packed-naive-int2_64/kc_256_vc_256_nstages_1/split_clip/1-0_ema/1-0_ema_015.mp4/1-0.mp4",
+                "inclip_score": 0.9778304561491935,
+                "clip2clip_score": 0,
+                "mapped_clip2clip_score": 0.0,
+                "video_results": 0.9778304561491935
+            },
+            {
+                "video_path": "/mnt/workspace/caipeiliang/code/moweile/videoquant/HeadWiseKVQuant/results/selfforcing/topk_top4_dmd_loss_hi_4_packed-naive-int4_lo_packed-naive-int2_64/kc_256_vc_256_nstages_1/split_clip/1-0_ema/1-0_ema_007.mp4/1-0.mp4",
+                "inclip_score": 0.9766097530241935,
+                "clip2clip_score": 0,
+                "mapped_clip2clip_score": 0.0,
+                "video_results": 0.9766097530241935
+            },
+            {
+                "video_path": "/mnt/workspace/caipeiliang/code/moweile/videoquant/HeadWiseKVQuant/results/selfforcing/topk_top4_dmd_loss_hi_4_packed-naive-int4_lo_packed-naive-int2_64/kc_256_vc_256_nstages_1/split_clip/1-0_ema/1-0_ema_012.mp4/1-0.mp4",
+                "inclip_score": 0.9812956779233871,
+                "clip2clip_score": 0,
+                "mapped_clip2clip_score": 0.0,
+                "video_results": 0.9812956779233871
+            },
+            {
+                "video_path": "/mnt/workspace/caipeiliang/code/moweile/videoquant/HeadWiseKVQuant/results/selfforcing/topk_top4_dmd_loss_hi_4_packed-naive-int4_lo_packed-naive-int2_64/kc_256_vc_256_nstages_1/split_clip/1-0_ema/1-0_ema_000.mp4/1-0.mp4",
+                "inclip_score": 0.9847608996975806,
+                "clip2clip_score": 0,
+                "mapped_clip2clip_score": 0.0,
+                "video_results": 0.9847608996975806
+            },
+            {
+                "video_path": "/mnt/workspace/caipeiliang/code/moweile/videoquant/HeadWiseKVQuant/results/selfforcing/topk_top4_dmd_loss_hi_4_packed-naive-int4_lo_packed-naive-int2_64/kc_256_vc_256_nstages_1/split_clip/1-0_ema/1-0_ema_004.mp4/1-0.mp4",
+                "inclip_score": 0.9792244203629032,
+                "clip2clip_score": 0,
+                "mapped_clip2clip_score": 0.0,
+                "video_results": 0.9792244203629032
+            },
+            {
+                "video_path": "/mnt/workspace/caipeiliang/code/moweile/videoquant/HeadWiseKVQuant/results/selfforcing/topk_top4_dmd_loss_hi_4_packed-naive-int4_lo_packed-naive-int2_64/kc_256_vc_256_nstages_1/split_clip/1-0_ema/1-0_ema_009.mp4/1-0.mp4",
+                "inclip_score": 0.9912188130040323,
+                "clip2clip_score": 0,
+                "mapped_clip2clip_score": 0.0,
+                "video_results": 0.9912188130040323
+            },
+            {
+                "video_path": "/mnt/workspace/caipeiliang/code/moweile/videoquant/HeadWiseKVQuant/results/selfforcing/topk_top4_dmd_loss_hi_4_packed-naive-int4_lo_packed-naive-int2_64/kc_256_vc_256_nstages_1/split_clip/1-0_ema/1-0_ema_005.mp4/1-0.mp4",
+                "inclip_score": 0.9864383820564516,
+                "clip2clip_score": 0,
+                "mapped_clip2clip_score": 0.0,
+                "video_results": 0.9864383820564516
+            }
+        ]
+    ]
+}

@@ -1,0 +1,377 @@
+{
+    "dynamic_degree": [
+        0.2608695652173913,
+        [
+            {
+                "video_path": "/mnt/workspace/caipeiliang/code/moweile/videoquant/HeadWiseKVQuant/results/selfforcing/bf16/split_clip/0-0_ema/0-0_ema_006.mp4",
+                "video_results": true
+            },
+            {
+                "video_path": "/mnt/workspace/caipeiliang/code/moweile/videoquant/HeadWiseKVQuant/results/selfforcing/bf16/split_clip/0-0_ema/0-0_ema_019.mp4",
+                "video_results": false
+            },
+            {
+                "video_path": "/mnt/workspace/caipeiliang/code/moweile/videoquant/HeadWiseKVQuant/results/selfforcing/bf16/split_clip/0-0_ema/0-0_ema_007.mp4",
+                "video_results": false
+            },
+            {
+                "video_path": "/mnt/workspace/caipeiliang/code/moweile/videoquant/HeadWiseKVQuant/results/selfforcing/bf16/split_clip/0-0_ema/0-0_ema_009.mp4",
+                "video_results": true
+            },
+            {
+                "video_path": "/mnt/workspace/caipeiliang/code/moweile/videoquant/HeadWiseKVQuant/results/selfforcing/bf16/split_clip/0-0_ema/0-0_ema_003.mp4",
+                "video_results": true
+            },
+            {
+                "video_path": "/mnt/workspace/caipeiliang/code/moweile/videoquant/HeadWiseKVQuant/results/selfforcing/bf16/split_clip/0-0_ema/0-0_ema_022.mp4",
+                "video_results": false
+            },
+            {
+                "video_path": "/mnt/workspace/caipeiliang/code/moweile/videoquant/HeadWiseKVQuant/results/selfforcing/bf16/split_clip/0-0_ema/0-0_ema_018.mp4",
+                "video_results": false
+            },
+            {
+                "video_path": "/mnt/workspace/caipeiliang/code/moweile/videoquant/HeadWiseKVQuant/results/selfforcing/bf16/split_clip/0-0_ema/0-0_ema_014.mp4",
+                "video_results": false
+            },
+            {
+                "video_path": "/mnt/workspace/caipeiliang/code/moweile/videoquant/HeadWiseKVQuant/results/selfforcing/bf16/split_clip/0-0_ema/0-0_ema_012.mp4",
+                "video_results": false
+            },
+            {
+                "video_path": "/mnt/workspace/caipeiliang/code/moweile/videoquant/HeadWiseKVQuant/results/selfforcing/bf16/split_clip/0-0_ema/0-0_ema_001.mp4",
+                "video_results": true
+            },
+            {
+                "video_path": "/mnt/workspace/caipeiliang/code/moweile/videoquant/HeadWiseKVQuant/results/selfforcing/bf16/split_clip/0-0_ema/0-0_ema_021.mp4",
+                "video_results": false
+            },
+            {
+                "video_path": "/mnt/workspace/caipeiliang/code/moweile/videoquant/HeadWiseKVQuant/results/selfforcing/bf16/split_clip/0-0_ema/0-0_ema_011.mp4",
+                "video_results": true
+            },
+            {
+                "video_path": "/mnt/workspace/caipeiliang/code/moweile/videoquant/HeadWiseKVQuant/results/selfforcing/bf16/split_clip/0-0_ema/0-0_ema_020.mp4",
+                "video_results": false
+            },
+            {
+                "video_path": "/mnt/workspace/caipeiliang/code/moweile/videoquant/HeadWiseKVQuant/results/selfforcing/bf16/split_clip/0-0_ema/0-0_ema_008.mp4",
+                "video_results": true
+            },
+            {
+                "video_path": "/mnt/workspace/caipeiliang/code/moweile/videoquant/HeadWiseKVQuant/results/selfforcing/bf16/split_clip/0-0_ema/0-0_ema_017.mp4",
+                "video_results": false
+            },
+            {
+                "video_path": "/mnt/workspace/caipeiliang/code/moweile/videoquant/HeadWiseKVQuant/results/selfforcing/bf16/split_clip/0-0_ema/0-0_ema_005.mp4",
+                "video_results": true
+            },
+            {
+                "video_path": "/mnt/workspace/caipeiliang/code/moweile/videoquant/HeadWiseKVQuant/results/selfforcing/bf16/split_clip/0-0_ema/0-0_ema_010.mp4",
+                "video_results": false
+            },
+            {
+                "video_path": "/mnt/workspace/caipeiliang/code/moweile/videoquant/HeadWiseKVQuant/results/selfforcing/bf16/split_clip/0-0_ema/0-0_ema_013.mp4",
+                "video_results": false
+            },
+            {
+                "video_path": "/mnt/workspace/caipeiliang/code/moweile/videoquant/HeadWiseKVQuant/results/selfforcing/bf16/split_clip/0-0_ema/0-0_ema_004.mp4",
+                "video_results": true
+            },
+            {
+                "video_path": "/mnt/workspace/caipeiliang/code/moweile/videoquant/HeadWiseKVQuant/results/selfforcing/bf16/split_clip/0-0_ema/0-0_ema_015.mp4",
+                "video_results": false
+            },
+            {
+                "video_path": "/mnt/workspace/caipeiliang/code/moweile/videoquant/HeadWiseKVQuant/results/selfforcing/bf16/split_clip/0-0_ema/0-0_ema_002.mp4",
+                "video_results": true
+            },
+            {
+                "video_path": "/mnt/workspace/caipeiliang/code/moweile/videoquant/HeadWiseKVQuant/results/selfforcing/bf16/split_clip/0-0_ema/0-0_ema_016.mp4",
+                "video_results": false
+            },
+            {
+                "video_path": "/mnt/workspace/caipeiliang/code/moweile/videoquant/HeadWiseKVQuant/results/selfforcing/bf16/split_clip/0-0_ema/0-0_ema_000.mp4",
+                "video_results": true
+            },
+            {
+                "video_path": "/mnt/workspace/caipeiliang/code/moweile/videoquant/HeadWiseKVQuant/results/selfforcing/bf16/split_clip/1-0_ema/1-0_ema_019.mp4",
+                "video_results": false
+            },
+            {
+                "video_path": "/mnt/workspace/caipeiliang/code/moweile/videoquant/HeadWiseKVQuant/results/selfforcing/bf16/split_clip/1-0_ema/1-0_ema_020.mp4",
+                "video_results": false
+            },
+            {
+                "video_path": "/mnt/workspace/caipeiliang/code/moweile/videoquant/HeadWiseKVQuant/results/selfforcing/bf16/split_clip/1-0_ema/1-0_ema_011.mp4",
+                "video_results": false
+            },
+            {
+                "video_path": "/mnt/workspace/caipeiliang/code/moweile/videoquant/HeadWiseKVQuant/results/selfforcing/bf16/split_clip/1-0_ema/1-0_ema_013.mp4",
+                "video_results": false
+            },
+            {
+                "video_path": "/mnt/workspace/caipeiliang/code/moweile/videoquant/HeadWiseKVQuant/results/selfforcing/bf16/split_clip/1-0_ema/1-0_ema_022.mp4",
+                "video_results": false
+            },
+            {
+                "video_path": "/mnt/workspace/caipeiliang/code/moweile/videoquant/HeadWiseKVQuant/results/selfforcing/bf16/split_clip/1-0_ema/1-0_ema_017.mp4",
+                "video_results": false
+            },
+            {
+                "video_path": "/mnt/workspace/caipeiliang/code/moweile/videoquant/HeadWiseKVQuant/results/selfforcing/bf16/split_clip/1-0_ema/1-0_ema_003.mp4",
+                "video_results": true
+            },
+            {
+                "video_path": "/mnt/workspace/caipeiliang/code/moweile/videoquant/HeadWiseKVQuant/results/selfforcing/bf16/split_clip/1-0_ema/1-0_ema_018.mp4",
+                "video_results": false
+            },
+            {
+                "video_path": "/mnt/workspace/caipeiliang/code/moweile/videoquant/HeadWiseKVQuant/results/selfforcing/bf16/split_clip/1-0_ema/1-0_ema_021.mp4",
+                "video_results": false
+            },
+            {
+                "video_path": "/mnt/workspace/caipeiliang/code/moweile/videoquant/HeadWiseKVQuant/results/selfforcing/bf16/split_clip/1-0_ema/1-0_ema_006.mp4",
+                "video_results": false
+            },
+            {
+                "video_path": "/mnt/workspace/caipeiliang/code/moweile/videoquant/HeadWiseKVQuant/results/selfforcing/bf16/split_clip/1-0_ema/1-0_ema_016.mp4",
+                "video_results": false
+            },
+            {
+                "video_path": "/mnt/workspace/caipeiliang/code/moweile/videoquant/HeadWiseKVQuant/results/selfforcing/bf16/split_clip/1-0_ema/1-0_ema_001.mp4",
+                "video_results": false
+            },
+            {
+                "video_path": "/mnt/workspace/caipeiliang/code/moweile/videoquant/HeadWiseKVQuant/results/selfforcing/bf16/split_clip/1-0_ema/1-0_ema_014.mp4",
+                "video_results": false
+            },
+            {
+                "video_path": "/mnt/workspace/caipeiliang/code/moweile/videoquant/HeadWiseKVQuant/results/selfforcing/bf16/split_clip/1-0_ema/1-0_ema_002.mp4",
+                "video_results": true
+            },
+            {
+                "video_path": "/mnt/workspace/caipeiliang/code/moweile/videoquant/HeadWiseKVQuant/results/selfforcing/bf16/split_clip/1-0_ema/1-0_ema_010.mp4",
+                "video_results": false
+            },
+            {
+                "video_path": "/mnt/workspace/caipeiliang/code/moweile/videoquant/HeadWiseKVQuant/results/selfforcing/bf16/split_clip/1-0_ema/1-0_ema_008.mp4",
+                "video_results": false
+            },
+            {
+                "video_path": "/mnt/workspace/caipeiliang/code/moweile/videoquant/HeadWiseKVQuant/results/selfforcing/bf16/split_clip/1-0_ema/1-0_ema_015.mp4",
+                "video_results": false
+            },
+            {
+                "video_path": "/mnt/workspace/caipeiliang/code/moweile/videoquant/HeadWiseKVQuant/results/selfforcing/bf16/split_clip/1-0_ema/1-0_ema_007.mp4",
+                "video_results": false
+            },
+            {
+                "video_path": "/mnt/workspace/caipeiliang/code/moweile/videoquant/HeadWiseKVQuant/results/selfforcing/bf16/split_clip/1-0_ema/1-0_ema_012.mp4",
+                "video_results": false
+            },
+            {
+                "video_path": "/mnt/workspace/caipeiliang/code/moweile/videoquant/HeadWiseKVQuant/results/selfforcing/bf16/split_clip/1-0_ema/1-0_ema_000.mp4",
+                "video_results": false
+            },
+            {
+                "video_path": "/mnt/workspace/caipeiliang/code/moweile/videoquant/HeadWiseKVQuant/results/selfforcing/bf16/split_clip/1-0_ema/1-0_ema_004.mp4",
+                "video_results": false
+            },
+            {
+                "video_path": "/mnt/workspace/caipeiliang/code/moweile/videoquant/HeadWiseKVQuant/results/selfforcing/bf16/split_clip/1-0_ema/1-0_ema_009.mp4",
+                "video_results": false
+            },
+            {
+                "video_path": "/mnt/workspace/caipeiliang/code/moweile/videoquant/HeadWiseKVQuant/results/selfforcing/bf16/split_clip/1-0_ema/1-0_ema_005.mp4",
+                "video_results": false
+            }
+        ],
+        [
+            {
+                "video_path": "/mnt/workspace/caipeiliang/code/moweile/videoquant/HeadWiseKVQuant/results/selfforcing/bf16/split_clip/0-0_ema/0-0_ema_006.mp4/0-0.mp4",
+                "video_results": 1.0
+            },
+            {
+                "video_path": "/mnt/workspace/caipeiliang/code/moweile/videoquant/HeadWiseKVQuant/results/selfforcing/bf16/split_clip/0-0_ema/0-0_ema_019.mp4/0-0.mp4",
+                "video_results": 0.0
+            },
+            {
+                "video_path": "/mnt/workspace/caipeiliang/code/moweile/videoquant/HeadWiseKVQuant/results/selfforcing/bf16/split_clip/0-0_ema/0-0_ema_007.mp4/0-0.mp4",
+                "video_results": 0.0
+            },
+            {
+                "video_path": "/mnt/workspace/caipeiliang/code/moweile/videoquant/HeadWiseKVQuant/results/selfforcing/bf16/split_clip/0-0_ema/0-0_ema_009.mp4/0-0.mp4",
+                "video_results": 1.0
+            },
+            {
+                "video_path": "/mnt/workspace/caipeiliang/code/moweile/videoquant/HeadWiseKVQuant/results/selfforcing/bf16/split_clip/0-0_ema/0-0_ema_003.mp4/0-0.mp4",
+                "video_results": 1.0
+            },
+            {
+                "video_path": "/mnt/workspace/caipeiliang/code/moweile/videoquant/HeadWiseKVQuant/results/selfforcing/bf16/split_clip/0-0_ema/0-0_ema_022.mp4/0-0.mp4",
+                "video_results": 0.0
+            },
+            {
+                "video_path": "/mnt/workspace/caipeiliang/code/moweile/videoquant/HeadWiseKVQuant/results/selfforcing/bf16/split_clip/0-0_ema/0-0_ema_018.mp4/0-0.mp4",
+                "video_results": 0.0
+            },
+            {
+                "video_path": "/mnt/workspace/caipeiliang/code/moweile/videoquant/HeadWiseKVQuant/results/selfforcing/bf16/split_clip/0-0_ema/0-0_ema_014.mp4/0-0.mp4",
+                "video_results": 0.0
+            },
+            {
+                "video_path": "/mnt/workspace/caipeiliang/code/moweile/videoquant/HeadWiseKVQuant/results/selfforcing/bf16/split_clip/0-0_ema/0-0_ema_012.mp4/0-0.mp4",
+                "video_results": 0.0
+            },
+            {
+                "video_path": "/mnt/workspace/caipeiliang/code/moweile/videoquant/HeadWiseKVQuant/results/selfforcing/bf16/split_clip/0-0_ema/0-0_ema_001.mp4/0-0.mp4",
+                "video_results": 1.0
+            },
+            {
+                "video_path": "/mnt/workspace/caipeiliang/code/moweile/videoquant/HeadWiseKVQuant/results/selfforcing/bf16/split_clip/0-0_ema/0-0_ema_021.mp4/0-0.mp4",
+                "video_results": 0.0
+            },
+            {
+                "video_path": "/mnt/workspace/caipeiliang/code/moweile/videoquant/HeadWiseKVQuant/results/selfforcing/bf16/split_clip/0-0_ema/0-0_ema_011.mp4/0-0.mp4",
+                "video_results": 1.0
+            },
+            {
+                "video_path": "/mnt/workspace/caipeiliang/code/moweile/videoquant/HeadWiseKVQuant/results/selfforcing/bf16/split_clip/0-0_ema/0-0_ema_020.mp4/0-0.mp4",
+                "video_results": 0.0
+            },
+            {
+                "video_path": "/mnt/workspace/caipeiliang/code/moweile/videoquant/HeadWiseKVQuant/results/selfforcing/bf16/split_clip/0-0_ema/0-0_ema_008.mp4/0-0.mp4",
+                "video_results": 1.0
+            },
+            {
+                "video_path": "/mnt/workspace/caipeiliang/code/moweile/videoquant/HeadWiseKVQuant/results/selfforcing/bf16/split_clip/0-0_ema/0-0_ema_017.mp4/0-0.mp4",
+                "video_results": 0.0
+            },
+            {
+                "video_path": "/mnt/workspace/caipeiliang/code/moweile/videoquant/HeadWiseKVQuant/results/selfforcing/bf16/split_clip/0-0_ema/0-0_ema_005.mp4/0-0.mp4",
+                "video_results": 1.0
+            },
+            {
+                "video_path": "/mnt/workspace/caipeiliang/code/moweile/videoquant/HeadWiseKVQuant/results/selfforcing/bf16/split_clip/0-0_ema/0-0_ema_010.mp4/0-0.mp4",
+                "video_results": 0.0
+            },
+            {
+                "video_path": "/mnt/workspace/caipeiliang/code/moweile/videoquant/HeadWiseKVQuant/results/selfforcing/bf16/split_clip/0-0_ema/0-0_ema_013.mp4/0-0.mp4",
+                "video_results": 0.0
+            },
+            {
+                "video_path": "/mnt/workspace/caipeiliang/code/moweile/videoquant/HeadWiseKVQuant/results/selfforcing/bf16/split_clip/0-0_ema/0-0_ema_004.mp4/0-0.mp4",
+                "video_results": 1.0
+            },
+            {
+                "video_path": "/mnt/workspace/caipeiliang/code/moweile/videoquant/HeadWiseKVQuant/results/selfforcing/bf16/split_clip/0-0_ema/0-0_ema_015.mp4/0-0.mp4",
+                "video_results": 0.0
+            },
+            {
+                "video_path": "/mnt/workspace/caipeiliang/code/moweile/videoquant/HeadWiseKVQuant/results/selfforcing/bf16/split_clip/0-0_ema/0-0_ema_002.mp4/0-0.mp4",
+                "video_results": 1.0
+            },
+            {
+                "video_path": "/mnt/workspace/caipeiliang/code/moweile/videoquant/HeadWiseKVQuant/results/selfforcing/bf16/split_clip/0-0_ema/0-0_ema_016.mp4/0-0.mp4",
+                "video_results": 0.0
+            },
+            {
+                "video_path": "/mnt/workspace/caipeiliang/code/moweile/videoquant/HeadWiseKVQuant/results/selfforcing/bf16/split_clip/0-0_ema/0-0_ema_000.mp4/0-0.mp4",
+                "video_results": 1.0
+            },
+            {
+                "video_path": "/mnt/workspace/caipeiliang/code/moweile/videoquant/HeadWiseKVQuant/results/selfforcing/bf16/split_clip/1-0_ema/1-0_ema_019.mp4/1-0.mp4",
+                "video_results": 0.0
+            },
+            {
+                "video_path": "/mnt/workspace/caipeiliang/code/moweile/videoquant/HeadWiseKVQuant/results/selfforcing/bf16/split_clip/1-0_ema/1-0_ema_020.mp4/1-0.mp4",
+                "video_results": 0.0
+            },
+            {
+                "video_path": "/mnt/workspace/caipeiliang/code/moweile/videoquant/HeadWiseKVQuant/results/selfforcing/bf16/split_clip/1-0_ema/1-0_ema_011.mp4/1-0.mp4",
+                "video_results": 0.0
+            },
+            {
+                "video_path": "/mnt/workspace/caipeiliang/code/moweile/videoquant/HeadWiseKVQuant/results/selfforcing/bf16/split_clip/1-0_ema/1-0_ema_013.mp4/1-0.mp4",
+                "video_results": 0.0
+            },
+            {
+                "video_path": "/mnt/workspace/caipeiliang/code/moweile/videoquant/HeadWiseKVQuant/results/selfforcing/bf16/split_clip/1-0_ema/1-0_ema_022.mp4/1-0.mp4",
+                "video_results": 0.0
+            },
+            {
+                "video_path": "/mnt/workspace/caipeiliang/code/moweile/videoquant/HeadWiseKVQuant/results/selfforcing/bf16/split_clip/1-0_ema/1-0_ema_017.mp4/1-0.mp4",
+                "video_results": 0.0
+            },
+            {
+                "video_path": "/mnt/workspace/caipeiliang/code/moweile/videoquant/HeadWiseKVQuant/results/selfforcing/bf16/split_clip/1-0_ema/1-0_ema_003.mp4/1-0.mp4",
+                "video_results": 1.0
+            },
+            {
+                "video_path": "/mnt/workspace/caipeiliang/code/moweile/videoquant/HeadWiseKVQuant/results/selfforcing/bf16/split_clip/1-0_ema/1-0_ema_018.mp4/1-0.mp4",
+                "video_results": 0.0
+            },
+            {
+                "video_path": "/mnt/workspace/caipeiliang/code/moweile/videoquant/HeadWiseKVQuant/results/selfforcing/bf16/split_clip/1-0_ema/1-0_ema_021.mp4/1-0.mp4",
+                "video_results": 0.0
+            },
+            {
+                "video_path": "/mnt/workspace/caipeiliang/code/moweile/videoquant/HeadWiseKVQuant/results/selfforcing/bf16/split_clip/1-0_ema/1-0_ema_006.mp4/1-0.mp4",
+                "video_results": 0.0
+            },
+            {
+                "video_path": "/mnt/workspace/caipeiliang/code/moweile/videoquant/HeadWiseKVQuant/results/selfforcing/bf16/split_clip/1-0_ema/1-0_ema_016.mp4/1-0.mp4",
+                "video_results": 0.0
+            },
+            {
+                "video_path": "/mnt/workspace/caipeiliang/code/moweile/videoquant/HeadWiseKVQuant/results/selfforcing/bf16/split_clip/1-0_ema/1-0_ema_001.mp4/1-0.mp4",
+                "video_results": 0.0
+            },
+            {
+                "video_path": "/mnt/workspace/caipeiliang/code/moweile/videoquant/HeadWiseKVQuant/results/selfforcing/bf16/split_clip/1-0_ema/1-0_ema_014.mp4/1-0.mp4",
+                "video_results": 0.0
+            },
+            {
+                "video_path": "/mnt/workspace/caipeiliang/code/moweile/videoquant/HeadWiseKVQuant/results/selfforcing/bf16/split_clip/1-0_ema/1-0_ema_002.mp4/1-0.mp4",
+                "video_results": 1.0
+            },
+            {
+                "video_path": "/mnt/workspace/caipeiliang/code/moweile/videoquant/HeadWiseKVQuant/results/selfforcing/bf16/split_clip/1-0_ema/1-0_ema_010.mp4/1-0.mp4",
+                "video_results": 0.0
+            },
+            {
+                "video_path": "/mnt/workspace/caipeiliang/code/moweile/videoquant/HeadWiseKVQuant/results/selfforcing/bf16/split_clip/1-0_ema/1-0_ema_008.mp4/1-0.mp4",
+                "video_results": 0.0
+            },
+            {
+                "video_path": "/mnt/workspace/caipeiliang/code/moweile/videoquant/HeadWiseKVQuant/results/selfforcing/bf16/split_clip/1-0_ema/1-0_ema_015.mp4/1-0.mp4",
+                "video_results": 0.0
+            },
+            {
+                "video_path": "/mnt/workspace/caipeiliang/code/moweile/videoquant/HeadWiseKVQuant/results/selfforcing/bf16/split_clip/1-0_ema/1-0_ema_007.mp4/1-0.mp4",
+                "video_results": 0.0
+            },
+            {
+                "video_path": "/mnt/workspace/caipeiliang/code/moweile/videoquant/HeadWiseKVQuant/results/selfforcing/bf16/split_clip/1-0_ema/1-0_ema_012.mp4/1-0.mp4",
+                "video_results": 0.0
+            },
+            {
+                "video_path": "/mnt/workspace/caipeiliang/code/moweile/videoquant/HeadWiseKVQuant/results/selfforcing/bf16/split_clip/1-0_ema/1-0_ema_000.mp4/1-0.mp4",
+                "video_results": 0.0
+            },
+            {
+                "video_path": "/mnt/workspace/caipeiliang/code/moweile/videoquant/HeadWiseKVQuant/results/selfforcing/bf16/split_clip/1-0_ema/1-0_ema_004.mp4/1-0.mp4",
+                "video_results": 0.0
+            },
+            {
+                "video_path": "/mnt/workspace/caipeiliang/code/moweile/videoquant/HeadWiseKVQuant/results/selfforcing/bf16/split_clip/1-0_ema/1-0_ema_009.mp4/1-0.mp4",
+                "video_results": 0.0
+            },
+            {
+                "video_path": "/mnt/workspace/caipeiliang/code/moweile/videoquant/HeadWiseKVQuant/results/selfforcing/bf16/split_clip/1-0_ema/1-0_ema_005.mp4/1-0.mp4",
+                "video_results": 0.0
+            }
+        ]
+    ]
+}

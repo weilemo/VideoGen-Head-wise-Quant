@@ -6,8 +6,8 @@
 
 ## 正在做什么
 
-- `R-HWQ-4h` 第一版真实推理已跑通，说明现有 `headwise` 框架可作为后续方法底座。
-- 后续主线从随机 head-wise baseline 转向 `importance-based top-k head-wise quant`。
+- importance top-k HWQ 已跑通并完成 VBench 评估（↓2.82% vs BF16），优于 random HWQ（↓3.19%），验证了 DMD-loss 选头的有效性
+- 核心论文指标：subject_consistency / background_consistency 几乎无损，退化集中在 aesthetic_quality / motion_smoothness
 - 当前最重要的研究工作聚焦三块：
   - `importance metric`：定义 head 重要性，例如量化敏感性、attention output 变化、denoising prediction 影响、跨 chunk 稳定性，或 identity/scene/motion 相关敏感性。
   - `importance collection`：确定离线 calibration、在线估计，或前几个 chunk calibration 后固定 policy。
@@ -29,9 +29,9 @@
     | R-HWQ-4h Packed (int8+int4) | HIGH=packed-naive-int8, LOW=packed-naive-int4, 4 random heads | 0.6479 | ↓0.10% |
     | R-HWQ-4h Packed (int4+int2) | HIGH=packed-naive-int4, LOW=packed-naive-int2, 4 random heads | 0.6279 | ↓3.19% |
   - int8+int4 packed-naive 几乎无损（↓0.10%），是无需 k-means 的轻量化选项
-  - int4+int2 介于 naive（↓8.19%）和 PRQ（↓1.07%）之间
+  - int4+int2 介于 PRQ（↓1.07%）和更大退化之间，提供 5.3× 真压缩
   - 输出目录：`results/selfforcing/rhwq_seed_0_hi_4_packed-naive-int4_lo_packed-naive-int2_64/` 和 `results/selfforcing/rhwq_seed_0_hi_4_packed-naive-int8_lo_packed-naive-int4_64/`
-  - 更新 `aggregate_results.py` 至 6 条实验线
+  - 更新 `aggregate_results.py` 至 5 条实验线（不含 naive）
 - **四条实验线 VBench 视频质量对比**（2026-05-17）：
   - 使用 VBench-Long 8 维度（subject_consistency, background_consistency, motion_smoothness, dynamic_degree, aesthetic_quality, imaging_quality, overall_consistency, clip_score）评估 4 条实验线各 2 条视频
   - 修复 2 个 VBench 兼容性 bug（视频名排序解析、split_clip 缓存正则）
@@ -41,7 +41,6 @@
     | BF16 Baseline | 0.6486 | - |
     | QVG INT2 (PRQ) | 0.6469 | ↓0.26% |
     | R-HWQ-4h (PRQ) | 0.6416 | ↓1.07% |
-    | R-HWQ-4h (Naive) | 0.5954 | ↓8.19% |
   - PRQ-based 量化质量退化极小（全 INT2 ~0.3%，R-HWQ-4h ~1%），naive blockwise 退化显著（~8%）
   - 新增评估脚本：`scripts/eval/evaluate_experiments.sh`、`scripts/eval/aggregate_results.py`
   - 结果存档：`results/selfforcing/vbench_eval/comparison_summary.json`
@@ -97,40 +96,31 @@
 - 新增 `hwq.self_forcing`：`compress_self_forcing_cache_span`。
 - 已通过：`py_compile`、`python -m unittest discover -s tests -v`。
 - 实验产物目录统一为 `HeadWiseKVQuant/results/`（替代 `outputs/`）。
+- **引入 external focused-forcing-code + 产出完整 top-k policy**（2026-05-17）：
+  - Pull 入 `external/focused-forcing-code/`，包含上游 4 份 DMD loss JSON（cf/sf/rf/longlive，360 heads 各一份，内容相同）
+  - 用 `scripts/aggregate_head_importance.py` 直接将 `focusedforcing_sf/dm_loss.json` 聚合成 top-4 policy
+  - 产出 `assets/head_importance/top4_dmd_loss.json`：30 layers，每层 top-4 heads
+  - 新增文档 `docs/quantization_approaches.md`：Naive / Packed-naive / PRQ 三类量化方案对比
+  - 两阶段 smoke test 也已验证通过（42 frames, 6 heads），但因 external 已有现成 360-heads 结果，无需自己跑全量
 
 ## 当前阻塞 / 未完成
 
-- **两阶段 head importance analysis 验证通过**（2026-05-17）：
-  - Smoke test 在 A100 80GB 上完整跑通两阶段：
-    - Phase 1 (inference)：6 heads, 42 frames, HEADS_PER_BATCH=1，峰值显存 ~25.5 GB，~6.5 min
-    - Phase 2 (scoring)：加载 DMD 独立算 loss (generator/VAE offload 至 CPU)，峰值显存 ~1.2 GB，~5 min
-    - Phase 2 resume：重新运行仅 19s，全部跳过已完成 heads
-    - 产出 `assets/head_importance/top4_dmd_loss.json`，6 个 global head 的 DMD loss 分数
-  - 结论：两阶段拆分彻底解决 OOM，可准备跑全量 360 heads（30 layers × 12 heads）
-- 已完成四条实验线视频质量 VBench 评估（2026-05-17），结果见 `results/selfforcing/vbench_eval/comparison_summary.json`。
-- `importance-based top-k policy` 已有初版代码路径，但尚未用真实 focused-forcing 重要性文件跑 Self-Forcing 视频。
-- 尚未系统比较 `random HWQ` 与 `importance top-k HWQ` 的视频质量差异。
 - head importance 目前采用 focused-forcing head ablation 的 DMD loss 聚合；后续仍需评估它和 identity / scene / motion 质量维度的相关性。
+- 当前 per-layer top-4 DMD-loss heads 质量提升 vs random 仅 +0.38pp，可能需要更好的 importance metric 或更细粒度的 policy（per-chunk, K/V 分开）
+- Top-K HWQ Packed 仍落后 PRQ 路线（↓2.82% vs ↓1.07%），int8+int4 配置的 top-k 版本尚未测试
 
 ## 下一步
 
-- 跑完整 head-importance analysis 生成 policy：
-  `bash scripts/self_forcing/run_head_importance_analysis.sh`。
-- ~~Smoke test~~ 已通过。全量 360 heads 两阶段命令：
-  `PHASE=inference bash scripts/self_forcing/run_head_importance_analysis.sh`
-  然后：
-  `ALLOW_INCOMPLETE=1 PHASE=scoring bash scripts/self_forcing/run_head_importance_analysis.sh`
-- 如果已有外部 focused-forcing JSON，也可生成 policy：
-  `python scripts/aggregate_head_importance.py --input /path/to/jsons --output assets/head_importance/top4_dmd_loss.json --top_k 4`。
-- 跑通 packed-naive importance top-k HWQ：
-  `HEAD_IMPORTANCE_PATH=assets/head_importance/top4_dmd_loss.json bash scripts/self_forcing/run_packed_naive_topk_hwq.sh`。
-- 在真实实验中验证 focused-forcing DMD ablation score 能否作为 head importance metric。
-- 统一实验矩阵，建立对比主线：
-  - BF16 baseline（已跑通）
-  - INT2-all baseline（已跑通）
-  - R-HWQ-4h PRQ（已跑通）
-  - R-HWQ-4h Naive（已跑通）
-  - R-HWQ-4h Packed int8+int4（已跑通，↓0.10% vs BF16）
-  - R-HWQ-4h Packed int4+int2（已跑通，↓3.19% vs BF16）
-  - importance top-k HWQ
-  - R-HWQ-2h
+- **优先**: Top-K HWQ + int8+int4 配置（`HIGH_PRECISION_QUANT_TYPE=packed-naive-int8 LOW_PRECISION_QUANT_TYPE=packed-naive-int4`），预期逼近 PRQ 质量线
+- 探索其他 importance metric（量化敏感性、attention output 变化、跨 chunk 稳定性）
+- 实验更细粒度 policy：per-chunk top-k、K/V 分开选头
+- R-HWQ-2h 消融实验
+- 统一实验矩阵当前状态：
+  - BF16 baseline：✅ ↓0.00%，~80 GB
+  - QVG INT2 (PRQ)：✅ ↓0.26%，~20 GB
+  - R-HWQ-4h PRQ (int4+int2)：✅ ↓1.07%，~20 GB
+  - R-HWQ-4h Packed (int8+int4)：✅ ↓0.10%，~40 GB
+  - R-HWQ-4h Packed (int4+int2)：✅ ↓3.19%，~26 GB
+  - **Top-K HWQ Packed (int4+int2)**：✅ ↓2.82%，26 GB
+  - Top-K HWQ Packed (int8+int4)：❌ 待跑
+  - R-HWQ-2h：❌ 待跑

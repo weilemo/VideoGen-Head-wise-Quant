@@ -1,0 +1,329 @@
+{
+    "subject_consistency": [
+        0.9757659018332293,
+        [
+            {
+                "video_path": "/mnt/workspace/caipeiliang/code/moweile/videoquant/HeadWiseKVQuant/results/selfforcing/bf16/split_clip/0-0_ema/0-0_ema_006.mp4/0-0.mp4",
+                "inclip_score": 0.9689495890371261,
+                "clip2clip_score": 0,
+                "mapped_clip2clip_score": 0.0,
+                "video_results": 0.9689495890371261
+            },
+            {
+                "video_path": "/mnt/workspace/caipeiliang/code/moweile/videoquant/HeadWiseKVQuant/results/selfforcing/bf16/split_clip/0-0_ema/0-0_ema_019.mp4/0-0.mp4",
+                "inclip_score": 0.949337839118896,
+                "clip2clip_score": 0,
+                "mapped_clip2clip_score": 0.0,
+                "video_results": 0.949337839118896
+            },
+            {
+                "video_path": "/mnt/workspace/caipeiliang/code/moweile/videoquant/HeadWiseKVQuant/results/selfforcing/bf16/split_clip/0-0_ema/0-0_ema_007.mp4/0-0.mp4",
+                "inclip_score": 0.9678644605221287,
+                "clip2clip_score": 0,
+                "mapped_clip2clip_score": 0.0,
+                "video_results": 0.9678644605221287
+            },
+            {
+                "video_path": "/mnt/workspace/caipeiliang/code/moweile/videoquant/HeadWiseKVQuant/results/selfforcing/bf16/split_clip/0-0_ema/0-0_ema_009.mp4/0-0.mp4",
+                "inclip_score": 0.9522256831968984,
+                "clip2clip_score": 0,
+                "mapped_clip2clip_score": 0.0,
+                "video_results": 0.9522256831968984
+            },
+            {
+                "video_path": "/mnt/workspace/caipeiliang/code/moweile/videoquant/HeadWiseKVQuant/results/selfforcing/bf16/split_clip/0-0_ema/0-0_ema_003.mp4/0-0.mp4",
+                "inclip_score": 0.9429196782650486,
+                "clip2clip_score": 0,
+                "mapped_clip2clip_score": 0.0,
+                "video_results": 0.9429196782650486
+            },
+            {
+                "video_path": "/mnt/workspace/caipeiliang/code/moweile/videoquant/HeadWiseKVQuant/results/selfforcing/bf16/split_clip/0-0_ema/0-0_ema_022.mp4/0-0.mp4",
+                "inclip_score": 0.9463503899112824,
+                "clip2clip_score": 0,
+                "mapped_clip2clip_score": 0.0,
+                "video_results": 0.9463503899112824
+            },
+            {
+                "video_path": "/mnt/workspace/caipeiliang/code/moweile/videoquant/HeadWiseKVQuant/results/selfforcing/bf16/split_clip/0-0_ema/0-0_ema_018.mp4/0-0.mp4",
+                "inclip_score": 0.9653290087176908,
+                "clip2clip_score": 0,
+                "mapped_clip2clip_score": 0.0,
+                "video_results": 0.9653290087176908
+            },
+            {
+                "video_path": "/mnt/workspace/caipeiliang/code/moweile/videoquant/HeadWiseKVQuant/results/selfforcing/bf16/split_clip/0-0_ema/0-0_ema_014.mp4/0-0.mp4",
+                "inclip_score": 0.973804481567875,
+                "clip2clip_score": 0,
+                "mapped_clip2clip_score": 0.0,
+                "video_results": 0.973804481567875
+            },
+            {
+                "video_path": "/mnt/workspace/caipeiliang/code/moweile/videoquant/HeadWiseKVQuant/results/selfforcing/bf16/split_clip/0-0_ema/0-0_ema_012.mp4/0-0.mp4",
+                "inclip_score": 0.9614160339678487,
+                "clip2clip_score": 0,
+                "mapped_clip2clip_score": 0.0,
+                "video_results": 0.9614160339678487
+            },
+            {
+                "video_path": "/mnt/workspace/caipeiliang/code/moweile/videoquant/HeadWiseKVQuant/results/selfforcing/bf16/split_clip/0-0_ema/0-0_ema_001.mp4/0-0.mp4",
+                "inclip_score": 0.9778979747526108,
+                "clip2clip_score": 0,
+                "mapped_clip2clip_score": 0.0,
+                "video_results": 0.9778979747526108
+            },
+            {
+                "video_path": "/mnt/workspace/caipeiliang/code/moweile/videoquant/HeadWiseKVQuant/results/selfforcing/bf16/split_clip/0-0_ema/0-0_ema_021.mp4/0-0.mp4",
+                "inclip_score": 0.9417502726277998,
+                "clip2clip_score": 0,
+                "mapped_clip2clip_score": 0.0,
+                "video_results": 0.9417502726277998
+            },
+            {
+                "video_path": "/mnt/workspace/caipeiliang/code/moweile/videoquant/HeadWiseKVQuant/results/selfforcing/bf16/split_clip/0-0_ema/0-0_ema_011.mp4/0-0.mp4",
+                "inclip_score": 0.9608902239030407,
+                "clip2clip_score": 0,
+                "mapped_clip2clip_score": 0.0,
+                "video_results": 0.9608902239030407
+            },
+            {
+                "video_path": "/mnt/workspace/caipeiliang/code/moweile/videoquant/HeadWiseKVQuant/results/selfforcing/bf16/split_clip/0-0_ema/0-0_ema_020.mp4/0-0.mp4",
+                "inclip_score": 0.9393512472029655,
+                "clip2clip_score": 0,
+                "mapped_clip2clip_score": 0.0,
+                "video_results": 0.9393512472029655
+            },
+            {
+                "video_path": "/mnt/workspace/caipeiliang/code/moweile/videoquant/HeadWiseKVQuant/results/selfforcing/bf16/split_clip/0-0_ema/0-0_ema_008.mp4/0-0.mp4",
+                "inclip_score": 0.9519075818600193,
+                "clip2clip_score": 0,
+                "mapped_clip2clip_score": 0.0,
+                "video_results": 0.9519075818600193
+            },
+            {
+                "video_path": "/mnt/workspace/caipeiliang/code/moweile/videoquant/HeadWiseKVQuant/results/selfforcing/bf16/split_clip/0-0_ema/0-0_ema_017.mp4/0-0.mp4",
+                "inclip_score": 0.9440378162168688,
+                "clip2clip_score": 0,
+                "mapped_clip2clip_score": 0.0,
+                "video_results": 0.9440378162168688
+            },
+            {
+                "video_path": "/mnt/workspace/caipeiliang/code/moweile/videoquant/HeadWiseKVQuant/results/selfforcing/bf16/split_clip/0-0_ema/0-0_ema_005.mp4/0-0.mp4",
+                "inclip_score": 0.9480502345869618,
+                "clip2clip_score": 0,
+                "mapped_clip2clip_score": 0.0,
+                "video_results": 0.9480502345869618
+            },
+            {
+                "video_path": "/mnt/workspace/caipeiliang/code/moweile/videoquant/HeadWiseKVQuant/results/selfforcing/bf16/split_clip/0-0_ema/0-0_ema_010.mp4/0-0.mp4",
+                "inclip_score": 0.969771780313984,
+                "clip2clip_score": 0,
+                "mapped_clip2clip_score": 0.0,
+                "video_results": 0.969771780313984
+            },
+            {
+                "video_path": "/mnt/workspace/caipeiliang/code/moweile/videoquant/HeadWiseKVQuant/results/selfforcing/bf16/split_clip/0-0_ema/0-0_ema_013.mp4/0-0.mp4",
+                "inclip_score": 0.9618481166901127,
+                "clip2clip_score": 0,
+                "mapped_clip2clip_score": 0.0,
+                "video_results": 0.9618481166901127
+            },
+            {
+                "video_path": "/mnt/workspace/caipeiliang/code/moweile/videoquant/HeadWiseKVQuant/results/selfforcing/bf16/split_clip/0-0_ema/0-0_ema_004.mp4/0-0.mp4",
+                "inclip_score": 0.9544247619567379,
+                "clip2clip_score": 0,
+                "mapped_clip2clip_score": 0.0,
+                "video_results": 0.9544247619567379
+            },
+            {
+                "video_path": "/mnt/workspace/caipeiliang/code/moweile/videoquant/HeadWiseKVQuant/results/selfforcing/bf16/split_clip/0-0_ema/0-0_ema_015.mp4/0-0.mp4",
+                "inclip_score": 0.9694987862340866,
+                "clip2clip_score": 0,
+                "mapped_clip2clip_score": 0.0,
+                "video_results": 0.9694987862340866
+            },
+            {
+                "video_path": "/mnt/workspace/caipeiliang/code/moweile/videoquant/HeadWiseKVQuant/results/selfforcing/bf16/split_clip/0-0_ema/0-0_ema_002.mp4/0-0.mp4",
+                "inclip_score": 0.9705902607210221,
+                "clip2clip_score": 0,
+                "mapped_clip2clip_score": 0.0,
+                "video_results": 0.9705902607210221
+            },
+            {
+                "video_path": "/mnt/workspace/caipeiliang/code/moweile/videoquant/HeadWiseKVQuant/results/selfforcing/bf16/split_clip/0-0_ema/0-0_ema_016.mp4/0-0.mp4",
+                "inclip_score": 0.9569160255693621,
+                "clip2clip_score": 0,
+                "mapped_clip2clip_score": 0.0,
+                "video_results": 0.9569160255693621
+            },
+            {
+                "video_path": "/mnt/workspace/caipeiliang/code/moweile/videoquant/HeadWiseKVQuant/results/selfforcing/bf16/split_clip/0-0_ema/0-0_ema_000.mp4/0-0.mp4",
+                "inclip_score": 0.9457955600753907,
+                "clip2clip_score": 0,
+                "mapped_clip2clip_score": 0.0,
+                "video_results": 0.9457955600753907
+            },
+            {
+                "video_path": "/mnt/workspace/caipeiliang/code/moweile/videoquant/HeadWiseKVQuant/results/selfforcing/bf16/split_clip/1-0_ema/1-0_ema_019.mp4/1-0.mp4",
+                "inclip_score": 0.9971591484162116,
+                "clip2clip_score": 0,
+                "mapped_clip2clip_score": 0.0,
+                "video_results": 0.9971591484162116
+            },
+            {
+                "video_path": "/mnt/workspace/caipeiliang/code/moweile/videoquant/HeadWiseKVQuant/results/selfforcing/bf16/split_clip/1-0_ema/1-0_ema_020.mp4/1-0.mp4",
+                "inclip_score": 0.9971129942324853,
+                "clip2clip_score": 0,
+                "mapped_clip2clip_score": 0.0,
+                "video_results": 0.9971129942324853
+            },
+            {
+                "video_path": "/mnt/workspace/caipeiliang/code/moweile/videoquant/HeadWiseKVQuant/results/selfforcing/bf16/split_clip/1-0_ema/1-0_ema_011.mp4/1-0.mp4",
+                "inclip_score": 0.9938549360921306,
+                "clip2clip_score": 0,
+                "mapped_clip2clip_score": 0.0,
+                "video_results": 0.9938549360921306
+            },
+            {
+                "video_path": "/mnt/workspace/caipeiliang/code/moweile/videoquant/HeadWiseKVQuant/results/selfforcing/bf16/split_clip/1-0_ema/1-0_ema_013.mp4/1-0.mp4",
+                "inclip_score": 0.9966821362895351,
+                "clip2clip_score": 0,
+                "mapped_clip2clip_score": 0.0,
+                "video_results": 0.9966821362895351
+            },
+            {
+                "video_path": "/mnt/workspace/caipeiliang/code/moweile/videoquant/HeadWiseKVQuant/results/selfforcing/bf16/split_clip/1-0_ema/1-0_ema_022.mp4/1-0.mp4",
+                "inclip_score": 0.9973909162705944,
+                "clip2clip_score": 0,
+                "mapped_clip2clip_score": 0.0,
+                "video_results": 0.9973909162705944
+            },
+            {
+                "video_path": "/mnt/workspace/caipeiliang/code/moweile/videoquant/HeadWiseKVQuant/results/selfforcing/bf16/split_clip/1-0_ema/1-0_ema_017.mp4/1-0.mp4",
+                "inclip_score": 0.9968106544786884,
+                "clip2clip_score": 0,
+                "mapped_clip2clip_score": 0.0,
+                "video_results": 0.9968106544786884
+            },
+            {
+                "video_path": "/mnt/workspace/caipeiliang/code/moweile/videoquant/HeadWiseKVQuant/results/selfforcing/bf16/split_clip/1-0_ema/1-0_ema_003.mp4/1-0.mp4",
+                "inclip_score": 0.9875056801303741,
+                "clip2clip_score": 0,
+                "mapped_clip2clip_score": 0.0,
+                "video_results": 0.9875056801303741
+            },
+            {
+                "video_path": "/mnt/workspace/caipeiliang/code/moweile/videoquant/HeadWiseKVQuant/results/selfforcing/bf16/split_clip/1-0_ema/1-0_ema_018.mp4/1-0.mp4",
+                "inclip_score": 0.9967318955929049,
+                "clip2clip_score": 0,
+                "mapped_clip2clip_score": 0.0,
+                "video_results": 0.9967318955929049
+            },
+            {
+                "video_path": "/mnt/workspace/caipeiliang/code/moweile/videoquant/HeadWiseKVQuant/results/selfforcing/bf16/split_clip/1-0_ema/1-0_ema_021.mp4/1-0.mp4",
+                "inclip_score": 0.9973153866106464,
+                "clip2clip_score": 0,
+                "mapped_clip2clip_score": 0.0,
+                "video_results": 0.9973153866106464
+            },
+            {
+                "video_path": "/mnt/workspace/caipeiliang/code/moweile/videoquant/HeadWiseKVQuant/results/selfforcing/bf16/split_clip/1-0_ema/1-0_ema_006.mp4/1-0.mp4",
+                "inclip_score": 0.9923770427703857,
+                "clip2clip_score": 0,
+                "mapped_clip2clip_score": 0.0,
+                "video_results": 0.9923770427703857
+            },
+            {
+                "video_path": "/mnt/workspace/caipeiliang/code/moweile/videoquant/HeadWiseKVQuant/results/selfforcing/bf16/split_clip/1-0_ema/1-0_ema_016.mp4/1-0.mp4",
+                "inclip_score": 0.9974948850370222,
+                "clip2clip_score": 0,
+                "mapped_clip2clip_score": 0.0,
+                "video_results": 0.9974948850370222
+            },
+            {
+                "video_path": "/mnt/workspace/caipeiliang/code/moweile/videoquant/HeadWiseKVQuant/results/selfforcing/bf16/split_clip/1-0_ema/1-0_ema_001.mp4/1-0.mp4",
+                "inclip_score": 0.9916369078620788,
+                "clip2clip_score": 0,
+                "mapped_clip2clip_score": 0.0,
+                "video_results": 0.9916369078620788
+            },
+            {
+                "video_path": "/mnt/workspace/caipeiliang/code/moweile/videoquant/HeadWiseKVQuant/results/selfforcing/bf16/split_clip/1-0_ema/1-0_ema_014.mp4/1-0.mp4",
+                "inclip_score": 0.9967850696656012,
+                "clip2clip_score": 0,
+                "mapped_clip2clip_score": 0.0,
+                "video_results": 0.9967850696656012
+            },
+            {
+                "video_path": "/mnt/workspace/caipeiliang/code/moweile/videoquant/HeadWiseKVQuant/results/selfforcing/bf16/split_clip/1-0_ema/1-0_ema_002.mp4/1-0.mp4",
+                "inclip_score": 0.9883171944848953,
+                "clip2clip_score": 0,
+                "mapped_clip2clip_score": 0.0,
+                "video_results": 0.9883171944848953
+            },
+            {
+                "video_path": "/mnt/workspace/caipeiliang/code/moweile/videoquant/HeadWiseKVQuant/results/selfforcing/bf16/split_clip/1-0_ema/1-0_ema_010.mp4/1-0.mp4",
+                "inclip_score": 0.9938939655980756,
+                "clip2clip_score": 0,
+                "mapped_clip2clip_score": 0.0,
+                "video_results": 0.9938939655980756
+            },
+            {
+                "video_path": "/mnt/workspace/caipeiliang/code/moweile/videoquant/HeadWiseKVQuant/results/selfforcing/bf16/split_clip/1-0_ema/1-0_ema_008.mp4/1-0.mp4",
+                "inclip_score": 0.9894543530479554,
+                "clip2clip_score": 0,
+                "mapped_clip2clip_score": 0.0,
+                "video_results": 0.9894543530479554
+            },
+            {
+                "video_path": "/mnt/workspace/caipeiliang/code/moweile/videoquant/HeadWiseKVQuant/results/selfforcing/bf16/split_clip/1-0_ema/1-0_ema_015.mp4/1-0.mp4",
+                "inclip_score": 0.9969088473627644,
+                "clip2clip_score": 0,
+                "mapped_clip2clip_score": 0.0,
+                "video_results": 0.9969088473627644
+            },
+            {
+                "video_path": "/mnt/workspace/caipeiliang/code/moweile/videoquant/HeadWiseKVQuant/results/selfforcing/bf16/split_clip/1-0_ema/1-0_ema_007.mp4/1-0.mp4",
+                "inclip_score": 0.9935219384008839,
+                "clip2clip_score": 0,
+                "mapped_clip2clip_score": 0.0,
+                "video_results": 0.9935219384008839
+            },
+            {
+                "video_path": "/mnt/workspace/caipeiliang/code/moweile/videoquant/HeadWiseKVQuant/results/selfforcing/bf16/split_clip/1-0_ema/1-0_ema_012.mp4/1-0.mp4",
+                "inclip_score": 0.99538040930225,
+                "clip2clip_score": 0,
+                "mapped_clip2clip_score": 0.0,
+                "video_results": 0.99538040930225
+            },
+            {
+                "video_path": "/mnt/workspace/caipeiliang/code/moweile/videoquant/HeadWiseKVQuant/results/selfforcing/bf16/split_clip/1-0_ema/1-0_ema_000.mp4/1-0.mp4",
+                "inclip_score": 0.9904601487421221,
+                "clip2clip_score": 0,
+                "mapped_clip2clip_score": 0.0,
+                "video_results": 0.9904601487421221
+            },
+            {
+                "video_path": "/mnt/workspace/caipeiliang/code/moweile/videoquant/HeadWiseKVQuant/results/selfforcing/bf16/split_clip/1-0_ema/1-0_ema_004.mp4/1-0.mp4",
+                "inclip_score": 0.9899867571169331,
+                "clip2clip_score": 0,
+                "mapped_clip2clip_score": 0.0,
+                "video_results": 0.9899867571169331
+            },
+            {
+                "video_path": "/mnt/workspace/caipeiliang/code/moweile/videoquant/HeadWiseKVQuant/results/selfforcing/bf16/split_clip/1-0_ema/1-0_ema_009.mp4/1-0.mp4",
+                "inclip_score": 0.9947690540744413,
+                "clip2clip_score": 0,
+                "mapped_clip2clip_score": 0.0,
+                "video_results": 0.9947690540744413
+            },
+            {
+                "video_path": "/mnt/workspace/caipeiliang/code/moweile/videoquant/HeadWiseKVQuant/results/selfforcing/bf16/split_clip/1-0_ema/1-0_ema_005.mp4/1-0.mp4",
+                "inclip_score": 0.99275335573381,
+                "clip2clip_score": 0,
+                "mapped_clip2clip_score": 0.0,
+                "video_results": 0.99275335573381
+            }
+        ]
+    ]
+}
